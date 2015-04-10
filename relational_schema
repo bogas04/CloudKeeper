@@ -1,0 +1,18 @@
+Person ( fname, lname, person_id, username, password );
+PhoneNumbers ( person_id, phoneNumber );
+
+Customer ( person_id, customer_id );
+Owner ( person_id, owner_id);
+
+
+Shops( shop_id, owner_id, shop_name, address, state, country, pin_code);
+
+Cust_of_shop( customer_id, shop_id );
+
+Invoice( invoice_id, shop_id, timestamp, customer_id );
+
+Items( item_id, name, description, MRP )
+
+Owner_owns_items( owner_id, item_id, cost_price, quantity, sell_price );
+
+items_of_invoice ( item_id, invoice_id, quantity, price );
