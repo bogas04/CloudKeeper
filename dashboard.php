@@ -16,6 +16,8 @@ if(!isset($_SESSION['user']) || !isset($_SESSION['user']['username'])) {
   
     <?php
       echo '<pre>',print_r($_SESSION), '</pre>';
+      
+      
     ?>
   </body>
 </html>

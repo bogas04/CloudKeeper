@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2015 at 02:00 PM
+-- Generation Time: Apr 15, 2015 at 12:47 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.5.20
 
@@ -109,7 +109,15 @@ CREATE TABLE IF NOT EXISTS `person` (
   `last_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `person`
+--
+
+INSERT INTO `person` (`person_id`, `first_name`, `last_name`, `username`, `password`) VALUES
+(6, 'divjot', 'singh', 'bogas04', '$2y$10$FpJXnOyfWB99fbSP.kGlT.d5BKpVJjyNN3c7TEk2RavzDWTFrb8I6'),
+(11, 'astha', 'arya', 'aryaastha', '$2y$10$Oo5xQ4H2T/1x3prToTXU0OM8b85vGujzQ0a4RqHiYtCo/etLbqmJO');
 
 -- --------------------------------------------------------
 
@@ -226,7 +234,7 @@ MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
