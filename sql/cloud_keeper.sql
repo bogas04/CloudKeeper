@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2015 at 12:47 PM
+-- Generation Time: Apr 18, 2015 at 06:52 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.5.20
 
@@ -23,24 +23,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
---
-
-CREATE TABLE IF NOT EXISTS `customer` (
-  `person_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `invoices`
 --
 
 CREATE TABLE IF NOT EXISTS `invoices` (
   `invoice_id` int(11) NOT NULL,
   `shop_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
   `invoice_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `invoice_amount` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -79,9 +67,19 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 CREATE TABLE IF NOT EXISTS `owner` (
-  `person_id` int(11) NOT NULL,
-  `owner_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+`owner_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(300) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`owner_id`, `first_name`, `last_name`, `username`, `password`) VALUES
+(13, 'divjot', 'singh', 'divjot94', '$2y$10$5gMd.wTcWymIOnKIfsVNH.X5LlHplcbbwQYib/axWIBndj3xhy15a');
 
 -- --------------------------------------------------------
 
@@ -100,33 +98,11 @@ CREATE TABLE IF NOT EXISTS `owner_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `person`
---
-
-CREATE TABLE IF NOT EXISTS `person` (
-`person_id` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(300) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
-
---
--- Dumping data for table `person`
---
-
-INSERT INTO `person` (`person_id`, `first_name`, `last_name`, `username`, `password`) VALUES
-(6, 'divjot', 'singh', 'bogas04', '$2y$10$FpJXnOyfWB99fbSP.kGlT.d5BKpVJjyNN3c7TEk2RavzDWTFrb8I6'),
-(11, 'astha', 'arya', 'aryaastha', '$2y$10$Oo5xQ4H2T/1x3prToTXU0OM8b85vGujzQ0a4RqHiYtCo/etLbqmJO');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `phonenumbers`
 --
 
 CREATE TABLE IF NOT EXISTS `phonenumbers` (
-  `person_id` int(11) NOT NULL,
+  `owner_id` int(11) NOT NULL,
   `phone_number` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,32 +122,15 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `pin_code` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `shop_customers`
---
-
-CREATE TABLE IF NOT EXISTS `shop_customers` (
-  `customer_id` int(11) NOT NULL,
-  `shop_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
- ADD PRIMARY KEY (`customer_id`), ADD KEY `person_id` (`person_id`);
-
---
 -- Indexes for table `invoices`
 --
 ALTER TABLE `invoices`
- ADD PRIMARY KEY (`invoice_id`);
+ ADD PRIMARY KEY (`invoice_id`), ADD KEY `shop_id` (`shop_id`);
 
 --
 -- Indexes for table `invoice_items`
@@ -189,7 +148,7 @@ ALTER TABLE `items`
 -- Indexes for table `owner`
 --
 ALTER TABLE `owner`
- ADD PRIMARY KEY (`owner_id`), ADD KEY `person_id` (`person_id`);
+ ADD PRIMARY KEY (`owner_id`), ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `owner_items`
@@ -198,28 +157,16 @@ ALTER TABLE `owner_items`
  ADD PRIMARY KEY (`owner_id`,`item_id`), ADD KEY `item_id` (`item_id`);
 
 --
--- Indexes for table `person`
---
-ALTER TABLE `person`
- ADD PRIMARY KEY (`person_id`), ADD UNIQUE KEY `username` (`username`);
-
---
 -- Indexes for table `phonenumbers`
 --
 ALTER TABLE `phonenumbers`
- ADD PRIMARY KEY (`person_id`,`phone_number`), ADD KEY `person_id` (`person_id`);
+ ADD PRIMARY KEY (`owner_id`,`phone_number`), ADD KEY `person_id` (`owner_id`);
 
 --
 -- Indexes for table `shops`
 --
 ALTER TABLE `shops`
  ADD PRIMARY KEY (`shop_id`), ADD KEY `owner_id` (`owner_id`);
-
---
--- Indexes for table `shop_customers`
---
-ALTER TABLE `shop_customers`
- ADD PRIMARY KEY (`customer_id`,`shop_id`), ADD KEY `customer_id` (`customer_id`), ADD KEY `shop_id` (`shop_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -231,19 +178,19 @@ ALTER TABLE `shop_customers`
 ALTER TABLE `items`
 MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `person`
+-- AUTO_INCREMENT for table `owner`
 --
-ALTER TABLE `person`
-MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+ALTER TABLE `owner`
+MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `customer`
+-- Constraints for table `invoices`
 --
-ALTER TABLE `customer`
-ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `invoices`
+ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`shop_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `invoice_items`
@@ -253,36 +200,23 @@ ADD CONSTRAINT `invoice_items_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items`
 ADD CONSTRAINT `invoice_items_ibfk_2` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`invoice_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `owner`
---
-ALTER TABLE `owner`
-ADD CONSTRAINT `owner_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `owner_items`
 --
 ALTER TABLE `owner_items`
-ADD CONSTRAINT `owner_items_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `owner_items_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `owner_items_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `owner_items_ibfk_3` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `phonenumbers`
 --
 ALTER TABLE `phonenumbers`
-ADD CONSTRAINT `phonenumbers_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `phonenumbers_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `shops`
 --
 ALTER TABLE `shops`
 ADD CONSTRAINT `shops_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `shop_customers`
---
-ALTER TABLE `shop_customers`
-ADD CONSTRAINT `shop_customers_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `shop_customers_ibfk_2` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`shop_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
