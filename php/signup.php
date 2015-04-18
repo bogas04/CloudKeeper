@@ -23,7 +23,7 @@ $_POST['username'] = trim(strtolower($_POST['username']));
 $mysqli = dbConnect();
 
 // query to find user
-$query = 'SELECT * FROM `person` WHERE `username` = "' . ($_POST['username'] .'"');
+$query = 'SELECT * FROM `owner` WHERE `username` = "' . ($_POST['username'] .'"');
 $result = $mysqli->query($query);
 
 // user not found
@@ -31,7 +31,7 @@ if($result->num_rows !== 0) {
   respond(true, 'username is taken', $_POST['username']);
 }
 
-$query = 'INSERT INTO `person`'.
+$query = 'INSERT INTO `owner`'.
   '(`first_name`, `last_name`, `username`, `password`) VALUES '.
   '("'. strtolower($mysqli->real_escape_string($_POST['first_name'])) .'","'.  
         strtolower($mysqli->real_escape_string($_POST['last_name'])) .'","'.  

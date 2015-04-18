@@ -22,7 +22,7 @@ $_POST['username'] = trim(strtolower($_POST['username']));
 $mysqli = dbConnect();
 
 // query to find user
-$query = 'SELECT * FROM `person` WHERE `username` = "' . strtolower($mysqli->real_escape_string($_POST['username'])) .'"';
+$query = 'SELECT * FROM `owner` WHERE `username` = "' . strtolower($mysqli->real_escape_string($_POST['username'])) .'"';
 $result = $mysqli->query($query);
 
 // user not found
