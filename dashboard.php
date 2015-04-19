@@ -21,7 +21,7 @@ $mysqli = dbConnect();
       <div class="col-md-6">  
         <h4> Your Shops </h4>
 <?php
-$query = "SELECT * FROM `shops` WHERE `owner_id` = '". $_SESSION['owner_id']."'";
+$query = "SELECT * FROM `shops` WHERE `owner_id` = '". $_SESSION['user']['owner_id']."'";
 $result = $mysqli->query($query);
 if($result->num_rows == 0) {
   echo "You have no shops.";
@@ -37,12 +37,12 @@ if($result->num_rows == 0) {
       <div class="col-md-6">
         <h4> Your Items </h4>
 <?php
-$query = "SELECT * FROM `items` WHERE `owner_id` = '". $_SESSION['owner_id']."'";
+$query = "SELECT * FROM `owner_items` WHERE `owner_id` = '". $_SESSION['user']['owner_id']."'";
 $result = $mysqli->query($query);
 if($result->num_rows == 0) {
   echo "You have no items.";
 } else {
-  while($shop = $result->fetch_assoc(MYSQLI_ASSOC)) {
+  while($shop = $result->fetch_assoc()) {
     print_r($shop);
   }
 }
