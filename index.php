@@ -1,6 +1,9 @@
 <?php
 require_once('php/funcs.php');
-init();
+if(isLoggedIn()) {
+  header('Location: dashboard.php');
+  die();
+}
 ?>
 <!doctype html>
 <html> 

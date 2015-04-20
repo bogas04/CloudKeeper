@@ -35,21 +35,22 @@ var service = {
 };
 
 $(function() {
+  // Bootstrapping
   $('.message').html(); 
   $('.message').css('display', 'none');
   $('#signup-form').on('submit', function() {
     service.signup({
-      username : $('#signup-form input[name=username]').val(),
-      password : $('#signup-form input[name=password]').val(),
-      first_name : $('#signup-form input[name=first_name]').val(),
-      last_name : $('#signup-form input[name=last_name]').val()
+      username : $('#signup-form [name=username]').val(),
+      password : $('#signup-form [name=password]').val(),
+      first_name : $('#signup-form [name=first_name]').val(),
+      last_name : $('#signup-form [name=last_name]').val()
     }, $('#signup-form .message'));
     return false;
   });  
   $('#login-form').on('submit', function() {
     service.login({
-      username : $('#login-form input[name=username]').val(),
-      password : $('#login-form input[name=password]').val()
+      username : $('#login-form [name=username]').val(),
+      password : $('#login-form [name=password]').val()
     }, $('#login-form .message'));
     return false;
   });  

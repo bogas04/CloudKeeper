@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2015 at 06:52 PM
+-- Generation Time: Apr 20, 2015 at 06:58 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.5.20
 
@@ -56,9 +56,16 @@ CREATE TABLE IF NOT EXISTS `items` (
 `item_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(250) DEFAULT NULL,
-  `MRP` double NOT NULL,
+  `mrp` double NOT NULL,
   `image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `description`, `mrp`, `image`) VALUES
+(1, 'Colgate', 'Toothpaste with red flakes', 87, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,14 +79,17 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `last_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(300) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `owner`
 --
 
 INSERT INTO `owner` (`owner_id`, `first_name`, `last_name`, `username`, `password`) VALUES
-(13, 'divjot', 'singh', 'divjot94', '$2y$10$5gMd.wTcWymIOnKIfsVNH.X5LlHplcbbwQYib/axWIBndj3xhy15a');
+(13, 'divjot', 'singh', 'divjot94', '$2y$10$5gMd.wTcWymIOnKIfsVNH.X5LlHplcbbwQYib/axWIBndj3xhy15a'),
+(14, 'hello', 'baby', 'hellobaby', '$2y$10$W1E9ja0WCiTGSLc6Jp70TuimAp95us.VmGUfJwSdrdoQZw01NN6/e'),
+(15, 'blablabla', 'blablabla', 'bogas04', '$2y$10$emSFtaZz0wneznuc3zUJie.4uJo2ukYJPsM9GlOOJDZlsmpnR50pW'),
+(16, 'yolo', 'yolo', 'yolo', '$2y$10$S4GDR84gGnfgYo48u8hCGu0pMq63ydJC1g/VlpjcDNpSgK5tE68JW');
 
 -- --------------------------------------------------------
 
@@ -94,6 +104,13 @@ CREATE TABLE IF NOT EXISTS `owner_items` (
   `sell_price` double NOT NULL,
   `quantity` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `owner_items`
+--
+
+INSERT INTO `owner_items` (`owner_id`, `item_id`, `cost_price`, `sell_price`, `quantity`) VALUES
+(13, 1, 70, 82, 200);
 
 -- --------------------------------------------------------
 
@@ -114,13 +131,13 @@ CREATE TABLE IF NOT EXISTS `phonenumbers` (
 
 CREATE TABLE IF NOT EXISTS `shops` (
   `owner_id` int(11) NOT NULL,
-  `shop_id` int(11) NOT NULL,
+`shop_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
   `country` varchar(50) NOT NULL,
   `pin_code` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -176,12 +193,17 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `shops`
+--
+ALTER TABLE `shops`
+MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
