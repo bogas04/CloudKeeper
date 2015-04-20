@@ -11,7 +11,7 @@ init();
   </head>
   <body>
     <div class="container-fluid">
-      <h1> <span class="glyphicon glyphicon-cloud"></span> Welcome to Cloud₹eeper </h1>
+      <h1> <span class="glyphicon glyphicon-cloud"></span> Welcome to CloudKeeper </h1>
       <div class="col-md-6">
         <h4> Login </h4>
         <form id="login-form" action="php/login.php" method="post">
