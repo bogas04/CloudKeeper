@@ -23,6 +23,7 @@ init();
             <label> Password  </label>
             <input class="form-control" type="password" name="password" placeholder="Enter your password">
           </div>
+          <div class="message alert"> </div>
           <button class="btn btn-primary"> Log In </button>
         </form>
       </div>
@@ -45,6 +46,7 @@ init();
             <label> Last Name </label>
             <input class="form-control" type="text" name="last_name" placeholder="Enter your last name">
           </div>
+          <div class="message alert"> </div>
           <button class="btn btn-default"> Sign Up </button>
         </form>
       </div>
