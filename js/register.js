@@ -28,6 +28,7 @@ var service = {
         $msg.css('display', 'block');
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
+        if(!r.error) { window.location = 'dashboard.php'; }
       }
     });
   }  
