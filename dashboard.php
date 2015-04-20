@@ -19,7 +19,7 @@ die();
       <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
 
       <div class="col-md-4">  
-        <h3 class="text-center"> <span class="glyphicon glyphicon-shopping-cart"></span> Shops </h3>
+        <h2 class="text-center"> <span class="glyphicon glyphicon-shopping-cart"></span> Shops </h2>
 
         <p class="text-center"> <a href="#add-shop" data-toggle="modal" data-target="#add-shop"> Add a Shop </a> </p>
 
@@ -28,7 +28,7 @@ die();
       </div>
 
       <div class="col-md-4">
-        <h3 class="text-center"> <span class="glyphicon glyphicon-transfer"></span> Invoices </h3>
+        <h2 class="text-center"> <span class="glyphicon glyphicon-transfer"></span> Invoices </h2>
 
         <p class="text-center"> <a href="#add-invoice" data-toggle="modal" data-target="#add-invoice"> Add a Invoice </a> </p>
 
@@ -36,7 +36,7 @@ die();
       </div>
 
       <div class="col-md-4">
-        <h3 class="text-center"> <span class="glyphicon glyphicon-list-alt"></span> Items </h3>
+        <h2 class="text-center"> <span class="glyphicon glyphicon-list-alt"></span> Items </h2>
 
         <p> You may choose items from <a href="items" target="_blank">our database</a>, 
         or you can <a href="#add-item" data-toggle="modal" data-target="#add-item">add item</a> yourself. </p>
@@ -52,7 +52,7 @@ die();
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title"> Enter Shop Details </h3>
+            <h2 class="modal-title"> Enter Shop Details </h2>
           </div>
           <form id="add-shop-form" action="php/add_shop.php" method="post">
             <div class="modal-body">
@@ -88,7 +88,7 @@ die();
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title">Enter Item Details</h3>
+            <h2 class="modal-title">Enter Item Details</h2>
           </div>
           <form id="add-item-form" action="php/add_item.php" method="post">
             <div class="modal-body">
@@ -127,7 +127,7 @@ die();
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title">Enter Invoice Details</h3>
+            <h2 class="modal-title">Enter Invoice Details</h2>
           </div>
           <form id="add-invoice-form" action="php/add_invoice.php" method="post">
             <div class="modal-body">

@@ -1,4 +1,5 @@
 function renderTable(data, ignore) {
+  if(!data || data.length === 0) { return "<h3 class='text-center'>:( Nothing to show.</h3>"; }
   ignore = ignore || [];
   var html = "<table class='table table-bordered table-striped table-hover'>";
   var headers = "<thead> <tr>";
