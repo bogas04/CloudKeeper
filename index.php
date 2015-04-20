@@ -46,7 +46,7 @@ init();
             <label> Last Name </label>
             <input class="form-control" type="text" name="last_name" placeholder="Enter your last name">
           </div>
-          <div class="message alert"> </div>
+          <div class="message alert"></div>
           <button class="btn btn-default"> Sign Up </button>
         </form>
       </div>

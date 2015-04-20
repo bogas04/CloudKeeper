@@ -39,8 +39,9 @@ $query = 'INSERT INTO `owner`'.
         password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 10]) . '")';
 
 $result = $mysqli->query($query);
-if($result->num_rows === 1) {
+
+if($result) {
   respond(false, 'successfully signed up');
 } else {
-  respond(true, 'unexpected error', $result->error());
+  respond(true, 'unexpected error', $mysqli->error);
 }

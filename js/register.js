@@ -9,11 +9,9 @@ var service = {
       dataType : 'json',
       success : function(r) {
         $msg.html(r.msg);
-        if(r.error) {
-          $msg.addClass('alert-danger');
-        } else {
-          $msg.addClass('alert-success');
-        }
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
       }
     });
   },
@@ -27,12 +25,9 @@ var service = {
       dataType : 'json',
       success : function(r) {
         $msg.html(r.msg);
-        if(r.error) {
-          $msg.addClass('alert-danger');
-        } else {
-          $msg.addClass('alert-success');
-          window.location = 'dashboard.php';
-        }
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
       }
     });
   }  
