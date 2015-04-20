@@ -25,6 +25,10 @@ $mysqli = dbConnect();
 $query = 'SELECT * FROM `owner` WHERE `username` = "' . strtolower($mysqli->real_escape_string($_POST['username'])) .'"';
 $result = $mysqli->query($query);
 
+// db error
+if(!$result) {
+  respond(true, 'database error');
+}
 // user not found
 if($result->num_rows !== 1) {
   respond(true, 'user not found', $_POST['username']);

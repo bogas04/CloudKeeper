@@ -13,6 +13,7 @@ $mysqli = dbConnect();
   <head>
     <title> Dashboard </title>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
   <body>
     <h1> Dashboard | <small> <a href="php/logout.php">Logout</a></small></h1>
@@ -23,11 +24,16 @@ $mysqli = dbConnect();
 <?php
 $query = "SELECT * FROM `shops` WHERE `owner_id` = '". $_SESSION['user']['owner_id']."'";
 $result = $mysqli->query($query);
+if(!$result) {
+  die("Database error");
+}
 if($result->num_rows == 0) {
   echo "You have no shops.";
 } else {
-  while($shop = $result->fetch_assoc(MYSQLI_ASSOC)) {
+  while($shop = $result->fetch_assoc()) {
+    echo '<div>';
     print_r($shop);
+    echo '</div>';
   }
 }
 ?>
@@ -42,8 +48,10 @@ $result = $mysqli->query($query);
 if($result->num_rows == 0) {
   echo "You have no items.";
 } else {
-  while($shop = $result->fetch_assoc()) {
-    print_r($shop);
+  while($item = $result->fetch_assoc()) {
+    echo '<div>';
+    print_r($item);
+    echo '</div>';
   }
 }
 ?>
@@ -100,5 +108,6 @@ echo '<pre>',print_r($_SESSION), '</pre>';
       <button class="btn btn-primary"> Add Item </button>
     </form>
   </div>
+    <script src="js/jquery.min.js"></script>
   </body>
 </html>
