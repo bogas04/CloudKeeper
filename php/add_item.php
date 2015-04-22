@@ -5,8 +5,6 @@ require_once('funcs.php');
 
 if(!isLoggedIn()) { 
   logout(); 
-  header('Location: ../'); 
-  die();
 }
 
 $mysqli = dbConnect();

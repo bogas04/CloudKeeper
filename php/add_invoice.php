@@ -2,32 +2,33 @@
 session_start();
 require_once('db.php');
 require_once('funcs.php');
-if(!isset($_SESSION['user']) || !isset($_SESSION['user']['username'])) {
-  header('Location: index.php');
-  die();
+
+if(!isLoggedIn()) { 
+  logout(); 
 }
+
 $mysqli = dbConnect();
 
-$query = 'INSERT INTO `invoice` (.'
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."')";
+$query = 'INSERT INTO `invoices` (`shop_id`) VALUES("'.$_POST['shop_id'].'")';
 
 $result = $mysqli->query($query);
 $temp = $mysqli->insert_id;
 
-if($result)
-  echo "<h1>Added to items table</h1>";
+if(!$result) {
+  respond(true, "Database error", $mysqli->error);
+}
 
-$query = 'INSERT INTO `invoice_items` () VALUES('.
-  "'".$temp."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."',".
-  "'".$_POST['']."')";
+$query = 'INSERT INTO `invoice_items`(`item_id`, `invoice_id`, `quantity`, `price`) VALUES '; 
+
+foreach($_POST['items'] as $p) {
+  $query .= "('{$p['item_id']}, '$temp', '{$p['quantity']}', '{$p['price']}'),";
+}
+$query[strlen($query) - 1] = ';';
+
 $result = $mysqli->query($query);
-if($result)
-  echo "<h1>Added to owner_items table</h1>";
+
+if(!$result) {
+  respond(true, "Database error", $mysqli->error);
+}
+
+respond(false, "Successfully inserted!");

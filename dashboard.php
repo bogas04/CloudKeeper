@@ -131,24 +131,19 @@ die();
           </div>
           <form id="add-invoice-form" action="php/add_invoice.php" method="post">
             <div class="modal-body">
-              <div class="form-group">
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
+              <div class="form-group form-inline">
+                <label> For Shop </label> 
+                <select class="form-control" name="shop-id"></select>
               </div>
-              <div class="form-group">
-                <textarea name="description" class="form-control" placeholder="Description"></textarea> 
+              <div id="added-items"></div>
+              <div class="form-group form-inline">
+                <label> Choose Item : </label>
+                <select class="form-control" id="item-to-add-id"></select>
+                <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
+                <input class="form-control" type="text" id="item-to-add-price" placeholder="Enter price"/>
+                <div class="btn btn-info" id="add-this-item">Add</div>
               </div>
-              <div class="form-group">
-                <input type="text" name="MRP" class="form-control" placeholder="MRP"/>
-              </div>
-              <div class="form-group">
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-              </div>
-              <div class="form-group">
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
-                <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
-              </div>
+              
               <div class="message alert"></div>
             </div>
             <div class="modal-footer">

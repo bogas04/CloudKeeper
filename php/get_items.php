@@ -8,7 +8,7 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "SELECT name, description, quantity, cost_price, sell_price, mrp FROM `owner_items`, `items` WHERE items.item_id = owner_items.item_id and `owner_id` = '". $_SESSION['user']['owner_id']."'";
+$query = "SELECT items.item_id as item_id, name, description, quantity, cost_price, sell_price, mrp FROM `owner_items`, `items` WHERE items.item_id = owner_items.item_id and `owner_id` = '". $_SESSION['user']['owner_id']."'";
 
 $result = $mysqli->query($query);
 
