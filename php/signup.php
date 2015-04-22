@@ -27,8 +27,8 @@ $query = 'SELECT * FROM `owner` WHERE `username` = "' . ($_POST['username'] .'"'
 $result = $mysqli->query($query);
 
 // user not found
-if($result->num_rows !== 0) {
-  respond(true, 'username is taken', $_POST['username']);
+if($result->num_rows && $result->num_rows !== 0) {
+  respond(true, 'username is taken', [$_POST['username'], $result->num_rows]);
 }
 
 $query = 'INSERT INTO `owner`'.
