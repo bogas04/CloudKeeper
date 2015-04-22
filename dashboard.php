@@ -93,21 +93,27 @@ die();
           <form id="add-item-form" action="php/add_item.php" method="post">
             <div class="modal-body">
               <div class="form-group">
+                <label>Item Name</label>
                 <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
               </div>
               <div class="form-group">
+                <label>Description</label>
                 <textarea name="description" class="form-control" placeholder="Description"></textarea> 
               </div>
               <div class="form-group">
-                <input type="text" name="MRP" class="form-control" placeholder="MRP"/>
+                <label>Maximum Retail Price</label>
+                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
               </div>
               <div class="form-group">
+                <label>Sell Price</label>
                 <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
               </div>
               <div class="form-group">
+                <label>Cost Price</label>
                 <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
               </div>
               <div class="form-group">
+                <label>Quantity</label>
                 <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
               </div>
               <div class="message alert"></div>

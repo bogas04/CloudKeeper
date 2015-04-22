@@ -32,7 +32,7 @@ var service = {
   addShop : function(details, $msg) {
     console.log(details);
     $.ajax({
-      url : 'php/add_shop',
+      url : 'php/add_shop.php',
       data : details,
       dataType : 'json',
       type : 'post',
@@ -47,7 +47,7 @@ var service = {
   addItem : function(details, $msg) {
     console.log(details);
     $.ajax({
-      url : 'php/add_shop',
+      url : 'php/add_item.php',
       data : details,
       dataType : 'json',
       type : 'post',
@@ -110,7 +110,7 @@ var service = {
     details.items = service._invoiceItems;
     console.log(details);
     $.ajax({
-      url : 'php/add_invoice',
+      url : 'php/add_invoice.php',
       data : details,
       dataType : 'json',
       type : 'post',
@@ -179,7 +179,6 @@ var service = {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
       }
     });
-
   },
   getAnalytics : function($target) {
 
