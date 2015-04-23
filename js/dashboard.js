@@ -122,6 +122,13 @@ var service = {
       }
     });
   },
+  getItemDetails : function(itemId) {
+    for(var i = 0; i < service._items.length; i++) {
+      if(service._items[i].item_id === itemId) {
+        return service._items[i];
+      }
+    }
+  },
   getShops : function($targets, ignore) {
     $.ajax({
       url : 'php/get_shops.php',
@@ -182,22 +189,26 @@ var service = {
   },
   getAnalytics : function($target) {
 
-  }
+  },
 };
 $(function() {
   // Bootstrapping
   $('.message').css('display', 'none');
   $('.message').html('');
+  // Fetching Items
   service.getItems({
     table : $('#items'),
     option : $('#item-to-add-id')
   },['owner_id', 'item_id', 'image']);
+  // Fetching Shops
   service.getShops({
     table : $('#shops'), 
     option : $('#add-invoice-form [name=shop-id]')
   }, ['owner_id', 'shop_id']);
+  // Fetching Invoices
   service.getInvoices($('#invoices'));
 
+  // Add Item
   $('#add-item-form').on('submit', function() {
     service.addItem({
       name : $('#add-item-form [name=name]').val(),
@@ -209,6 +220,8 @@ $(function() {
     }, $('#add-item-form .message'));
     return false;
   });  
+  
+  // Add Shop
   $('#add-shop-form').on('submit', function() {
     service.addShop({
       name : $('#add-shop-form [name=name]').val(),
@@ -219,12 +232,16 @@ $(function() {
     }, $('#add-shop-form .message'));
     return false;
   });  
+  
+  // Add Invoice
   $('#add-invoice-form').on('submit', function() {
     service.addInvoice({
       shop_id : $('#add-invoice-form [name=shop-id] option:selected').val()
     }, $('#add-invoice-form .message'));
     return false;
   });
+  
+  // Add Invoice Item
   $('#add-this-item').on('click', function() {
     service.addInvoiceItem({
       item_id : $('#item-to-add-id option:selected').val(),
@@ -232,6 +249,15 @@ $(function() {
       quantity : $('#item-to-add-quantity').val(),
       price : $('#item-to-add-price').val()
     }, $('#added-items'));
+  });
+  
+
+  // Event Handlers :
+  // onchange
+  $('#item-to-add-id').on('focus', function() {
+    var item = service.getItemDetails($('#item-to-add-id option:selected').val());
+    $('#item-to-add-quantity').val(1);
+    $('#item-to-add-price').val(item.sell_price);
   });
 });
 
