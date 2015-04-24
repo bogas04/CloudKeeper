@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2015 at 01:51 PM
+-- Generation Time: Apr 24, 2015 at 02:37 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.20
 
@@ -30,8 +30,17 @@ CREATE TABLE IF NOT EXISTS `invoices` (
 `invoice_id` int(11) NOT NULL,
   `shop_id` int(11) NOT NULL,
   `invoice_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `invoice_amount` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `invoice_amount` double NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`invoice_id`, `shop_id`, `invoice_time`, `invoice_amount`) VALUES
+(1, 1, '2015-04-22 18:45:04', 0),
+(2, 1, '2015-04-22 18:45:56', 0),
+(3, 1, '2015-04-22 18:46:16', 0);
 
 -- --------------------------------------------------------
 
@@ -46,6 +55,13 @@ CREATE TABLE IF NOT EXISTS `invoice_items` (
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `invoice_items`
+--
+
+INSERT INTO `invoice_items` (`item_id`, `invoice_id`, `quantity`, `price`) VALUES
+(1, 3, 10, 23);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `items` (
   `description` varchar(250) DEFAULT NULL,
   `mrp` double NOT NULL,
   `image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `description`, `mrp`, `image`) VALUES
+(1, 'Bla', 'Bla', 25, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,7 +95,14 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `last_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`owner_id`, `first_name`, `last_name`, `username`, `password`) VALUES
+(1, 'divjot', 'singh', 'divjot94', '$2y$10$gHLVsksfQIcRrgDkhhbB.OZa.6WFlf/VODBuaykzppRjXMg3iMvjy');
 
 -- --------------------------------------------------------
 
@@ -87,6 +117,13 @@ CREATE TABLE IF NOT EXISTS `owner_items` (
   `sell_price` double NOT NULL,
   `quantity` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `owner_items`
+--
+
+INSERT INTO `owner_items` (`owner_id`, `item_id`, `cost_price`, `sell_price`, `quantity`) VALUES
+(1, 1, 20, 23, 100);
 
 -- --------------------------------------------------------
 
@@ -113,7 +150,14 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `state` varchar(50) NOT NULL,
   `country` varchar(50) NOT NULL,
   `pin_code` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `shops`
+--
+
+INSERT INTO `shops` (`owner_id`, `shop_id`, `name`, `address`, `state`, `country`, `pin_code`) VALUES
+(1, 1, 'Bla', 'Dwarka', 'New Delhi', 'India', '110078');
 
 --
 -- Indexes for dumped tables
@@ -169,22 +213,22 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --

@@ -1,5 +1,7 @@
-function renderTable(data, ignore) {
+function renderTable(data, ignore, $targets) {
+
   if(!data || data.length === 0) { return "<h3 class='text-center'>:( Nothing to show.</h3>"; }
+
   ignore = ignore || [];
   var html = "<table class='table table-bordered table-striped table-hover'>";
   var headers = "<thead> <tr>";
@@ -10,7 +12,7 @@ function renderTable(data, ignore) {
       headers += ("<th>" + i.toUpperCase() + "</th>");
     } 
   } 
-  html += (headers + '</tr></thead>');
+  html += (headers + '<th>Operations</th></tr></thead><tbody>');
 
   for(i = 0; i < data.length; i++) {
     rows += '<tr>';
@@ -19,9 +21,15 @@ function renderTable(data, ignore) {
         rows += ('<td>' + data[i][j] + '</td>');
       } 
     }
-    rows += '</tr>';
+    if($targets) {
+      rows += '<td>';
+      if($targets.update) {
+        rows += '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
+      }
+      rows += '<button class="btn btn-xs btn-danger" date-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button></td>';
+    }
   }
-  html += rows;
+  html += rows + ('</tr></tbody></table>');
 
   return html;
 }
@@ -61,11 +69,11 @@ var service = {
   },
   addInvoiceItem : function(details, $target) {
     if(!details 
-       || !details.item_id 
-       || !details.quantity 
-       || !details.price 
-       || !details.name 
-       || details.quantity < 1) {
+        || !details.item_id 
+        || !details.quantity 
+        || !details.price 
+        || !details.name 
+        || details.quantity < 1) {
       alert("Invalid details");
       return;
     }
@@ -138,7 +146,7 @@ var service = {
           $targets.html(r.msg);
         } else {
           service._shops = r.data;
-          $targets.table.html(renderTable(r.data, ignore));
+          $targets.table.html(renderTable(r.data, ignore, {update : $targets.update, del : $targets.del}));
           for(var i = 0; i < r.data.length; i++) {
             $targets.option.append('<option value="' + r.data[i].shop_id + '">' + r.data[i].name + '</option>');
           }
@@ -155,10 +163,10 @@ var service = {
       dataType : 'json',
       success : function(r) {
         if(r.error) {
-          $target.html(r.msg);
+          $targets.table.html(r.msg);
         } else {
           service._items = r.data;
-          $targets.table.html(renderTable(r.data, ignore));
+          $targets.table.html(renderTable(r.data, ignore, {update: $targets.update, del : $targets.del}));
           for(var i = 0; i < r.data.length; i++) {
             console.log(r.data[i]);
             $targets.option.append('<option value="' + r.data[i].item_id + '">' + r.data[i].name + '</option>');
@@ -171,15 +179,15 @@ var service = {
     });
 
   },
-  getInvoices : function($target, ignore) {
+  getInvoices : function($targets, ignore) {
     $.ajax({
       url : 'php/get_invoices.php',
       dataType : 'json',
       success : function(r) {
         if(r.error) {
-          $target.html(r.msg);
+          $targets.table.html(r.msg);
         } else {
-          $target.html(renderTable(r.data, ignore));
+          $targets.table.html(renderTable(r.data, ignore , {update : $targets.update, del : $targets.del}));
         }
       },
       error : function() {
@@ -198,15 +206,22 @@ $(function() {
   // Fetching Items
   service.getItems({
     table : $('#items'),
+    update : $('#edit-item'),
+    del : $('#del-item'),
     option : $('#item-to-add-id')
   },['owner_id', 'item_id', 'image']);
   // Fetching Shops
   service.getShops({
     table : $('#shops'), 
+    update : $('#edit-shop'),
+    del : $('#del-shop'),
     option : $('#add-invoice-form [name=shop-id]')
   }, ['owner_id', 'shop_id']);
   // Fetching Invoices
-  service.getInvoices($('#invoices'));
+  service.getInvoices({
+    table : $('#invoices'),
+    del : $('#del-invoice')
+  });
 
   // Add Item
   $('#add-item-form').on('submit', function() {
@@ -220,7 +235,7 @@ $(function() {
     }, $('#add-item-form .message'));
     return false;
   });  
-  
+
   // Add Shop
   $('#add-shop-form').on('submit', function() {
     service.addShop({
@@ -232,7 +247,7 @@ $(function() {
     }, $('#add-shop-form .message'));
     return false;
   });  
-  
+
   // Add Invoice
   $('#add-invoice-form').on('submit', function() {
     service.addInvoice({
@@ -240,7 +255,7 @@ $(function() {
     }, $('#add-invoice-form .message'));
     return false;
   });
-  
+
   // Add Invoice Item
   $('#add-this-item').on('click', function() {
     service.addInvoiceItem({
@@ -250,7 +265,7 @@ $(function() {
       price : $('#item-to-add-price').val()
     }, $('#added-items'));
   });
-  
+
 
   // Event Handlers :
   // onchange
