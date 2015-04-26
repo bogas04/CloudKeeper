@@ -2,7 +2,7 @@
 require_once('db.php');
 require_once('funcs.php');
 
-session_start();
+startSession();
 
 // validation
 if(isset($_SESSION['user']['loggedIn']) && $_SESSION['user']['loggedIn'] === true) {  

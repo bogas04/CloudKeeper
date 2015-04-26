@@ -1,7 +1,9 @@
 <?php
-session_start();
 require_once('db.php');
 require_once('funcs.php');
+
+startSession();
+
 if(!isLoggedIn()) { 
   logout(); 
   header('Location: ../'); 
@@ -15,7 +17,6 @@ $query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`country`,`pi
   "'".$_POST['name']."',".
   "'".$_POST['address']."',".
   "'".$_POST['state']."',".
-  "'".$_POST['country']."',".
   "'".$_POST['pincode']."')";
 
 $result = $mysqli->query($query);
