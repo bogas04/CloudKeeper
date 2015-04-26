@@ -54,7 +54,7 @@ if(isLoggedIn()) {
         </form>
       </div>
     </div>
-    <script src="js/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/register.js"></script>
   </body>
 </html>

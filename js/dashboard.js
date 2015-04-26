@@ -3,7 +3,7 @@ function renderTable(data, ignore, $targets) {
   if(!data || data.length === 0) { return "<h3 class='text-center'>:( Nothing to show.</h3>"; }
 
   ignore = ignore || [];
-  var html = "<table class='table table-bordered table-striped table-hover'>";
+  var html = "<table class='table table-striped table-hover'>";
   var headers = "<thead> <tr>";
   var rows = "";
 
@@ -12,7 +12,11 @@ function renderTable(data, ignore, $targets) {
       headers += ("<th>" + i.toUpperCase() + "</th>");
     } 
   } 
-  html += (headers + '<th>Operations</th></tr></thead><tbody>');
+  if($targets) {
+    html += (headers + '<th>Operations</th></tr></thead><tbody>');
+  } else {
+    html += (headers + '</tr></thead><tbody>');
+  }
 
   for(i = 0; i < data.length; i++) {
     rows += '<tr>';
@@ -24,9 +28,11 @@ function renderTable(data, ignore, $targets) {
     if($targets) {
       rows += '<td>';
       if($targets.update) {
-        rows += '<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
+        rows += '<button class="btn btn-xs btn-info edit-button" data-id="' + (data[i].item_id | data[i].shop_id | data[i].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
       }
-      rows += '<button class="btn btn-xs btn-danger" date-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button></td>';
+      if($targets.del) {
+        rows += '<button class="btn btn-xs btn-danger delete-button" data-id="' + (data[i].item_id | data[i].shop_id | data[i].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button></td>';
+      } 
     }
   }
   html += rows + ('</tr></tbody></table>');
@@ -268,7 +274,6 @@ $(function() {
 
 
   // Event Handlers :
-  // onchange
   $('#item-to-add-id').on('focus', function() {
     var item = service.getItemDetails($('#item-to-add-id option:selected').val());
     $('#item-to-add-quantity').val(1);
@@ -283,5 +288,8 @@ $(function() {
     console.log($('#item-to-add-price').val() * $('#item-to-add-quantity').val());
     $('#totalItemPrice').html('₹ ' + ($('#item-to-add-price').val() * $('#item-to-add-quantity').val()));
   });
+  
+  // Modals event handlers
+
 });
 

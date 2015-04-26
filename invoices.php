@@ -10,7 +10,7 @@ die();
 <!doctype html>
 <html>
   <head>
-    <title> Items - Dashboard </title>
+    <title> Invoices - Dashboard </title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
@@ -28,8 +28,8 @@ die();
             <ul class="nav nav-pills nav-stacked">
               <li><a href="dashboard.php"><span class="glyphicon glyphicon-cloud"></span> Overview</a> </li>
               <li><a href="shops.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shops</a> </li>
-              <li class="active"><a href="items.php"><span class="glyphicon glyphicon-list-alt"></span> Items</a> </li>
-              <li><a href="invoices.php"><span class="glyphicon glyphicon-transfer"></span> Invoices</a> </li>
+              <li><a href="items.php"><span class="glyphicon glyphicon-list-alt"></span> Items</a> </li>
+              <li class="active"><a href="invoices.php"><span class="glyphicon glyphicon-transfer"></span> Invoices</a> </li>
               <li><a href="analytics.php"><span class="glyphicon glyphicon-calendar"></span> Analytics</a> </li>
             </ul>
           </div>
@@ -40,12 +40,11 @@ die();
         <div class="col-md-10">
           <div class="row">
             <div class="col-md-12">
-              <h2> <span class="glyphicon glyphicon-list-alt"></span> Items </h2>
-              <p> 
-              You may choose items from <a href="items" target="_blank">our database</a>, 
-              or you can <a href="#add-item" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-item">add item</a> yourself.
-              </p>
-              <div id="items"></div>
+              <h2> 
+                <span class="glyphicon glyphicon-transfer"></span> Invoices 
+                <a href="#add-invoice" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-invoice"> Add a Invoice </a> 
+              </h2>
+              <div id="invoices"></div>
             </div>
           </div>
         </div>

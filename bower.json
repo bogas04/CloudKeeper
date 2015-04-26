@@ -1,0 +1,12 @@
+{
+  "name": "bogas04/CloudKeeper",
+  "version": "0.0.1",
+  "description": "Computing of supermarkets in hand of low-end vendors",
+  "ignore": [],
+  "dependencies": {
+    "jquery": ">=1.7.0",
+    "jquery-knob": "1.2.11",
+    "highcharts-release": "4.1.5"
+  },
+  "devDependencies": {}
+}
