@@ -2,9 +2,9 @@
 require_once('php/db.php');
 require_once('php/funcs.php');
 if(!isLoggedIn()) {
-logout();
-header('Location: index.php');
-die();
+  logout();
+  header('Location: index.php');
+  die();
 }
 ?>
 <!doctype html>
@@ -226,8 +226,15 @@ die();
               <div class="form-group form-inline">
                 <label> Choose Item : </label>
                 <select class="form-control" id="item-to-add-id"></select>
-                <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
-                <input class="form-control" type="text" id="item-to-add-price" placeholder="Enter price"/>
+                <div class="input-group">
+                  <div class="input-group-addon">@</div>
+                  <input class="form-control" type="text" id="item-to-add-price" placeholder="Enter price"/>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-addon">x</div>
+                  <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
+                </div>
+                <span id="totalItemPrice"></span>
                 <div class="btn btn-info" id="add-this-item">Add</div>
               </div>
 
@@ -242,7 +249,7 @@ die();
       </div>
     </div>
 
-    
+
     <!-- DELETE MODAL -->
     <div class="modal fade" id="del-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
       <div class="modal-dialog modal-lg">

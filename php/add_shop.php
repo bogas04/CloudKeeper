@@ -12,7 +12,7 @@ if(!isLoggedIn()) {
 $mysqli = dbConnect();
 
 // TODO: Validations
-$query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`country`,`pin_code`) VALUES ('.
+$query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`pin_code`) VALUES ('.
   "'".$_SESSION['user']['owner_id']."',".
   "'".$_POST['name']."',".
   "'".$_POST['address']."',".

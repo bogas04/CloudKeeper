@@ -273,6 +273,15 @@ $(function() {
     var item = service.getItemDetails($('#item-to-add-id option:selected').val());
     $('#item-to-add-quantity').val(1);
     $('#item-to-add-price').val(item.sell_price);
+    $('#totalItemPrice').html('₹ ' + (item.sell_price * $('#item-to-add-quantity')));
+  });
+  $('#item-to-add-quantity').on('change', function() {
+    console.log($('#item-to-add-price').val() * $('#item-to-add-quantity').val());
+    $('#totalItemPrice').html('₹ ' + ($('#item-to-add-price').val() * $('#item-to-add-quantity').val()));
+  });
+  $('#item-to-add-price').on('change', function() {
+    console.log($('#item-to-add-price').val() * $('#item-to-add-quantity').val());
+    $('#totalItemPrice').html('₹ ' + ($('#item-to-add-price').val() * $('#item-to-add-quantity').val()));
   });
 });
 
