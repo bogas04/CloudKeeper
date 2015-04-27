@@ -1,0 +1,6 @@
+.delete-border {
+  border: 3px dashed red;
+}
+.edit-border {
+  border: 3px dashed cyan;
+}

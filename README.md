@@ -11,12 +11,14 @@ Status :
 Todo : 
 ==
 * Validations at PHP and JS sides
-* Update and Delete operations
+* Update operations
+* [x] Delete operations
 * Simpler and quicker forms 
 * Auto-fill enteries based on past/filled details
+* Search
 * Add MySQL Triggers for invoice and item updates
-  - After insert on invoice_details, update owner_items.quantity for each cart item
-  - After insert on invoice_details, update invoices.invoice_amount
+  - [x] After insert on invoice_details, update owner_items.quantity for each cart item
+  - [x] After insert on invoice_details, update invoices.invoice_amount
 * Create MySQL Queries for great analytics such as 
   - Least/Most Sold Product
   - Least/Most Profitable Product

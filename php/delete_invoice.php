@@ -10,20 +10,11 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "SELECT items.item_id as item_id, name, description, quantity, cost_price, sell_price, mrp FROM `owner_items`, `items` WHERE items.item_id = owner_items.item_id and `owner_id` = '". $_SESSION['user']['owner_id']."'";
+$query = "DELETE FROM invoices WHERE invoice_id = '".$_POST['invoice_id']."' and shop_id IN (SELECT shop_id FROM shops WHERE owner_id = '".$owner_id."')";
 
 $result = $mysqli->query($query);
 
 if(!$result) {
-  respond(true, $mysqli->error);
+  respond(true, $mysqli->error, [$query]);
 }
-
-if($result->num_rows == 0) {
-  respond(false, 'You have no items', []);
-} else {
-  $items = [];
-  while($item = $result->fetch_assoc()) {
-    $items[] = $item;
-  }
-  respond(false, 'You have '. count($items) . ' item(s)', $items);
-}
+respond(false, 'Successfully deleted'. $result->num_rows.' invoice', [$query]);

@@ -10,11 +10,11 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "DELETE FROM shops shop_id = '".$_POST['shop_id']."' and owner_id = '".$_SESSION['user']['owner_id']."'";
+$query = "DELETE FROM shops WHERE shop_id = '".$_POST['shop_id']."' and owner_id = '".$owner_id."'";
 
 $result = $mysqli->query($query);
 
 if(!$result) {
-  respond(true, $mysqli->error);
+  respond(true, $mysqli->error, [$query]);
 }
-respond(false, 'Successfully deleted '. $result->num_rows.' shop');
+respond(false, 'Successfully deleted'. $result->num_rows.' shop');

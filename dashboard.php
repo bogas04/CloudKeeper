@@ -13,6 +13,7 @@ die();
     <title> Dashboard </title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
     <!-- MAIN CONTAINER -->
@@ -35,7 +36,7 @@ die();
           </div>
         </div>
         <!-- SIDE MENU ENDS -->
-        
+
         <!-- VIEW -->
         <div class="col-md-10">
           <div class="row">
@@ -72,7 +73,7 @@ die();
     </div>
     <!-- MAIN CONTAINER ENDS -->
 
-    
+
     <!-- MODALS -->
     <!-- SHOP MODAL -->
     <div class="modal fade" id="add-shop" tabindex="-1" role="dialog" aria-labelledby="addShop" aria-hidden="true">
@@ -107,7 +108,7 @@ die();
       </div>
     </div>
     <!-- EDIT SHOP MODAL -->
-    <div class="modal fade" id="edit-shop" tabindex="-1" role="dialog" aria-labelledby="editShop" aria-hidden="true">
+    <div class="modal fade edit-modal" id="edit-shop" tabindex="-1" role="dialog" aria-labelledby="editShop" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -179,7 +180,7 @@ die();
     </div>
 
     <!-- EDIT ITEM MODAL -->
-    <div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+    <div class="modal fade edit-modal" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -240,7 +241,7 @@ die();
                   <input class="form-control" type="text" id="item-to-add-price" placeholder="Enter price"/>
                 </div>
                 <div class="input-group">
-                  <div class="input-group-addon">x</div>
+                  <div class="input-group-addon">&times;</div>
                   <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
                 </div>
                 <span id="totalItemPrice"></span>
@@ -260,54 +261,63 @@ die();
 
 
     <!-- DELETE MODAL -->
-    <div class="modal fade" id="del-invoice" tabindex="-1" role="dialog" aria-labelledby="deleteInvoice" aria-hidden="true">
+    <div class="modal fade delete-modal" id="del-invoice" tabindex="-1" role="dialog" aria-labelledby="deleteInvoice" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h2 class="modal-title">Are you sure you want to delete this invoice?</h2>
           </div>
-          <div class="modal-body">
-            <div class="message alert"></div>
-          </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-            <button class="btn btn-primary"> Delete Invoice </button>
-          </div>
+          <form id="del-invoice-form" action="php/delete_invoice.php" method="post">
+            <div class="modal-body">
+              <input type="text" name="invoice_id" class="to-delete-id" value=-1 hidden>
+              <div class="message alert"></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              <button class="btn btn-primary"> Delete Invoice </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="del-shop" tabindex="-1" role="dialog" aria-labelledby="deleteShop" aria-hidden="true">
+    <div class="modal fade delete-modal" id="del-shop" tabindex="-1" role="dialog" aria-labelledby="deleteShop" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h2 class="modal-title">Are you sure you want to delete this shop?</h2>
           </div>
-          <div class="modal-body">
-            <div class="message alert"></div>
-          </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-            <button class="btn btn-primary"> Delete Shop </button>
-          </div>
+          <form id="del-shop-form" action="php/delete_shop.php" method="post">
+            <div class="modal-body">
+              <input type="text" name="shop_id" class="to-delete-id" value=-1 hidden>
+              <div class="message alert"></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              <button class="btn btn-primary"> Delete Shop </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <div class="modal fade" id="del-item" tabindex="-1" role="dialog" aria-labelledby="deleteItem" aria-hidden="true">
+    <div class="modal fade delete-modal" id="del-item" tabindex="-1" role="dialog" aria-labelledby="deleteItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h2 class="modal-title">Are you sure you want to delete this item?</h2>
           </div>
-          <div class="modal-body">
-            <div class="message alert"></div>
-          </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-            <button class="btn btn-primary"> Item </button>
-          </div>
+          <form id="del-item-form" action="php/delete_item.php" method="post">
+            <div class="modal-body">
+              <input type="text" name="item_id" class="to-delete-id" value=-1 hidden>
+              <div class="message alert"></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              <button class="btn btn-primary"> Delete Item </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
