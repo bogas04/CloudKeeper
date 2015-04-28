@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2015 at 02:37 PM
+-- Generation Time: Apr 28, 2015 at 10:44 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.20
 
@@ -31,16 +31,7 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   `shop_id` int(11) NOT NULL,
   `invoice_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `invoice_amount` double NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `invoices`
---
-
-INSERT INTO `invoices` (`invoice_id`, `shop_id`, `invoice_time`, `invoice_amount`) VALUES
-(1, 1, '2015-04-22 18:45:04', 0),
-(2, 1, '2015-04-22 18:45:56', 0),
-(3, 1, '2015-04-22 18:46:16', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -55,13 +46,6 @@ CREATE TABLE IF NOT EXISTS `invoice_items` (
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `invoice_items`
---
-
-INSERT INTO `invoice_items` (`item_id`, `invoice_id`, `quantity`, `price`) VALUES
-(1, 3, 10, 23);
-
 -- --------------------------------------------------------
 
 --
@@ -74,14 +58,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `description` varchar(250) DEFAULT NULL,
   `mrp` double NOT NULL,
   `image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `items`
---
-
-INSERT INTO `items` (`item_id`, `name`, `description`, `mrp`, `image`) VALUES
-(1, 'Bla', 'Bla', 25, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -118,13 +95,6 @@ CREATE TABLE IF NOT EXISTS `owner_items` (
   `quantity` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `owner_items`
---
-
-INSERT INTO `owner_items` (`owner_id`, `item_id`, `cost_price`, `sell_price`, `quantity`) VALUES
-(1, 1, 20, 23, 100);
-
 -- --------------------------------------------------------
 
 --
@@ -148,16 +118,16 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `name` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL DEFAULT 'india',
   `pin_code` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `shops`
 --
 
 INSERT INTO `shops` (`owner_id`, `shop_id`, `name`, `address`, `state`, `country`, `pin_code`) VALUES
-(1, 1, 'Bla', 'Dwarka', 'New Delhi', 'India', '110078');
+(1, 1, 'JUST Cafe', 'NSIT, Sector 3, Dwarka', 'New Delhi', 'india', '110078');
 
 --
 -- Indexes for dumped tables
@@ -213,12 +183,12 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `owner`
 --
@@ -228,7 +198,7 @@ MODIFY `owner_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -243,8 +213,9 @@ ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`sh
 -- Constraints for table `invoice_items`
 --
 ALTER TABLE `invoice_items`
-ADD CONSTRAINT `invoice_items_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `invoice_items_ibfk_2` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`invoice_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `invoice_items_ibfk_2` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`invoice_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `invoice_items_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `invoice_items_ibfk_4` FOREIGN KEY (`item_id`) REFERENCES `owner_items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `owner_items`
