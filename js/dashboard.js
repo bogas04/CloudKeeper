@@ -394,8 +394,13 @@ $(function() {
     $(e.currentTarget).find('.to-delete-id').val(id);
   });
   //TODO
-  $('.edit-modal').on('hide.bs.modal', function(e) {
-    $('tr.edit-border').removeClass('.edit-border');
+  $('.edit-modal').on('hide.bs.modal', function() {
+    console.log("edit");
+    $('tr.edit-border').removeClass('edit-border');
+  });
+  $('.delete-modal').on('hide.bs.modal', function() {
+    console.log("delete");
+    $('tr.delete-border').removeClass('delete-border');
   });
 
 });

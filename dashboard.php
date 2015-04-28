@@ -107,39 +107,6 @@ die();
         </div>
       </div>
     </div>
-    <!-- EDIT SHOP MODAL -->
-    <div class="modal fade edit-modal" id="edit-shop" tabindex="-1" role="dialog" aria-labelledby="editShop" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title"> Enter New Shop Details </h2>
-          </div>
-          <form id="edit-shop-form" action="php/edit_shop.php" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <input name="name" type="text" class="form-control" placeholder="Name of Shop"/> 
-              </div>
-              <div class="form-group">
-                <textarea name="editress" class="form-control" placeholder="Shop Address"></textarea> 
-              </div>
-              <div class="form-group">
-                <input type="text" name="state" class="form-control" placeholder="State"/>
-              </div>
-              <div class="form-group">
-                <input type="text" name="pincode" class="form-control" placeholder="Pin Code"/> 
-              </div>
-              <div class="message alert"></div>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Add Shop </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
     <!-- ITEM MODAL -->
     <div class="modal fade" id="add-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -178,46 +145,6 @@ die();
         </div>
       </div>
     </div>
-
-    <!-- EDIT ITEM MODAL -->
-    <div class="modal fade edit-modal" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title">Enter Item Details</h2>
-          </div>
-          <form id="add-item-form" action="php/add_item.php" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Item Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
-                <label>Description</label>
-                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
-              </div>
-              <div class="form-group form-inline">
-                <label>Maximum Retail Price</label>
-                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
-                <label>Sell Price</label>
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-                <label>Cost Price</label>
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
-                <label>Quantity</label>
-                <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
-              </div>
-              <div class="message alert"></div>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Add Item </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
     <!-- INVOICE MODAL -->
     <div class="modal fade" id="add-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -260,7 +187,8 @@ die();
     </div>
 
 
-    <!-- DELETE MODAL -->
+    <!-- DELETE MODALS -->
+    <!-- DELETE INVOCIE -->
     <div class="modal fade delete-modal" id="del-invoice" tabindex="-1" role="dialog" aria-labelledby="deleteInvoice" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -281,6 +209,7 @@ die();
         </div>
       </div>
     </div>
+    <!-- DELETE SHOP -->
     <div class="modal fade delete-modal" id="del-shop" tabindex="-1" role="dialog" aria-labelledby="deleteShop" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -301,6 +230,7 @@ die();
         </div>
       </div>
     </div>
+    <!-- DELETE ITEM -->
     <div class="modal fade delete-modal" id="del-item" tabindex="-1" role="dialog" aria-labelledby="deleteItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -316,6 +246,78 @@ die();
             <div class="modal-footer">
               <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
               <button class="btn btn-primary"> Delete Item </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT MODALS -->
+    <!-- EDIT SHOP MODAL -->
+    <div class="modal fade edit-modal" id="edit-shop" tabindex="-1" role="dialog" aria-labelledby="editShop" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title"> Enter New Shop Details </h2>
+          </div>
+          <form id="edit-shop-form" action="php/edit_shop.php" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <input name="name" type="text" class="form-control" placeholder="Name of Shop"/> 
+              </div>
+              <div class="form-group">
+                <textarea name="editress" class="form-control" placeholder="Shop Address"></textarea> 
+              </div>
+              <div class="form-group">
+                <input type="text" name="state" class="form-control" placeholder="State"/>
+              </div>
+              <div class="form-group">
+                <input type="text" name="pincode" class="form-control" placeholder="Pin Code"/> 
+              </div>
+              <div class="message alert"></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              <button class="btn btn-primary"> Add Shop </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- EDIT ITEM MODAL -->
+    <div class="modal fade edit-modal" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title">Enter Item Details</h2>
+          </div>
+          <form id="add-item-form" action="php/add_item.php" method="post">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Item Name</label>
+                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
+                <label>Description</label>
+                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
+              </div>
+              <div class="form-group form-inline">
+                <label>Maximum Retail Price</label>
+                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
+                <label>Sell Price</label>
+                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
+                <label>Cost Price</label>
+                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
+              </div>
+              <div class="form-group">
+                <label>Quantity</label>
+                <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
+              </div>
+              <div class="message alert"></div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+              <button class="btn btn-primary"> Add Item </button>
             </div>
           </form>
         </div>
