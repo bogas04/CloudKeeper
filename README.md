@@ -20,14 +20,15 @@ Todo
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
 * Create MySQL Queries for great analytics such as 
-  - Least/Most Sold Product
-  - Least/Most Profitable Product
-  - Peak/Crest Points for each Product
-  - Total Profit/Revenue 
+  - [x] Least/Most Sold Product
+  - [x] Least/Most Profitable Product
+  - [x] Peak/Crest Points for each Product
+  - [x] Total Revenue 
+  - Total Profit 
   - Projections for next duration
   - Demand and Supply of Products
   - Predict quantity 
-  - Least/Most Profitable Shop
+  - [x] Least/Most Profitable Shop
 * Use knob.js / highcharts etc to show above data
 * Search Engine for products 
 * Compare Prices of products from different vendors
