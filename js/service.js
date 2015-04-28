@@ -74,7 +74,9 @@ var service = {
         $msg.css('display', 'block');
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
+        service._invoiceItems = [];
         views.invoices();
+        views.clearInvoiceItems();
         views.clearModal();
       }
     });
@@ -143,9 +145,6 @@ var service = {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
       }
     });
-  },
-  getAnalytics : function($target) {
-
   },
   delInvoice : function(details, $msg) {
     $.ajax({

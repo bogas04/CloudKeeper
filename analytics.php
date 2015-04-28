@@ -3,7 +3,7 @@ require_once('php/db.php');
 require_once('php/funcs.php');
 if(!isLoggedIn()) {
 logout();
-header('Location: index.php');
+header('Location index.php');
 die();
 }
 ?>
@@ -45,8 +45,41 @@ die();
         <!-- VIEW -->
         <div class="col-md-10">
           <h2> <span class="glyphicon glyphicon-calendar"></span> Analytics </h2>
-          <div id="chart" style="margin:10px;"></div>
-          <input type="text" value="75" class="dial" data-min=20 data-max=90>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="panel panel-success tile">
+                  <div class="panel-heading">
+                    <h3>Most Sold Items</h3>
+                    <div class="most-sold-items"></div>
+                    <h3>Least Sold Items</h3>
+                    <div class="least-sold-items"></div>
+                  </div> 
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-danger tile">
+                  <div class="panel-heading">
+                    <h3>Overview</h3>
+                    <div class="counts"></div>
+                    <h3>Profit/Revenue by Shop</h3>
+                    <div class="revenue-by-shop"></div>
+                  </div>  
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-active tile">
+                  <div class="panel-heading">
+                    <h3>Most Profitable Items</h3>
+                    <div class="most-profitable-items"></div>
+                    <h3>Least Profitable Items</h3>
+                    <div class="least-profitable-items"></div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="chart" style="margin10px;"></div>
         </div>
         <!-- VIEW ENDS -->
       </div>
@@ -59,6 +92,7 @@ die();
     <script src="bower_components/highcharts-release/highcharts.js"></script>
     <script src="bower_components/highcharts-release/highcharts-more.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/views.js"></script>
     <script src="js/analytics.js"></script>
   </body>
 </html>

@@ -18,3 +18,11 @@ thead {
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: #31B0D5;
 }
+.tile .panel-heading{
+  padding: 5px 10px;
+  height: 455px;
+  overflow: auto;
+}
+.tile h3 {
+  margin-top: 4px;
+}

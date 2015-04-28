@@ -165,6 +165,7 @@ die();
                 <label> For Shop </label> 
                 <select class="form-control" name="shop-id"></select>
               </div>
+              <div id="total-amount"></div>
               <div id="added-items"></div>
               <div class="form-group form-inline">
                 <label> Choose Item : </label>

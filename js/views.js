@@ -27,6 +27,9 @@ var views = {
     views.shops();
     views.invoices();
   },
+  clearInvoiceItems : function() {
+    $('#added-items').html('');
+  },
   clearModal : function($modal) {
     $modal = ($modal || $('.modal'));
     $modal.find('input,textarea').val('');
@@ -37,27 +40,24 @@ var views = {
       var $panel = document.createElement('div');
       var $closeButton = document.createElement('button');
       var $panelHeading = document.createElement('div');
-      var $panelBody = document.createElement('div');
       var details = service._invoiceItems[i];
 
-      $panel.className = 'panel panel-info';
+      $panel.className = 'panel panel-success';
       $panelHeading.className = 'panel-heading';
-      $panelHeading.innerHTML = details.name;
+      $panelHeading.innerHTML = '<strong>' + details.name + ' | Quantity: </strong> ' +details.quantity + ' | <strong>Price:</strong>' + details.price;
       $closeButton.className = "btn btn-xs btn-danger pull-right";
       $closeButton.innerHTML = '&times; Remove';
       $panelHeading.appendChild($closeButton);
-      $panelBody.className = 'panel-body';
-      $panelBody.innerHTML =  'Quantity:' +details.quantity + ' | Price: ' + details.price;
       $panel.appendChild($panelHeading);
-      $panel.appendChild($panelBody);
       $target.append($panel);
     } 
   },
-  renderTable : function(data, ignore, $targets) {
+  renderTable : function(data, ignore, $targets, tableClasses) {
+    tableClasses = tableClasses || 'table table-hover';
     if(!data || data.length === 0) { return "<h3 class='text-center'>:( Nothing to show.</h3>"; }
 
     ignore = ignore || [];
-    var html = "<table class='table table-hover'>";
+    var html = "<table class='"+ (tableClasses) + "'>";
     var headers = "<thead> <tr>";
     var rows = "";
 
