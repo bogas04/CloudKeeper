@@ -1,5 +1,23 @@
+// depends on service.js
 var handlers = {
   modals : {
+    addShow : function(e) {
+      var id = e.currentTarget.getAttribute('id');
+      if(id === 'add-invoice') {
+        if(service._items.length === 0) {
+          $('#'+id).modal('hide');
+          alert("You need to have some items before making an invoice");
+          e.isDefaultPrevented = true;
+          return false;
+        }
+        if(service._shops.length === 0) {
+          $('#'+id).modal('hide');
+          alert("You need to have a shop before making an invoice");
+          e.isDefaultPrevented = true;
+          return false;
+        }
+      }
+    },
     deleteShow : function(e) {
       window.scrollTo(0, e.relatedTarget.offsetHeight + 250);
       var id = e.relatedTarget.getAttribute('data-id');
@@ -44,7 +62,8 @@ var handlers = {
     },
     addInvoice : function(e) {
       service.addInvoice({
-        shop_id : $(e.currentTarget).find('[name=shop-id] option:selected').val()
+        shop_id : $(e.currentTarget).find('[name=shop-id] option:selected').val(),
+        items : service._invoiceItems
       }, $(e.currentTarget).find('.message'));
       return false;
     },
@@ -78,19 +97,18 @@ var handlers = {
         quantity : $('#item-to-add-quantity').val(),
         price : $('#item-to-add-price').val()
       }, $('#added-items'));
-
     },
     init : function(e) {
       var item = service.getItemDetails($(e.currentTarget).find('option:selected').val());
       $('#item-to-add-quantity').val(1);
       $('#item-to-add-price').val(item.sell_price);
-      $('#totalItemPrice').html('₹ ' + (item.sell_price * $('#item-to-add-quantity').val()));
+      $('#total-item-price').html((item.sell_price * $('#item-to-add-quantity').val()));
     },
     priceChange : function(e) {
-      $('#totalItemPrice').html('₹ ' + (e.currentTarget.value * $('#item-to-add-quantity').val()));
+      $('#total-item-price').html((e.currentTarget.value * $('#item-to-add-quantity').val()));
     },
     quantityChange : function(e) {
-      $('#totalItemPrice').html('₹ ' + ($('#item-to-add-price').val() * e.currentTarget.value));
+      $('#total-item-price').html(($('#item-to-add-price').val() * e.currentTarget.value));
     }
   }
 };

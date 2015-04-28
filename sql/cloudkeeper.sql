@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2015 at 10:44 AM
+-- Generation Time: Apr 28, 2015 at 03:01 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.20
 
@@ -46,6 +46,35 @@ CREATE TABLE IF NOT EXISTS `invoice_items` (
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Triggers `invoice_items`
+--
+DELIMITER //
+CREATE TRIGGER `check_quantity` BEFORE INSERT ON `invoice_items`
+ FOR EACH ROW BEGIN
+	 
+     SET @res = (SELECT quantity FROM `owner_items` WHERE item_id = NEW.item_id);
+     if @res <	NEW.quantity THEN
+         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Not Sufficient Quantity in your inventory";
+         
+         END IF;
+END
+//
+DELIMITER ;
+DELIMITER //
+CREATE TRIGGER `quantity_amount` AFTER INSERT ON `invoice_items`
+ FOR EACH ROW BEGIN
+	UPDATE `invoices`
+    SET `invoice_amount` = `invoice_amount` + NEW.quantity * 					NEW.price
+    WHERE NEW.invoice_id = `invoice_id`;
+    
+	UPDATE `owner_items`
+    SET quantity = quantity - NEW.quantity
+    WHERE item_id = NEW.item_id;
+END
+//
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `description` varchar(250) DEFAULT NULL,
   `mrp` double NOT NULL,
   `image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -73,14 +102,6 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `username` varchar(50) NOT NULL,
   `password` varchar(300) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `owner`
---
-
-INSERT INTO `owner` (`owner_id`, `first_name`, `last_name`, `username`, `password`) VALUES
-(1, 'divjot', 'singh', 'divjot94', '$2y$10$gHLVsksfQIcRrgDkhhbB.OZa.6WFlf/VODBuaykzppRjXMg3iMvjy');
-
 -- --------------------------------------------------------
 
 --
@@ -94,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `owner_items` (
   `sell_price` double NOT NULL,
   `quantity` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
@@ -121,13 +143,6 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `country` varchar(50) NOT NULL DEFAULT 'india',
   `pin_code` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `shops`
---
-
-INSERT INTO `shops` (`owner_id`, `shop_id`, `name`, `address`, `state`, `country`, `pin_code`) VALUES
-(1, 1, 'JUST Cafe', 'NSIT, Sector 3, Dwarka', 'New Delhi', 'india', '110078');
 
 --
 -- Indexes for dumped tables
@@ -188,7 +203,7 @@ MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `owner`
 --
@@ -214,7 +229,6 @@ ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`sh
 --
 ALTER TABLE `invoice_items`
 ADD CONSTRAINT `invoice_items_ibfk_2` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`invoice_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `invoice_items_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `invoice_items_ibfk_4` FOREIGN KEY (`item_id`) REFERENCES `owner_items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -235,6 +249,51 @@ ADD CONSTRAINT `phonenumbers_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner`
 --
 ALTER TABLE `shops`
 ADD CONSTRAINT `shops_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`owner_id`, `first_name`, `last_name`, `username`, `password`) VALUES
+(1, 'divjot', 'singh', 'divjot94', '$2y$10$gHLVsksfQIcRrgDkhhbB.OZa.6WFlf/VODBuaykzppRjXMg3iMvjy');
+
+--
+-- Dumping data for table `shops`
+--
+
+INSERT INTO `shops` (`owner_id`, `shop_id`, `name`, `address`, `state`, `country`, `pin_code`) VALUES
+(1, 1, 'JUST Cafe', 'NSIT, Sector 3, Dwarka', 'New Delhi', 'india', '110078');
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `description`, `mrp`, `image`) VALUES
+(1, 'Mother Dairy Chaach', 'Salted Butter Milk', 10, NULL),
+(2, 'Cholle Samose', 'Samose with Cholle and Onions', 25, NULL),
+(3, 'Campa Orange', 'Campa Cola Orange Flavoured Drink', 10, NULL),
+(4, 'Mother Dairy Lassi', 'Sugared Buttermilk ', 15, NULL),
+(5, 'Campa Soda', 'Campa Cola Soda Falvoured Drink', 10, NULL),
+(6, 'Lays American', 'Fritolay Lays American Chips', 30, NULL),
+(7, 'Lays Indian', 'Fritolay Lays American Chips', 30, NULL),
+(8, 'Pasta', 'Red sauce pasta', 40, NULL),
+(9, 'Fun Flips Pudina', 'Fun Flips puff corns', 10, NULL);
+
+--
+-- Dumping data for table `owner_items`
+--
+
+INSERT INTO `owner_items` (`owner_id`, `item_id`, `cost_price`, `sell_price`, `quantity`) VALUES
+(1, 1, 8, 10, 100),
+(1, 2, 15, 25, 50),
+(1, 3, 5, 10, 100),
+(1, 4, 13, 15, 100),
+(1, 5, 5, 10, 100),
+(1, 6, 25, 30, 75),
+(1, 7, 25, 30, 75),
+(1, 8, 25, 40, 25),
+(1, 9, 5, 10, 25);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

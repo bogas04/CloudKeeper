@@ -4,3 +4,17 @@
 .edit-border {
   border: 3px dashed cyan;
 }
+.form-control-like {
+  height: 39px;
+  vertical-align: middle;
+  padding: 8px 16px 8px 0px;
+}
+body { 
+  padding-top: 90px; 
+}
+thead {
+  background-color: #EC971F;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #31B0D5;
+}

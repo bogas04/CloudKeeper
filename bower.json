@@ -6,7 +6,8 @@
   "dependencies": {
     "jquery": ">=1.7.0",
     "jquery-knob": "1.2.11",
-    "highcharts-release": "4.1.5"
+    "highcharts-release": "4.1.5",
+    "bootstrap": ">=3.3.0"
   },
   "devDependencies": {}
 }

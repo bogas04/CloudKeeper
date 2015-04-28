@@ -10,16 +10,22 @@ die();
 <!doctype html>
 <html>
   <head>
-    <title> Analytics - Dashboard </title>
+    <title> Dashboard </title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
+        </div>
+      </div>
+    </nav>
     <!-- MAIN CONTAINER -->
     <div class="container-fluid">
-
-      <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
-
       <div class="container-fluid">
         <!-- SIDE MENU -->
         <div class="col-md-2">

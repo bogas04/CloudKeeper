@@ -1,3 +1,4 @@
+// depends on views.js
 var service = { 
   _items : [],
   _shops : [],
@@ -15,6 +16,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
+        views.clearModal();
       }
     });
   },
@@ -31,6 +33,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
+        views.clearModal();
       }
     });
   },
@@ -58,33 +61,9 @@ var service = {
       } 
     }
     service._invoiceItems.push(details);
-    service.renderInvoiceDetails($target);
-  },
-  renderInvoiceDetails : function($target) {
-    $target.html('');
-    for(var i = 0; i < service._invoiceItems.length; i++) {
-      var $panel = document.createElement('div');
-      var $closeButton = document.createElement('button');
-      var $panelHeading = document.createElement('div');
-      var $panelBody = document.createElement('div');
-      var details = service._invoiceItems[i];
-
-      $panel.className = 'panel panel-info';
-      $panelHeading.className = 'panel-heading';
-      $panelHeading.innerHTML = details.name;
-      $closeButton.className = "btn btn-xs btn-danger pull-right";
-      $closeButton.innerHTML = '&times; Remove';
-      $panelHeading.appendChild($closeButton);
-      $panelBody.className = 'panel-body';
-      $panelBody.innerHTML =  'Quantity:' +details.quantity + ', Price: ' + details.price;
-      $panel.appendChild($panelHeading);
-      $panel.appendChild($panelBody);
-      $target.append($panel);
-    } 
+    views.renderInvoiceDetails($target);
   },
   addInvoice : function(details, $msg) {
-    details.items = service._invoiceItems;
-    console.log(details);
     $.ajax({
       url : 'php/add_invoice.php',
       data : details,
@@ -96,6 +75,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.invoices();
+        views.clearModal();
       }
     });
   },
@@ -115,7 +95,7 @@ var service = {
           $targets.html(r.msg);
         } else {
           service._shops = r.data;
-          $targets.table.html(renderTable(r.data, ignore, {update : $targets.update, del : $targets.del}));
+          $targets.table.html(views.renderTable(r.data, ignore, {update : $targets.update, del : $targets.del}));
           for(var i = 0; i < r.data.length; i++) {
             $targets.option.append('<option value="' + r.data[i].shop_id + '">' + r.data[i].name + '</option>');
           }
@@ -135,11 +115,11 @@ var service = {
           $targets.table.html(r.msg);
         } else {
           service._items = r.data;
-          $targets.table.html(renderTable(r.data, ignore, {update: $targets.update, del : $targets.del}));
+          $targets.table.html(views.renderTable(r.data, ignore, {update: $targets.update, del : $targets.del}));
           for(var i = 0; i < r.data.length; i++) {
-            console.log(r.data[i]);
             $targets.option.append('<option value="' + r.data[i].item_id + '">' + r.data[i].name + '</option>');
           }
+          $targets.option.change();
         }
       },
       error : function() {
@@ -156,7 +136,7 @@ var service = {
         if(r.error) {
           $targets.table.html(r.msg);
         } else {
-          $targets.table.html(renderTable(r.data, ignore , {update : $targets.update, del : $targets.del}));
+          $targets.table.html(views.renderTable(r.data, ignore , {update : $targets.update, del : $targets.del}));
         }
       },
       error : function() {
@@ -180,6 +160,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.invoices();
+        views.clearModal();
       }
     }); 
   },
@@ -197,6 +178,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
+        views.clearModal();
       }
     }); 
   },
@@ -213,7 +195,8 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
+        views.clearModal();
       }
     }); 
-  }
+  },
 };

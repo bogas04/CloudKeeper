@@ -13,14 +13,19 @@ die();
     <title> Dashboard </title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
+        </div>
+      </div>
+    </nav>
     <!-- MAIN CONTAINER -->
     <div class="container-fluid">
-
-      <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
-
       <div class="container-fluid">
         <!-- SIDE MENU -->
         <div class="col-md-2">
@@ -75,8 +80,9 @@ die();
 
 
     <!-- MODALS -->
+    <!-- ADD MODALS -->
     <!-- SHOP MODAL -->
-    <div class="modal fade" id="add-shop" tabindex="-1" role="dialog" aria-labelledby="addShop" aria-hidden="true">
+    <div class="modal fade add-modal" id="add-shop" tabindex="-1" role="dialog" aria-labelledby="addShop" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -108,7 +114,7 @@ die();
       </div>
     </div>
     <!-- ITEM MODAL -->
-    <div class="modal fade" id="add-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+    <div class="modal fade add-modal" id="add-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -146,7 +152,7 @@ die();
       </div>
     </div>
     <!-- INVOICE MODAL -->
-    <div class="modal fade" id="add-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
+    <div class="modal fade add-modal" id="add-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -162,19 +168,20 @@ die();
               <div id="added-items"></div>
               <div class="form-group form-inline">
                 <label> Choose Item : </label>
+              </div>
+              <div class="form-group form-inline form-group-sm">
                 <select class="form-control" id="item-to-add-id"></select>
                 <div class="input-group">
-                  <div class="input-group-addon">@</div>
+                  <div class="input-group-addon">@ ₹</div>
                   <input class="form-control" type="text" id="item-to-add-price" placeholder="Enter price"/>
                 </div>
                 <div class="input-group">
                   <div class="input-group-addon">&times;</div>
                   <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
+                  <div class="input-group-addon">=₹ <span id="total-item-price"></span></div>
                 </div>
-                <span id="totalItemPrice"></span>
                 <div class="btn btn-info" id="item-to-add">Add</div>
               </div>
-
               <div class="message alert"></div>
             </div>
             <div class="modal-footer">
@@ -329,10 +336,10 @@ die();
 
     <!-- SCRIPTS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/views.js"></script>
     <script src="js/service.js"></script>
     <script src="js/handlers.js"></script>
-    <script src="js/views.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>
