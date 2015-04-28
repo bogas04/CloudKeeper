@@ -3,12 +3,12 @@ CloudKeeper
 
 We aim to bring the power of cloud computing and analytics to a local shop vendor so as to improve his/her business right through mobile.
 
-Status :
+Status 
 ==
 * Working Shops, Invoice and Item addition/display
 * Functioning login system
 
-Todo : 
+Todo  
 ==
 * Validations at PHP and JS sides
 * Update operations
@@ -31,3 +31,9 @@ Todo :
 * Use knob.js / highcharts etc to show above data
 * Search Engine for products 
 * Compare Prices of products from different vendors
+
+Potential Issues 
+==
+* Deleting an item would affect all the related invoices, which is weird. Although deleting an item would imply that such item was accidently added or is now discontinued. 
+* Deleting a shop would affect all invoices. Need to give a "backup" feature.
+

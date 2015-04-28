@@ -172,7 +172,7 @@ die();
                   <input class="form-control" type="text" id="item-to-add-quantity" placeholder="Enter quantity"/>
                 </div>
                 <span id="totalItemPrice"></span>
-                <div class="btn btn-info" id="add-this-item">Add</div>
+                <div class="btn btn-info" id="item-to-add">Add</div>
               </div>
 
               <div class="message alert"></div>
@@ -198,6 +198,7 @@ die();
           </div>
           <form id="del-invoice-form" action="php/delete_invoice.php" method="post">
             <div class="modal-body">
+              This action can not be undone!
               <input type="text" name="invoice_id" class="to-delete-id" value=-1 hidden>
               <div class="message alert"></div>
             </div>
@@ -219,6 +220,7 @@ die();
           </div>
           <form id="del-shop-form" action="php/delete_shop.php" method="post">
             <div class="modal-body">
+              This action can not be undone! It will also delete all the invoices related to this shop.
               <input type="text" name="shop_id" class="to-delete-id" value=-1 hidden>
               <div class="message alert"></div>
             </div>
@@ -240,6 +242,7 @@ die();
           </div>
           <form id="del-item-form" action="php/delete_item.php" method="post">
             <div class="modal-body">
+              This action can not be undone! This will also delete the invoices done with this item.
               <input type="text" name="item_id" class="to-delete-id" value=-1 hidden>
               <div class="message alert"></div>
             </div>
@@ -327,6 +330,9 @@ die();
     <!-- SCRIPTS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/handlers.js"></script>
+    <script src="js/views.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>
