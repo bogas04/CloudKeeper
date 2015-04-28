@@ -78,8 +78,12 @@ die();
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12>">
+              <div id="chart" style="margin: 20px;"></div>
+              </div>
+            </div>
           </div>
-          <div id="chart" style="margin10px;"></div>
         </div>
         <!-- VIEW ENDS -->
       </div>
