@@ -11,11 +11,13 @@ Status
 Todo  
 ==
 * Validations at PHP and JS sides
+* Use string escaping for mysql queries
 * Update operations
 * [x] Delete operations
 * Simpler and quicker forms 
 * Auto-fill enteries based on past/filled details
-* Search
+* Search shops/ items/ invoices
+* Invoice details 
 * Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
@@ -24,12 +26,11 @@ Todo
   - [x] Least/Most Profitable Product
   - [x] Peak/Crest Points for each Product
   - [x] Total Revenue 
-  - Total Profit 
+  - [x] Total Profit 
   - Projections for next duration
-  - Demand and Supply of Products
   - Predict quantity 
   - [x] Least/Most Profitable Shop
-* Use knob.js / highcharts etc to show above data
+* [x] Use knob.js / highcharts etc to show above data
 * Search Engine for products 
 * Compare Prices of products from different vendors
 
@@ -37,4 +38,3 @@ Potential Issues
 ==
 * Deleting an item would affect all the related invoices, which is weird. Although deleting an item would imply that such item was accidently added or is now discontinued. 
 * Deleting a shop would affect all invoices. Need to give a "backup" feature.
-
