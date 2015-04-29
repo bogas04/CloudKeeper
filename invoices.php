@@ -62,7 +62,6 @@ die();
             <div class="col-md-12">
               <h2> 
                 <span class="glyphicon glyphicon-transfer"></span> Invoices 
-                <a href="#add-invoice" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-invoice"> Add a Invoice </a> 
               </h2>
               <div id="invoices"></div>
             </div>
@@ -75,6 +74,26 @@ die();
 
 
     <!-- MODALS -->
+    <!-- DETAILED INVOICE -->
+    <div class="modal fade" id="detailed-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title">Invoice Details</h2>
+          </div>
+          <div class="modal-body">
+            Invoice Details :
+            <div class="detailed-invoice"></div>
+            Invoice Items :
+            <div class="detailed-items"></div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ADD MODALS -->
     <!-- INVOICE MODAL -->
     <div class="modal fade add-modal" id="add-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
@@ -150,6 +169,6 @@ die();
     <script src="js/views.js"></script>
     <script src="js/service.js"></script>
     <script src="js/handlers.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/invoices.js"></script>
   </body>
 </html>

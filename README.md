@@ -21,22 +21,22 @@ Todo
 ===
 * Validations at PHP and JS sides
 * Search shops/items/invoices
-* Invoice details 
 * SQL procedure getOwnerId(invoiceId)
 * Refactor SQL analytics queries
 * Create MySQL Queries for great analytics such as 
+  - Peak/Crest Points for each Product vs Revenue
+  - Peak/Crest Points for each Product vs Profit
+  - Futuristic : Predictions
   - [x] Least/Most Sold Product
   - [x] Least/Most Profitable Product
   - [x] Peak/Crest Points for each Product vs Quantity
   - [x] Total Revenue 
   - [x] Total Profit 
   - [x] Least/Most Profitable Shop
-  - Peak/Crest Points for each Product vs Revenue
-  - Peak/Crest Points for each Product vs Profit
-  - Futuristic : Predictions
 * [x] Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
+* [x] Invoice details 
 * [x] Use string escaping for mysql queries
 * [x] Update operations
 * [x] Delete operations

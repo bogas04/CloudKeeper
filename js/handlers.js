@@ -56,6 +56,13 @@ var handlers = {
     editHide : function(e) {
       $('tr.edit-border').removeClass('edit-border');
     },
+    detailedInvoiceShow : function(e) {
+      var id = e.relatedTarget.getAttribute('data-id');
+      var $ele = $(e.currentTarget);
+      var data = service.getDetailedInvoiceDetails(id);
+      $ele.find('.detailed-invoice').html(views.renderTable([data], ['invoice_id', 'items']));
+      $ele.find('.detailed-items').html(views.renderTable(data.items, ['item_id']));
+    }
   },
   forms : {
     addItem : function(e) {

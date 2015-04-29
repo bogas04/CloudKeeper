@@ -40,6 +40,13 @@ var views = {
       del : $('#del-invoice')
     }, ['invoice_id']);
   },
+  detailedInvoices : function() {
+    service.getDetailedInvoices({
+      table : $('#invoices'),
+      del : $('#del-invoice'),
+      more : $('#detailed-invoice')
+    }, ['invoice_id', 'items']);
+  },
   updateAll : function() {
     views.items();
     views.shops();
@@ -101,7 +108,8 @@ var views = {
     var headers = "<thead> <tr>";
     var rows = "";
 
-    for(var i in data[0]) {
+    var keys = Object.keys(data);
+    for(var i in data[keys[0]]) {
       if(ignore.indexOf(i) < 0) {
         headers += ("<th>" + i.toUpperCase() + "</th>");
       } 
@@ -112,22 +120,26 @@ var views = {
       html += (headers + '</tr></thead><tbody>');
     }
 
-    for(i = 0; i < data.length; i++) {
+    for(i = 0; i < keys.length; i++) {
       rows += '<tr>';
-      for(j in data[i]) {
+      for(j in data[keys[i]]) {
         if(ignore.indexOf(j) < 0) {
-          rows += ('<td>' + data[i][j] + '</td>');
+          rows += ('<td>' + data[keys[i]][j] + '</td>');
         } 
       }
       if($targets) {
         rows += '<td>';
         // TODO: need to fix this somehow
         if($targets.update) {
-          rows += '<button class="btn btn-xs btn-info edit-button" data-id="' + (data[i].item_id | data[i].shop_id | data[i].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
+          rows += '<button class="btn btn-xs btn-info edit-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
         }
         if($targets.del) {
-          rows += '<button class="btn btn-xs btn-danger delete-button" data-id="' + (data[i].item_id | data[i].shop_id | data[i].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button></td>';
+          rows += '<button class="btn btn-xs btn-danger delete-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button>';
         } 
+        if($targets.more) {
+          rows += '<button class="btn btn-xs btn-default delete-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.more.attr('id') + '">More</button>';
+        }
+        rows += '</td>';
       }
     }
     html += rows + ('</tr></tbody></table>');

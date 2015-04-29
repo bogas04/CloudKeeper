@@ -3,6 +3,7 @@ var service = {
   _items : [],
   _shops : [],
   _invoiceItems : [],
+  _detailedInvoices : {},
   getAllItems : function($target) {
     views.showLoader();
     $.ajax({
@@ -116,6 +117,13 @@ var service = {
       }
     });
   },
+  getDetailedInvoiceDetails : function(detailedInvoiceId) {
+    for(var i in service._detailedInvoices) {
+      if(service._detailedInvoices[i].invoice_id === detailedInvoiceId) {
+        return service._detailedInvoices[i];
+      }
+    }
+  },
   getItemDetails : function(itemId) {
     for(var i = 0; i < service._items.length; i++) {
       if(service._items[i].item_id === itemId) {
@@ -191,6 +199,25 @@ var service = {
       },
       error : function() {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
+      }
+    });
+  },
+  getDetailedInvoices : function($targets, ignore) {
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_detailed_invoices.php',
+      dataType : 'json',
+      success : function(r) {
+        if(!r.error) {
+          service._detailedInvoices = r.data;
+          $targets.table.html(views.renderTable(r.data, ignore, $targets));
+        } else {
+          $targets.table.html(r.msg);
+        }
+        views.hideLoader();
+      },
+      error : function() {
+        $targets.table.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
       }
     });
   },
