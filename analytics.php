@@ -17,6 +17,7 @@ die();
     <link rel="stylesheet" href="css/style.css"/>
   </head>
   <body>
+    <div class="loading-bar"></div>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">

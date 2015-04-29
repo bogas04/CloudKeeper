@@ -19,7 +19,6 @@ var handlers = {
       }
     },
     deleteShow : function(e) {
-      window.scrollTo(0, e.relatedTarget.offsetHeight + 250);
       var id = e.relatedTarget.getAttribute('data-id');
       $(e.relatedTarget).parent().parent().addClass('delete-border');
       console.log($(e.currentTarget).find('.to-delete-id'));
@@ -29,7 +28,6 @@ var handlers = {
       $('tr.delete-border').removeClass('delete-border');
     },
     editShow : function(e) {
-      window.scrollTo(0, e.relatedTarget.offsetHeight + 250);
       var id = e.relatedTarget.getAttribute('data-id');
       $(e.relatedTarget).parent().parent().addClass('edit-border');
       $(e.currentTarget).find('.to-delete-id').val(id);

@@ -5,6 +5,7 @@ var service = {
   _invoiceItems : [],
   addShop : function(details, $msg) {
     console.log(details);
+    views.showLoader();
     $.ajax({
       url : 'php/add_shop.php',
       data : details,
@@ -17,11 +18,13 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
         views.clearModal();
+        views.hideLoader();
       }
     });
   },
   addItem : function(details, $msg) {
     console.log(details);
+    views.showLoader();
     $.ajax({
       url : 'php/add_item.php',
       data : details,
@@ -33,7 +36,9 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
+        views.invoices();
         views.clearModal();
+        views.hideLoader();
       }
     });
   },
@@ -64,6 +69,7 @@ var service = {
     views.renderInvoiceDetails($target);
   },
   addInvoice : function(details, $msg) {
+    views.showLoader();
     $.ajax({
       url : 'php/add_invoice.php',
       data : details,
@@ -78,6 +84,7 @@ var service = {
         views.invoices();
         views.clearInvoiceItems();
         views.clearModal();
+        views.hideLoader();
       }
     });
   },
@@ -89,6 +96,7 @@ var service = {
     }
   },
   getShops : function($targets, ignore) {
+    views.showLoader();
     $.ajax({
       url : 'php/get_shops.php',
       dataType : 'json',
@@ -102,6 +110,7 @@ var service = {
             $targets.option.append('<option value="' + r.data[i].shop_id + '">' + r.data[i].name + '</option>');
           }
         }
+        views.hideLoader();
       },
       error : function() {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your shops</h4></div>");
@@ -109,6 +118,7 @@ var service = {
     });
   },
   getItems : function($targets, ignore) {
+    views.showLoader();
     $.ajax({
       url : 'php/get_items.php',
       dataType : 'json',
@@ -123,6 +133,7 @@ var service = {
           }
           $targets.option.change();
         }
+        views.hideLoader();
       },
       error : function() {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your items</h4></div>");
@@ -131,6 +142,7 @@ var service = {
 
   },
   getInvoices : function($targets, ignore) {
+    views.showLoader();
     $.ajax({
       url : 'php/get_invoices.php',
       dataType : 'json',
@@ -140,6 +152,7 @@ var service = {
         } else {
           $targets.table.html(views.renderTable(r.data, ignore , {update : $targets.update, del : $targets.del}));
         }
+        views.hideLoader();
       },
       error : function() {
         $target.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
@@ -147,6 +160,7 @@ var service = {
     });
   },
   delInvoice : function(details, $msg) {
+    views.showLoader();
     $.ajax({
       url: 'php/delete_invoice.php',
       data: details,
@@ -160,10 +174,12 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.invoices();
         views.clearModal();
+        views.hideLoader();
       }
     }); 
   },
   delShop : function(details, $msg) {
+    views.showLoader();
     $.ajax({
       url: 'php/delete_shop.php',
       data: details,
@@ -178,10 +194,12 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
         views.clearModal();
+        views.hideLoader();
       }
     }); 
   },
   delItem : function(details, $msg) {
+    views.showLoader();
     $.ajax({
       url: 'php/delete_item.php',
       data: details,
@@ -195,6 +213,7 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
         views.clearModal();
+        views.hideLoader();
       }
     }); 
   },

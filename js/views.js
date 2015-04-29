@@ -1,5 +1,12 @@
 // depends on service.js
 var views = {
+  showLoader : function() {
+    $('.loading-bar').css('visibility', 'visible');
+  },
+  hideLoader : function() {
+    // Server too fast, can't see the beautiful loading bar, added a delay
+    setTimeout(function() { $('.loading-bar').css('visibility', 'hidden'); }, 1250);
+  },
   items : function() {
     service.getItems({
       table : $('#items'),

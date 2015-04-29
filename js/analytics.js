@@ -1,4 +1,5 @@
 function getAnalytics($targets) {
+  views.showLoader();
   $.ajax({
     url: 'php/get_analytics.php',
     dataType : 'json',
@@ -43,6 +44,7 @@ function getAnalytics($targets) {
           }
         }
         loadGraph(dataForChart);
+        views.hideLoader();
       }
     } 
   });

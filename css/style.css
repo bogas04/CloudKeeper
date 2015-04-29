@@ -1,22 +1,26 @@
-.delete-border {
-  border: 3px dashed red;
-}
-.edit-border {
-  border: 3px dashed cyan;
-}
-.form-control-like {
-  height: 39px;
-  vertical-align: middle;
-  padding: 8px 16px 8px 0px;
-}
+/* Globals */
 body { 
   padding-top: 90px; 
 }
 thead {
   background-color: #EC971F;
 }
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    background-color: #31B0D5;
+/* Custom Elements */
+.loading-bar {
+  background-image: url('../img/WindowsPhoneProgressbar.gif');
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  top: -87px;
+  z-index: 1031;
+  visibility: hidden;
+}
+.delete-border {
+  border: 3px dashed red;
+}
+.edit-border {
+  border: 3px dashed cyan;
 }
 .tile .panel-heading{
   padding: 5px 10px;
@@ -25,4 +29,13 @@ thead {
 }
 .tile h3 {
   margin-top: 4px;
+}
+.form-control-like {
+  height: 39px;
+  vertical-align: middle;
+  padding: 8px 16px 8px 0px;
+}
+/* Bootstrap Fixes */
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #31B0D5;
 }

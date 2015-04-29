@@ -1,7 +1,6 @@
 <?php
 require_once('db.php');
 require_once('funcs.php');
-
 startSession();
 
 if(!isLoggedIn()) { logout(); respondPretty(true, 'login first'); }
