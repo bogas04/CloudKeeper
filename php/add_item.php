@@ -27,8 +27,8 @@ if(!$result) {
 $query = 'INSERT INTO `owner_items` (`owner_id`,`item_id`,`cost_price`,`sell_price`,`quantity`) VALUES('.
   "'".$_SESSION['user']['owner_id']."',".
   "'".$item_id."',".
-  "'".$_POST['costprice']."',".
-  "'".$_POST['sellprice']."',".
+  "'".$_POST['cost_price']."',".
+  "'".$_POST['sell_price']."',".
   "'".$_POST['quantity']."')";
 
 $result = $mysqli->query($query);

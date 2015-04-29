@@ -3,6 +3,19 @@ var service = {
   _items : [],
   _shops : [],
   _invoiceItems : [],
+  getAllItems : function($target) {
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_all_items.php',
+      dataType : 'json',
+      success : function(r) {
+        views.hideLoader();
+        if(!r.error) {
+          $target.html(views.renderTable(r.data, ['item_id', 'image']));
+        }
+      }
+    }); 
+  },
   getProfile : function($targets) { 
     views.showLoader();
     $.ajax({
@@ -107,6 +120,13 @@ var service = {
     for(var i = 0; i < service._items.length; i++) {
       if(service._items[i].item_id === itemId) {
         return service._items[i];
+      }
+    }
+  },
+  getShopDetails : function(shopId) {
+    for(var i = 0; i < service._shops.length; i++) {
+      if(service._shops[i].shop_id === shopId) {
+        return service._shops[i];
       }
     }
   },
@@ -232,4 +252,42 @@ var service = {
       }
     }); 
   },
+  editShop : function(details, $msg) {
+    console.log(details);
+    views.showLoader();
+    $.ajax({
+      url : 'php/update_shop.php',
+      data : details,
+      dataType : 'json',
+      type : 'post',
+      success : function(r) { 
+        $msg.html(r.msg);
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.shops();
+        views.closeModal();
+        views.hideLoader();
+      }
+    });
+  },
+  editItem : function(details, $msg) {
+    console.log(details);
+    views.showLoader();
+    $.ajax({
+      url : 'php/update_item.php',
+      data : details,
+      dataType : 'json',
+      type : 'post',
+      success : function(r) { 
+        $msg.html(r.msg);
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.items();
+        views.closeModal();
+        views.hideLoader();
+      }
+    });
+  }
 };

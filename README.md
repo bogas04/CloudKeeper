@@ -12,7 +12,7 @@ Todo
 ==
 * Validations at PHP and JS sides
 * Use string escaping for mysql queries
-* Update operations
+* [x] Update operations
 * [x] Delete operations
 * [x] Profile
 * Auto-fill enteries based on past/filled details

@@ -15,6 +15,9 @@ var views = {
       phoneNumbers : $('#profile-info .phones')
     });
   },
+  allItems : function() {
+    service.getAllItems($('#all-items'));
+  },
   items : function() {
     service.getItems({
       table : $('#items'),
@@ -48,6 +51,23 @@ var views = {
   clearModal : function($modal) {
     $modal = ($modal || $('.modal'));
     $modal.find('input,textarea').val('');
+  },
+  closeModal : function($modal) {
+    setTimeout(function() { 
+      $modal = ($modal || $('.modal'));
+      $modal.find('input,textarea').val('');
+      $modal.modal('hide');
+    }, 1000);
+  },
+  renderShopEdit : function(data, $targets) {
+    for(var i in $targets) {
+      $targets[i].val(data[i]);
+    }
+  },
+  renderItemEdit : function(data, $targets) {
+    for(var i in $targets) {
+      $targets[i].val(data[i]);
+    }
   },
   renderProfile : function(data, $targets) {
     for(var i in $targets) {

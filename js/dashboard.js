@@ -20,13 +20,17 @@ $(function() {
   // Retrieves all data and updates the views 
   views.updateAll();
 
-  // Add Item
-  $('#add-item-form').on('submit', handlers.forms.addItem);  
-  $('#add-shop-form').on('submit', handlers.forms.addShop);  
+  // Add Forms 
+  $('#add-item-form').on('submit', handlers.forms.addItem);
+  $('#add-shop-form').on('submit', handlers.forms.addShop);
   $('#add-invoice-form').on('submit', handlers.forms.addInvoice);
 
   // Delete Forms
   $('#del-invoice-form').on('submit', handlers.forms.deleteInvoice);
   $('#del-item-form').on('submit', handlers.forms.deleteItem);
   $('#del-shop-form').on('submit', handlers.forms.deleteShop);
+  
+  // Edit Forms
+  $('#edit-item-form').on('submit', handlers.forms.editItem);
+  $('#edit-shop-form').on('submit', handlers.forms.editShop);
 });

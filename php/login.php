@@ -27,11 +27,11 @@ $result = $mysqli->query($query);
 
 // db error
 if(!$result) {
-  respond(true, 'database error');
+  respond(true, 'Database error');
 }
 // user not found
 if($result->num_rows !== 1) {
-  respond(true, 'user not found', $_POST['username']);
+  respond(true, 'User not found', $_POST['username']);
 }
 
 // collect user details
@@ -42,9 +42,9 @@ if(password_verify($_POST['password'], $userDetails['password'])) {
   // update session
   $_SESSION['user'] = $userDetails; 
   $_SESSION['user']['loggedIn'] = true;
-  respond(false, 'logged in');
+  respond(false, 'Logged in');
 } else {
   unset($_SESSION['user']);
   session_destroy();
-  respond(true, 'incorrect password');  
+  respond(true, 'Incorrect password');  
 }

@@ -11,11 +11,11 @@ if(isset($_SESSION['user']['loggedIn']) && $_SESSION['user']['loggedIn'] === tru
 }
 
 if(!isset($_POST['username']) || !isset($_POST['password'])){
-  respond(true, 'fill all details', $_POST);
+  respond(true, 'Fill all details', $_POST);
 } else if (rejectUsername($_POST['username'])) {
-  respond(true, 'username must have alphanumerics or underscore', $_POST);
+  respond(true, 'Username must have alphanumerics or underscore', $_POST);
 } else if (rejectPassword($_POST['password'])) {
-  respond(true, 'password must be of length 8-16', $_POST);
+  respond(true, 'Password must be of length 8-16', $_POST);
 } 
 $_POST['username'] = trim(strtolower($_POST['username']));
 
@@ -28,7 +28,7 @@ $result = $mysqli->query($query);
 
 // user not found
 if($result->num_rows && $result->num_rows !== 0) {
-  respond(true, 'username is taken', [$_POST['username'], $result->num_rows]);
+  respond(true, 'Username is taken', [$_POST['username'], $result->num_rows]);
 }
 
 $query = 'INSERT INTO `owner`'.
@@ -41,7 +41,7 @@ $query = 'INSERT INTO `owner`'.
 $result = $mysqli->query($query);
 
 if($result) {
-  respond(false, 'successfully signed up');
+  respond(false, 'Successfully signed up');
 } else {
-  respond(true, 'unexpected error', $mysqli->error);
+  respond(true, 'Unexpected error', $mysqli->error);
 }

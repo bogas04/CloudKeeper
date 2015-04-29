@@ -62,7 +62,7 @@ die();
             <div class="col-md-12">
               <h2> <span class="glyphicon glyphicon-list-alt"></span> Items </h2>
               <p> 
-              You may choose items from <a href="items" target="_blank">our database</a>, 
+              You may choose items from <a href="all_items.php" target="_blank">our database</a>, 
               or you can <a href="#add-item" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-item">add item</a> yourself.
               </p>
               <div id="items"></div>
@@ -87,21 +87,21 @@ die();
           </div>
           <form id="add-item-form" action="php/add_item.php" method="post">
             <div class="modal-body">
-              <div class="form-group">
+              <div class="form-group form-inline">
                 <label>Item Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
+                <input name="name" type="text" class="form-control" placeholder="Name of Item" /> 
+                <label>Maximum Retail Price ₹</label>
+                <input type="text" name="mrp" class="form-control" placeholder="Maximum Retail Price" />
+              </div>
+              <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
+                <textarea name="description" class="form-control" rows="4" placeholder="Description" ></textarea> 
               </div>
               <div class="form-group form-inline">
-                <label>Maximum Retail Price</label>
-                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
-                <label>Sell Price</label>
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-                <label>Cost Price</label>
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
+                <label>Sell Price ₹</label>
+                <input name="sell_price" type="text" class="form-control" placeholder="Sell Price"/> 
+                <label>Cost Price ₹</label>
+                <input name="cost_price" type="text" class="form-control" placeholder="Cost Price"/>
                 <label>Quantity</label>
                 <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
               </div>
@@ -142,30 +142,31 @@ die();
 
     <!-- EDIT MODALS -->
     <!-- EDIT ITEM MODAL -->
-    <div class="modal fade edit-modal" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+    <div class="modal fade edit-modal" data-type="item" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title">Enter Item Details</h2>
+            <h2 class="modal-title">Enter New Item Details</h2>
           </div>
-          <form id="add-item-form" action="php/add_item.php" method="post">
+          <form id="edit-item-form" action="php/update_item.php" method="post">
             <div class="modal-body">
-              <div class="form-group">
+              <input name="item_id" class="to-edit-id" hidden/>
+              <div class="form-group form-inline">
                 <label>Item Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
+                <input name="name" type="text" class="form-control" placeholder="Name of Item" disabled/> 
+                <label>Maximum Retail Price ₹</label>
+                <input type="text" name="mrp" class="form-control" placeholder="Maximum Retail Price" disabled/>
+              </div>
+              <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
+                <textarea name="description" class="form-control" rows="4" placeholder="Description" disabled></textarea> 
               </div>
               <div class="form-group form-inline">
-                <label>Maximum Retail Price</label>
-                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
-                <label>Sell Price</label>
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-                <label>Cost Price</label>
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
+                <label>Sell Price ₹</label>
+                <input name="sell_price" type="text" class="form-control" placeholder="Sell Price"/> 
+                <label>Cost Price ₹</label>
+                <input name="cost_price" type="text" class="form-control" placeholder="Cost Price"/>
                 <label>Quantity</label>
                 <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
               </div>
@@ -173,7 +174,7 @@ die();
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Add Item </button>
+              <button class="btn btn-info"> Update Item </button>
             </div>
           </form>
         </div>

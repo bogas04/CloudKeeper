@@ -17,7 +17,7 @@ $query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`pin_code`) V
   "'".$_POST['name']."',".
   "'".$_POST['address']."',".
   "'".$_POST['state']."',".
-  "'".$_POST['pincode']."')";
+  "'".$_POST['pin_code']."')";
 
 $result = $mysqli->query($query);
 
