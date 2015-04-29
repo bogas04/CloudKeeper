@@ -21,7 +21,20 @@ die();
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <h1> <span class="glyphicon glyphicon-cloud"></span> Dashboard | <small><a href="php/logout.php">Logout</a></small></h1>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand"><span class="glyphicon glyphicon-cloud"></span>  CloudKeeper | Dashboard</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a class="text-info" href="dashboard.php">Home</a></li>
+            <li><a class="text-success" href="profile.php">Profile</a></li>
+            <li><a class="text-danger" href="php/logout.php">Logout</a></li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -31,7 +44,7 @@ die();
         <!-- SIDE MENU -->
         <div class="col-md-2">
           <div class="row">
-            <h2> <span class="glyphicon glyphicon-wrench"></span> Settings </h2>
+            <h2> <span class="glyphicon glyphicon-dashboard"></span> Dashboard </h2>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="dashboard.php"><span class="glyphicon glyphicon-cloud"></span> Overview</a> </li>
               <li><a href="shops.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shops</a> </li>

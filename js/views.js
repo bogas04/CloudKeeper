@@ -7,6 +7,14 @@ var views = {
     // Server too fast, can't see the beautiful loading bar, added a delay
     setTimeout(function() { $('.loading-bar').css('visibility', 'hidden'); }, 1250);
   },
+  profile : function() {
+    service.getProfile({
+      firstName : $('#profile-info .first-name'),
+      lastName : $('#profile-info .last-name'),
+      username : $('#profile-info .username'),
+      phoneNumbers : $('#profile-info .phones')
+    });
+  },
   items : function() {
     service.getItems({
       table : $('#items'),
@@ -40,6 +48,11 @@ var views = {
   clearModal : function($modal) {
     $modal = ($modal || $('.modal'));
     $modal.find('input,textarea').val('');
+  },
+  renderProfile : function(data, $targets) {
+    for(var i in $targets) {
+      $targets[i].html(data[i]);
+    }
   },
   renderInvoiceDetails : function($target) {
     $target.html('');

@@ -14,7 +14,7 @@ Todo
 * Use string escaping for mysql queries
 * Update operations
 * [x] Delete operations
-* Simpler and quicker forms 
+* [x] Profile
 * Auto-fill enteries based on past/filled details
 * Search shops/ items/ invoices
 * Invoice details 
@@ -31,8 +31,8 @@ Todo
   - Predict quantity 
   - [x] Least/Most Profitable Shop
 * [x] Use knob.js / highcharts etc to show above data
-* Search Engine for products 
-* Compare Prices of products from different vendors
+* Future : Search Engine for products 
+* Future : Compare Prices of products from different vendors
 
 Potential Issues 
 ==

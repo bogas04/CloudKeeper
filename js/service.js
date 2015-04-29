@@ -3,6 +3,21 @@ var service = {
   _items : [],
   _shops : [],
   _invoiceItems : [],
+  getProfile : function($targets) { 
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_profile.php',
+      dataType : 'json',
+      success : function(r) {
+        views.hideLoader();
+        if(r.data) {
+          views.renderProfile(r.data, $targets);
+        } else {
+          window.location = 'index.php';
+        }
+      } 
+    });
+  },
   addShop : function(details, $msg) {
     console.log(details);
     views.showLoader();
