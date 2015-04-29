@@ -10,7 +10,7 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "DELETE FROM invoices WHERE invoice_id = '".$_POST['invoice_id']."' and shop_id IN (SELECT shop_id FROM shops WHERE owner_id = '".$owner_id."')";
+$query = "DELETE FROM invoices WHERE invoice_id = '".$mysqli->real_escape_string($_POST['invoice_id'])."' and shop_id IN (SELECT shop_id FROM shops WHERE owner_id = '".$owner_id."')";
 
 $result = $mysqli->query($query);
 

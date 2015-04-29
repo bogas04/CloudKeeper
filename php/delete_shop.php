@@ -10,7 +10,7 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "DELETE FROM shops WHERE shop_id = '".$_POST['shop_id']."' and owner_id = '".$owner_id."'";
+$query = "DELETE FROM shops WHERE shop_id = '".$mysqli->real_escape_string($_POST['shop_id'])."' and owner_id = '".$owner_id."'";
 
 $result = $mysqli->query($query);
 
