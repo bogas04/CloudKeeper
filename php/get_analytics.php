@@ -16,7 +16,7 @@ function generate($query) {
   if(!$result) {
     respond(true, 'error in '. $query[1], $mysqli->error);
   } else {
-    if($query[2]) { 
+    if(isset($query[2]) && $query[2]) { 
       $response[$query[1]] = $result->fetch_assoc(); 
     } else {
       $response[$query[1]] = $result->fetch_all(MYSQLI_ASSOC); 
