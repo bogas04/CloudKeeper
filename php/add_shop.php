@@ -13,11 +13,11 @@ $mysqli = dbConnect();
 
 // TODO: Validations
 $query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`pin_code`) VALUES ('.
-  "'".$_SESSION['user']['owner_id']."',".
-  "'".$_POST['name']."',".
-  "'".$_POST['address']."',".
-  "'".$_POST['state']."',".
-  "'".$_POST['pincode']."')";
+  "'".$mysqli->real_escape_string($_SESSION['user']['owner_id'])."',".
+  "'".$mysqli->real_escape_string($_POST['name'])."',".
+  "'".$mysqli->real_escape_string($_POST['address'])."',".
+  "'".$mysqli->real_escape_string($_POST['state'])."',".
+  "'".$mysqli->real_escape_string($_POST['pin_code'])."')";
 
 $result = $mysqli->query($query);
 

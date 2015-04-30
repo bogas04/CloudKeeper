@@ -3,6 +3,35 @@ var service = {
   _items : [],
   _shops : [],
   _invoiceItems : [],
+  _detailedInvoices : {},
+  getAllItems : function($target) {
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_all_items.php',
+      dataType : 'json',
+      success : function(r) {
+        views.hideLoader();
+        if(!r.error) {
+          $target.html(views.renderTable(r.data, ['item_id', 'image']));
+        }
+      }
+    }); 
+  },
+  getProfile : function($targets) { 
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_profile.php',
+      dataType : 'json',
+      success : function(r) {
+        views.hideLoader();
+        if(r.data) {
+          views.renderProfile(r.data, $targets);
+        } else {
+          window.location = 'index.php';
+        }
+      } 
+    });
+  },
   addShop : function(details, $msg) {
     console.log(details);
     views.showLoader();
@@ -88,10 +117,24 @@ var service = {
       }
     });
   },
+  getDetailedInvoiceDetails : function(detailedInvoiceId) {
+    for(var i in service._detailedInvoices) {
+      if(service._detailedInvoices[i].invoice_id === detailedInvoiceId) {
+        return service._detailedInvoices[i];
+      }
+    }
+  },
   getItemDetails : function(itemId) {
     for(var i = 0; i < service._items.length; i++) {
       if(service._items[i].item_id === itemId) {
         return service._items[i];
+      }
+    }
+  },
+  getShopDetails : function(shopId) {
+    for(var i = 0; i < service._shops.length; i++) {
+      if(service._shops[i].shop_id === shopId) {
+        return service._shops[i];
       }
     }
   },
@@ -159,6 +202,25 @@ var service = {
       }
     });
   },
+  getDetailedInvoices : function($targets, ignore) {
+    views.showLoader();
+    $.ajax({
+      url : 'php/get_detailed_invoices.php',
+      dataType : 'json',
+      success : function(r) {
+        if(!r.error) {
+          service._detailedInvoices = r.data;
+          $targets.table.html(views.renderTable(r.data, ignore, $targets));
+        } else {
+          $targets.table.html(r.msg);
+        }
+        views.hideLoader();
+      },
+      error : function() {
+        $targets.table.html("<div class='alert alert-warning'><h4>:( We are facing troubles in fetching your invoices</h4></div>");
+      }
+    });
+  },
   delInvoice : function(details, $msg) {
     views.showLoader();
     $.ajax({
@@ -217,4 +279,42 @@ var service = {
       }
     }); 
   },
+  editShop : function(details, $msg) {
+    console.log(details);
+    views.showLoader();
+    $.ajax({
+      url : 'php/update_shop.php',
+      data : details,
+      dataType : 'json',
+      type : 'post',
+      success : function(r) { 
+        $msg.html(r.msg);
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.shops();
+        views.closeModal();
+        views.hideLoader();
+      }
+    });
+  },
+  editItem : function(details, $msg) {
+    console.log(details);
+    views.showLoader();
+    $.ajax({
+      url : 'php/update_item.php',
+      data : details,
+      dataType : 'json',
+      type : 'post',
+      success : function(r) { 
+        $msg.html(r.msg);
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.items();
+        views.closeModal();
+        views.hideLoader();
+      }
+    });
+  }
 };

@@ -13,24 +13,14 @@ $(function() {
   // Modals event handlers
   $('.add-modal').on('show.bs.modal', handlers.modals.addShow);
   $('.delete-modal').on('show.bs.modal', handlers.modals.deleteShow);
+  $('#detailed-invoice').on('show.bs.modal', handlers.modals.detailedInvoiceShow);
   $('.delete-modal').on('hide.bs.modal', handlers.modals.deleteHide);
-  $('.edit-modal').on('show.bs.modal', handlers.modals.editShow);
-  $('.edit-modal').on('hide.bs.modal', handlers.modals.editHide);
 
-  // Retrieves all data and updates the views 
-  views.updateAll();
-
+  views.detailedInvoices();
   // Add Forms 
-  $('#add-item-form').on('submit', handlers.forms.addItem);
-  $('#add-shop-form').on('submit', handlers.forms.addShop);
   $('#add-invoice-form').on('submit', handlers.forms.addInvoice);
 
   // Delete Forms
   $('#del-invoice-form').on('submit', handlers.forms.deleteInvoice);
-  $('#del-item-form').on('submit', handlers.forms.deleteItem);
-  $('#del-shop-form').on('submit', handlers.forms.deleteShop);
-  
-  // Edit Forms
-  $('#edit-item-form').on('submit', handlers.forms.editItem);
-  $('#edit-shop-form').on('submit', handlers.forms.editShop);
 });
+

@@ -28,13 +28,41 @@ var handlers = {
       $('tr.delete-border').removeClass('delete-border');
     },
     editShow : function(e) {
+      var $ele = $(e.currentTarget);
       var id = e.relatedTarget.getAttribute('data-id');
       $(e.relatedTarget).parent().parent().addClass('edit-border');
-      $(e.currentTarget).find('.to-delete-id').val(id);
+      $ele.find('.to-edit-id').val(id);
+      switch(e.currentTarget.getAttribute('data-type')) {
+        case 'shop' :
+          views.renderShopEdit(service.getShopDetails(id), {
+            name : $ele.find('[name=name]'),
+            state : $ele.find('[name=state]'),
+            pin_code : $ele.find('[name=pin_code]'),
+            address : $ele.find('[name=address]')
+          });
+          break;
+        case 'item' :
+          views.renderItemEdit(service.getItemDetails(id), {
+            name : $ele.find('[name=name]'),
+            description : $ele.find('[name=description]'),
+            cost_price : $ele.find('[name=cost_price]'),
+            sell_price : $ele.find('[name=sell_price]'),
+            mrp : $ele.find('[name=mrp]'),
+            quantity : $ele.find('[name=quantity]')
+          });
+          break;
+      }
     },
     editHide : function(e) {
       $('tr.edit-border').removeClass('edit-border');
     },
+    detailedInvoiceShow : function(e) {
+      var id = e.relatedTarget.getAttribute('data-id');
+      var $ele = $(e.currentTarget);
+      var data = service.getDetailedInvoiceDetails(id);
+      $ele.find('.detailed-invoice').html(views.renderTable([data], ['invoice_id', 'items']));
+      $ele.find('.detailed-items').html(views.renderTable(data.items, ['item_id']));
+    }
   },
   forms : {
     addItem : function(e) {
@@ -54,7 +82,7 @@ var handlers = {
         name : $ele.find('[name=name]').val(),
         address : $ele.find('[name=address]').val(),
         state : $ele.find('[name=state]').val(),
-        pincode : $ele.find('[name=pincode]').val()
+        pin_code : $ele.find('[name=pin_code]').val()
       }, $ele.find('.message'));
       return false;
     },
@@ -83,6 +111,29 @@ var handlers = {
       service.delShop({
         shop_id : $(e.currentTarget).find('[name=shop_id]').val()
       }, $(e.currentTarget).find('.message'));
+      e.isDefaultPrevented = true;
+      return false;
+    },
+    editShop : function(e) {
+      var $ele = $(e.currentTarget);
+      service.editShop({
+        shop_id : $ele.find('[name=shop_id]').val(),
+        name : $ele.find('[name=name]').val(),
+        address : $ele.find('[name=address]').val(),
+        state : $ele.find('[name=state]').val(),
+        pin_code : $ele.find('[name=pin_code]').val()
+      }, $ele.find('.message'));
+      e.isDefaultPrevented = true;
+      return false;
+    },
+    editItem : function(e) {
+      var $ele = $(e.currentTarget);
+      service.editItem({
+        item_id : $ele.find('[name=item_id]').val(),
+        cost_price : $ele.find('[name=cost_price]').val(),
+        sell_price : $ele.find('[name=sell_price]').val(),
+        quantity : $ele.find('[name=quantity]').val()
+      }, $ele.find('.message'));
       e.isDefaultPrevented = true;
       return false;
     }
