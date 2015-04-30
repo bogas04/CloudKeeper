@@ -121,6 +121,14 @@ var service = {
     service._invoiceItems.push(details);
     views.renderInvoiceDetails($target);
   },
+  delInvoiceItem : function(item_id, $target) {
+    for(var i = 0; i < service._invoiceItems.length; i++) {
+      if(service._invoiceItems[i].item_id === item_id) {
+        service._invoiceItems.splice(i, 1); 
+      } 
+    }
+    views.renderInvoiceDetails($target);
+  },
   addInvoice : function(details, $msg) {
     views.showLoader();
     $.ajax({

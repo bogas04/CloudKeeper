@@ -178,6 +178,9 @@ var handlers = {
         price : $('#item-to-add-price').val()
       }, $('#added-items'));
     },
+    deleteItem : function(e) {
+      service.delInvoiceItem(e.currentTarget.getAttribute('data-id'), $('#added-items')); 
+    },
     init : function(e) {
       var item = service.getItemDetails($(e.currentTarget).find('option:selected').val());
       if(item) {

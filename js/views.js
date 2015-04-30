@@ -95,7 +95,7 @@ var views = {
     $target.html('');
     for(var i = 0; i < service._invoiceItems.length; i++) {
       var $panel = document.createElement('div');
-      var $closeButton = document.createElement('button');
+      var $closeButton = document.createElement('a');
       var $panelHeading = document.createElement('div');
       var details = service._invoiceItems[i];
 
@@ -103,7 +103,9 @@ var views = {
       $panelHeading.className = 'panel-heading';
       $panelHeading.innerHTML = '<strong>' + details.name + ' | Quantity: </strong> ' +details.quantity + ' | <strong>Price:</strong>' + details.price;
       $closeButton.className = "btn btn-xs btn-danger pull-right";
+      $closeButton.setAttribute('data-id', details.item_id);
       $closeButton.innerHTML = '&times; Remove';
+      $closeButton.onclick = handlers.invoiceDetails.deleteItem;
       $panelHeading.appendChild($closeButton);
       $panel.appendChild($panelHeading);
       $target.append($panel);
