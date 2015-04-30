@@ -6,10 +6,15 @@ startSession();
 
 if(!isLoggedIn()) { 
   logout(); 
-  header('Location: ../'); 
-  die();
+  respond(true, 'Logout please');
 }
 $mysqli = dbConnect();
+
+foreach($_POST as $key => $p) {
+  if(!isset($_POST[$key]) || strlen($p) === 0) {
+    respond(true, 'Please fill all the details');
+  }
+}
 
 // TODO: Validations
 $query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`pin_code`) VALUES ('.

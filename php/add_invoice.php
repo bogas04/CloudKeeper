@@ -5,6 +5,12 @@ require_once('funcs.php');
 startSession();
 if(!isLoggedIn()) { 
   logout(); 
+  respond(true, 'Logout please');
+}
+foreach($_POST as $key => $p) {
+  if(!isset($_POST[$key]) || count($p) === 0 || strlen($p) === 0) {
+    respond(true, 'Please fill all the details');
+  }
 }
 
 $mysqli = dbConnect();

@@ -6,10 +6,16 @@ startSession();
 
 if(!isLoggedIn()) { 
   logout(); 
+  respond(true, 'Logout please');
 }
 
 $mysqli = dbConnect();
 
+foreach($_POST as $key => $p) {
+  if(!isset($_POST[$key]) || strlen($p) === 0) {
+    respond(true, 'Please fill all the details');
+  }
+}
 // TODO: Validations
 $query = 'INSERT INTO `items` (`name`,`description`,`mrp`) VALUES ('.
   "'".$mysqli->real_escape_string($_POST['name'])."',".
