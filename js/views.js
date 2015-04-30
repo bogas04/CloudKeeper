@@ -16,7 +16,10 @@ var views = {
     });
   },
   allItems : function() {
-    service.getAllItems($('#all-items'));
+    service.getAllItems({
+      table : $('#all-items'),
+      add : $('#add-from-items')
+    });
   },
   items : function() {
     service.getItems({
@@ -131,13 +134,16 @@ var views = {
         rows += '<td>';
         // TODO: need to fix this somehow
         if($targets.update) {
-          rows += '<button class="btn btn-xs btn-info edit-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
+          rows += '<button class="btn btn-xs btn-info" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.update.attr('id') + '">Edit</button>';
         }
         if($targets.del) {
-          rows += '<button class="btn btn-xs btn-danger delete-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button>';
+          rows += '<button class="btn btn-xs btn-danger" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.del.attr('id') + '">Delete</button>';
         } 
         if($targets.more) {
-          rows += '<button class="btn btn-xs btn-default delete-button" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.more.attr('id') + '">More</button>';
+          rows += '<button class="btn btn-xs btn-default" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.more.attr('id') + '">More</button>';
+        }
+        if($targets.add) {
+          rows += '<button class="btn btn-xs btn-success" data-id="' + (data[keys[i]].item_id | data[keys[i]].shop_id | data[keys[i]].invoice_id) + '" data-toggle="modal" data-target="#' + $targets.add.attr('id') + '">Add</button>';
         }
         rows += '</td>';
       }

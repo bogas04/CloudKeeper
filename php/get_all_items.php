@@ -10,7 +10,7 @@ $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];
 
-$query = "SELECT * FROM `items`";
+$query = "SELECT * FROM `items` WHERE item_id NOT IN (SELECT item_id FROM `owner_items` WHERE owner_id = '$owner_id')";
 
 $result = $mysqli->query($query);
 

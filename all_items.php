@@ -31,8 +31,9 @@ die();
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a class="text-info" href="dashboard.php">Home</a></li>
+            <li><a class="text-info" href="dashboard.php">Home</a></li>
             <li><a class="text-success" href="profile.php">Profile</a></li>
+            <li class="active"><a class="text-success" href="all_items.php">Our Items</a></li>
             <li><a class="text-danger" href="php/logout.php">Logout</a></li>
           </ul>
         </div>
@@ -59,6 +60,7 @@ die();
         <!-- VIEW -->
         <div class="col-md-10">
           <h2> Our Items </h2>
+          <div class="help-block"> Showing items that you don't own </div>
           <div class="row">
             <div id="all-items"></div>
           </div>
@@ -70,32 +72,32 @@ die();
 
 
     <!-- MODALS -->
-    <!-- ADD MODALS -->
-    <!-- ITEM MODAL -->
-    <div class="modal fade add-modal" id="add-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+    <!-- ADD ITEM MODAL -->
+    <div class="modal fade" id="add-from-items" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h2 class="modal-title">Enter Item Details</h2>
           </div>
-          <form id="add-item-form" action="php/add_item.php" method="post">
+          <form id="add-from-items-form" action="php/add_from_items.php" method="post">
             <div class="modal-body">
-              <div class="form-group">
+              <input name="item_id" class="to-add-id" hidden/>
+              <div class="form-group form-inline">
                 <label>Item Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
+                <input name="name" type="text" class="form-control" placeholder="Name of Item" disabled/> 
+                <label>Maximum Retail Price ₹</label>
+                <input type="text" name="mrp" class="form-control" placeholder="Maximum Retail Price" disabled/>
+              </div>
+              <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
+                <textarea name="description" class="form-control" rows="4" placeholder="Description" disabled></textarea> 
               </div>
               <div class="form-group form-inline">
-                <label>Maximum Retail Price</label>
-                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
-                <label>Sell Price</label>
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-                <label>Cost Price</label>
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
+                <label>Sell Price ₹</label>
+                <input name="sell_price" type="text" class="form-control" placeholder="Sell Price"/> 
+                <label>Cost Price ₹</label>
+                <input name="cost_price" type="text" class="form-control" placeholder="Cost Price"/>
                 <label>Quantity</label>
                 <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
               </div>
@@ -103,71 +105,7 @@ die();
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Add Item </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- DELETE MODALS -->
-    <!-- DELETE ITEM -->
-    <div class="modal fade delete-modal" id="del-item" tabindex="-1" role="dialog" aria-labelledby="deleteItem" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title">Are you sure you want to delete this item?</h2>
-          </div>
-          <form id="del-item-form" action="php/delete_item.php" method="post">
-            <div class="modal-body">
-              This action can not be undone! This will also delete the invoices done with this item.
-              <input type="text" name="item_id" class="to-delete-id" value=-1 hidden>
-              <div class="message alert"></div>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Delete Item </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- EDIT MODALS -->
-    <!-- EDIT ITEM MODAL -->
-    <div class="modal fade edit-modal" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title">Enter Item Details</h2>
-          </div>
-          <form id="add-item-form" action="php/add_item.php" method="post">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Item Name</label>
-                <input name="name" type="text" class="form-control" placeholder="Name of Item"/> 
-                <label>Description</label>
-                <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> 
-              </div>
-              <div class="form-group form-inline">
-                <label>Maximum Retail Price</label>
-                <input type="text" name="mrp" class="form-control" placeholder="MRP"/>
-                <label>Sell Price</label>
-                <input name="sellprice" type="text" class="form-control" placeholder="Sell Price"/> 
-                <label>Cost Price</label>
-                <input name="costprice" type="text" class="form-control" placeholder="Cost Price"/>
-              </div>
-              <div class="form-group">
-                <label>Quantity</label>
-                <input name="quantity" type="text" class="form-control" placeholder="Quantity"/>
-              </div>
-              <div class="message alert"></div>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-              <button class="btn btn-primary"> Add Item </button>
+              <button class="btn btn-info"> Update Item </button>
             </div>
           </form>
         </div>
@@ -179,6 +117,7 @@ die();
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/views.js"></script>
     <script src="js/service.js"></script>
+    <script src="js/handlers.js"></script>
     <script src="js/all_items.js"></script>
   </body>
 </html>

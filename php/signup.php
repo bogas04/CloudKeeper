@@ -10,7 +10,10 @@ if(isset($_SESSION['user']['loggedIn']) && $_SESSION['user']['loggedIn'] === tru
   respond(true, $_SESSION['user']['username'] . ' is already logged in.');    
 }
 
-if(!isset($_POST['username']) || !isset($_POST['password'])){
+if(!isset($_POST['username']) 
+  || !isset($_POST['password']) 
+  || strlen($_POST['username']) === 0 
+  || strlen($_POST['password']) === 0) {
   respond(true, 'Fill all details', $_POST);
 } else if (rejectUsername($_POST['username'])) {
   respond(true, 'Username must have alphanumerics or underscore', $_POST);

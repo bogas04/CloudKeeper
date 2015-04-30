@@ -6,22 +6,12 @@ startSession();
 
 if(!isLoggedIn()) { 
   logout(); 
+  respond(true, "Login in again");
 }
 
 $mysqli = dbConnect();
 
-// TODO: Validations
-$query = 'INSERT INTO `items` (`name`,`description`,`mrp`) VALUES ('.
-  "'".$mysqli->real_escape_string($_POST['name'])."',".
-  "'".$mysqli->real_escape_string($_POST['description'])."',".
-  "'".$mysqli->real_escape_string($_POST['mrp'])."')";
-
-$result = $mysqli->query($query);
-$item_id = $mysqli->insert_id;
-
-if(!$result) {
-  respond(true, 'Database error', $mysqli->error);
-} 
+$item_id = $_POST['item_id'];
 
 $query = 'INSERT INTO `owner_items` (`owner_id`,`item_id`,`cost_price`,`sell_price`,`quantity`) VALUES('.
   "'".$mysqli->real_escape_string($_SESSION['user']['owner_id'])."',".
@@ -37,3 +27,4 @@ if(!$result) {
 }
 
 respond(false, 'Item successfully added');
+

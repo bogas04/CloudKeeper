@@ -1,8 +1,8 @@
 <?php
 require_once('php/funcs.php');
 if(isLoggedIn()) {
-  header('Location: dashboard.php');
-  die();
+header('Location: dashboard.php');
+die();
 }
 ?>
 <!doctype html>
@@ -13,8 +13,16 @@ if(isLoggedIn()) {
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
   <body>
-    <div class="container-fluid">
-      <h1> <span class="glyphicon glyphicon-cloud"></span> Welcome to CloudKeeper </h1>
+    <div class="jumbotron" style="height:100vh">
+      <div class="container">
+        <h1><span style="font-size:300%" class="glyphicon glyphicon-cloud"></span> Welcome to CloudKeeper</h1>
+        <hr>
+        <p>A mobile friendly cloud based service to give powerful shopkeeping management tools and useful analytics, to low ender vendors, for free!</p>
+        <a href="#login-form" class="btn btn-lg btn-primary">Login Now</a> 
+        <a href="#signup-form" class="btn btn-lg btn-info">or Sign Up For Free</a>
+      </div>
+    </div>
+    <div class="container-fluid" style="height:100vh">
       <div class="col-md-6">
         <h4> Login </h4>
         <form id="login-form" action="php/login.php" method="post">
@@ -54,6 +62,7 @@ if(isLoggedIn()) {
         </form>
       </div>
     </div>
+    <h3 class="text-center"><a href="https://github.com/bogas04/CloudKeeper">Github</a></h3>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/register.js"></script>
   </body>
