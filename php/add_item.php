@@ -24,11 +24,11 @@ if(!$result) {
 } 
 
 $query = 'INSERT INTO `owner_items` (`owner_id`,`item_id`,`cost_price`,`sell_price`,`quantity`) VALUES('.
-  "'".$mysql->real_escape_string($_SESSION['user']['owner_id'])."',".
-  "'".$mysql->real_escape_string($item_id)."',".
-  "'".$mysql->real_escape_string($_POST['cost_price'])."',".
-  "'".$mysql->real_escape_string($_POST['sell_price'])."',".
-  "'".$mysql->real_escape_string($_POST['quantity'])."')";
+  "'".$mysqli->real_escape_string($_SESSION['user']['owner_id'])."',".
+  "'".$mysqli->real_escape_string($item_id)."',".
+  "'".$mysqli->real_escape_string($_POST['cost_price'])."',".
+  "'".$mysqli->real_escape_string($_POST['sell_price'])."',".
+  "'".$mysqli->real_escape_string($_POST['quantity'])."')";
 
 $result = $mysqli->query($query);
 

@@ -94,7 +94,7 @@ var handlers = {
     },
     addFromItems : function(e) {
       var $ele = $(e.currentTarget);
-      service.addItem({
+      service.addFromItems({
         item_id : $ele.find('[name=item_id]').val(),
         sell_price : $ele.find('[name=sell_price]').val(),
         cost_price : $ele.find('[name=cost_price]').val(),

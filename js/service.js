@@ -53,7 +53,7 @@ var service = {
       }
     });
   },
-  addItem : function(details, $msg) {
+  addFromItems : function(details, $msg) {
     console.log(details);
     views.showLoader();
     $.ajax({
@@ -66,6 +66,27 @@ var service = {
         $msg.css('display', 'block');
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.allItems();
+        views.clearModal();
+        views.hideLoader();
+      }
+    });
+  },
+  addItem : function(details, $msg) {
+    console.log(details);
+    views.showLoader();
+    $.ajax({
+      url : 'php/add_item.php',
+      data : details,
+      dataType : 'json',
+      type : 'post',
+      success : function(r) { 
+        $msg.html(r.msg);
+        $msg.css('display', 'block');
+        $msg.removeClass(r.error?'alert-success':'alert-danger');
+        $msg.addClass(r.error?'alert-danger':'alert-success');
+        views.items();
+        views.invoices();
         views.clearModal();
         views.hideLoader();
       }
