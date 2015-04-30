@@ -21,6 +21,7 @@ Todo
 ===
 * Validations at PHP and JS sides
 * Search shops/items/invoices
+* Add view Items Database
 * Phone numbers
 * SQL procedure getOwnerId(invoiceId)
 * Refactor SQL analytics queries
