@@ -47,7 +47,7 @@ $queries[] = [
   "SELECT 
   invoice_items.item_id, getName(invoice_items.item_id) as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
   `invoice_items`, `owner_items`
-  WHERE owner_id = '$owner_id' AND invoice_items.item_id = owner_items.item_id
+  WHERE owner_id = '$owner_id' AND invoice_items.item_id = owner_items.item_id AND getOwnerId(invoice_items.invoice_id) = '$owner_id'
   GROUP BY item_id
   ORDER BY profit desc limit 5", 'mostProfitable'];
 
@@ -55,7 +55,7 @@ $queries[] = [
   "SELECT 
   invoice_items.item_id, getName(invoice_items.item_id) as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
   `invoice_items`, `owner_items`
-  WHERE owner_id = '$owner_id' AND invoice_items.item_id = owner_items.item_id
+  WHERE owner_id = '$owner_id' AND invoice_items.item_id = owner_items.item_id AND getOwnerId(invoice_items.invoice_id) = '$owner_id'
   GROUP BY item_id
   ORDER BY profit limit 5", 'leastProfitable'];
 
@@ -72,8 +72,9 @@ $queries[] = [
   SUM((invoice_items.price - owner_items.cost_price)*invoice_items.quantity) as netProfit
   ,SUM(price*invoice_items.quantity) as netRevenue
   FROM
-  `invoice_items`, `owner_items` 
-  WHERE invoice_items.item_id = owner_items.item_id AND `owner_id`='$owner_id'", 'ownerData', true];
+  `invoice_items`, `owner_items`
+  WHERE invoice_items.item_id = owner_items.item_id AND `owner_id`='$owner_id' AND getOwnerId(invoice_items.invoice_id) = '$owner_id'
+  ", 'ownerData', true];
 
 $queries[] = [
   "SELECT invoice_items.item_id, getName(item_id) as `item name`, quantity as quantity, (UNIX_TIMESTAMP(invoice_time)*1000) as invoice_time_utc FROM
