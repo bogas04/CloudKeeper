@@ -19,16 +19,12 @@ We, here are maintaining a database for a shopkeeper and providing it as a web s
 
 Todo  
 ===
-* Bug with analytics : Shows stuff even when no invoices are there
-* Validations at PHP and JS sides
 * Search shops/items/invoices
 * Phone numbers
-* SQL procedure getOwnerId(invoiceId)
-* Refactor SQL analytics queries
 * Create MySQL Queries for great analytics such as 
   - Peak/Crest Points for each Product vs Revenue
   - Peak/Crest Points for each Product vs Profit
-  - Futuristic : Predictions
+  - Futuristic : Predictions, this is bought with this, wallmart-ish!
   - [x] Least/Most Sold Product
   - [x] Least/Most Profitable Product
   - [x] Peak/Crest Points for each Product vs Quantity
@@ -38,6 +34,10 @@ Todo
 * [x] Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
+* [x] Bug with analytics : Shows stuff even when no invoices are there
+* [x] Validations at PHP and JS sides
+* [x] SQL procedure getOwnerId(invoiceId)
+* [x] Refactor SQL analytics queries
 * [x] Add From Items Database
 * [x] Invoice details 
 * [x] Use string escaping for mysql queries
