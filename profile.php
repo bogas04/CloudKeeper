@@ -33,6 +33,7 @@ die();
           <ul class="nav navbar-nav">
             <li><a class="text-info" href="dashboard.php">Home</a></li>
             <li class="active"><a class="text-success" href="profile.php">Profile</a></li>
+            <li><a class="text-success" href="all_items.php">Our Items</a></li>
             <li><a class="text-danger" href="php/logout.php">Logout</a></li>
           </ul>
         </div>

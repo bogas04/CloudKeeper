@@ -1,10 +1,11 @@
 // depends on views.js
 var service = { 
   _items : [],
+  _allItems : [],
   _shops : [],
   _invoiceItems : [],
   _detailedInvoices : {},
-  getAllItems : function($target) {
+  getAllItems : function($targets) {
     views.showLoader();
     $.ajax({
       url : 'php/get_all_items.php',
@@ -12,7 +13,8 @@ var service = {
       success : function(r) {
         views.hideLoader();
         if(!r.error) {
-          $target.html(views.renderTable(r.data, ['item_id', 'image']));
+          service._allItems = r.data;
+          $targets.table.html(views.renderTable(r.data, ['item_id', 'image'], { add : $targets.add }));
         }
       }
     }); 
@@ -55,7 +57,7 @@ var service = {
     console.log(details);
     views.showLoader();
     $.ajax({
-      url : 'php/add_item.php',
+      url : 'php/add_from_items.php',
       data : details,
       dataType : 'json',
       type : 'post',
@@ -64,8 +66,6 @@ var service = {
         $msg.css('display', 'block');
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
-        views.items();
-        views.invoices();
         views.clearModal();
         views.hideLoader();
       }
@@ -123,6 +123,7 @@ var service = {
         return service._detailedInvoices[i];
       }
     }
+    return null;
   },
   getItemDetails : function(itemId) {
     for(var i = 0; i < service._items.length; i++) {
@@ -130,6 +131,15 @@ var service = {
         return service._items[i];
       }
     }
+    return null;
+  },
+  getFromAllItemDetails : function(itemId) {
+    for(var i = 0; i < service._allItems.length; i++) {
+      if(service._allItems[i].item_id === itemId) {
+        return service._allItems[i];
+      }
+    }
+    return null;
   },
   getShopDetails : function(shopId) {
     for(var i = 0; i < service._shops.length; i++) {
@@ -137,6 +147,7 @@ var service = {
         return service._shops[i];
       }
     }
+    return null;
   },
   getShops : function($targets, ignore) {
     views.showLoader();

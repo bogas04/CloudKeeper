@@ -62,18 +62,44 @@ var handlers = {
       var data = service.getDetailedInvoiceDetails(id);
       $ele.find('.detailed-invoice').html(views.renderTable([data], ['invoice_id', 'items']));
       $ele.find('.detailed-items').html(views.renderTable(data.items, ['item_id']));
+    },
+    addFromItems : function(e) {
+      var id = e.relatedTarget.getAttribute('data-id');
+      if(service.getItemDetails(id) !== null) {
+        alert("You already own this item");
+        e.isDefaultPrevented = true;
+        return false;
+      }
+      var $ele = $(e.currentTarget);
+      $ele.find('.to-add-id').val(id);
+      views.renderItemEdit(service.getFromAllItemDetails(id), {
+        name : $ele.find('[name=name]'),
+        description : $ele.find('[name=description]'),
+        mrp : $ele.find('[name=mrp]')
+      });
     }
   },
   forms : {
     addItem : function(e) {
+      var $ele = $(e.currentTarget);
       service.addItem({
-        name : $('#add-item-form [name=name]').val(),
-        description : $('#add-item-form [name=description]').val(),
-        mrp : $('#add-item-form [name=mrp]').val(),
-        sellprice : $('#add-item-form [name=sellprice]').val(),
-        costprice : $('#add-item-form [name=costprice]').val(),
-        quantity : $('#add-item-form [name=quantity]').val()
-      }, $('#add-item-form .message'));
+        name : $ele.find('[name=name]').val(),
+        description : $ele.find('[name=description]').val(),
+        mrp : $ele.find('[name=mrp]').val(),
+        sell_price : $ele.find('[name=sell_price]').val(),
+        cost_price : $ele.find('[name=cost_price]').val(),
+        quantity : $ele.find('[name=quantity]').val()
+      }, $ele.find('.message'));
+      return false;
+    },
+    addFromItems : function(e) {
+      var $ele = $(e.currentTarget);
+      service.addItem({
+        item_id : $ele.find('[name=item_id]').val(),
+        sell_price : $ele.find('[name=sell_price]').val(),
+        cost_price : $ele.find('[name=cost_price]').val(),
+        quantity : $ele.find('[name=quantity]').val()
+      }, $ele.find('.message'));
       return false;
     },
     addShop : function(e) {

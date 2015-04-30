@@ -21,7 +21,6 @@ Todo
 ===
 * Validations at PHP and JS sides
 * Search shops/items/invoices
-* Add view Items Database
 * Phone numbers
 * SQL procedure getOwnerId(invoiceId)
 * Refactor SQL analytics queries
@@ -38,6 +37,7 @@ Todo
 * [x] Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
+* [x] Add From Items Database
 * [x] Invoice details 
 * [x] Use string escaping for mysql queries
 * [x] Update operations
