@@ -22,9 +22,6 @@ thead {
 .edit-border {
   border: 3px dashed cyan;
 }
-.edit-border {
-  border: 3px dashed yellow;
-}
 .tile .panel-heading{
   padding: 5px 10px;
   height: 455px;
