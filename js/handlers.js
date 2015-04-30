@@ -2,6 +2,7 @@
 var handlers = {
   modals : {
     addShow : function(e) {
+      views.clearMessage();
       var id = e.currentTarget.getAttribute('id');
       if(id === 'add-invoice') {
         if(service._items.length === 0) {
@@ -28,6 +29,8 @@ var handlers = {
       $('tr.delete-border').removeClass('delete-border');
     },
     editShow : function(e) {
+      views.clearMessage();
+      views.clearModal();
       var $ele = $(e.currentTarget);
       var id = e.relatedTarget.getAttribute('data-id');
       $(e.relatedTarget).parent().parent().addClass('edit-border');
@@ -57,6 +60,7 @@ var handlers = {
       $('tr.edit-border').removeClass('edit-border');
     },
     detailedInvoiceShow : function(e) {
+      views.clearMessage();
       var id = e.relatedTarget.getAttribute('data-id');
       var $ele = $(e.currentTarget);
       var data = service.getDetailedInvoiceDetails(id);
@@ -64,6 +68,7 @@ var handlers = {
       $ele.find('.detailed-items').html(views.renderTable(data.items, ['item_id']));
     },
     addFromItems : function(e) {
+      views.clearMessage();
       var id = e.relatedTarget.getAttribute('data-id');
       if(service.getItemDetails(id) !== null) {
         alert("You already own this item");
@@ -107,7 +112,7 @@ var handlers = {
       service.addShop({
         name : $ele.find('[name=name]').val(),
         address : $ele.find('[name=address]').val(),
-        state : $ele.find('[name=state]').val(),
+        state : $ele.find('[name=state] option:selected').val(),
         pin_code : $ele.find('[name=pin_code]').val()
       }, $ele.find('.message'));
       return false;
@@ -146,7 +151,7 @@ var handlers = {
         shop_id : $ele.find('[name=shop_id]').val(),
         name : $ele.find('[name=name]').val(),
         address : $ele.find('[name=address]').val(),
-        state : $ele.find('[name=state]').val(),
+        state : $ele.find('[name=state] option:selected').val(),
         pin_code : $ele.find('[name=pin_code]').val()
       }, $ele.find('.message'));
       e.isDefaultPrevented = true;
@@ -175,9 +180,12 @@ var handlers = {
     },
     init : function(e) {
       var item = service.getItemDetails($(e.currentTarget).find('option:selected').val());
-      $('#item-to-add-quantity').val(1);
-      $('#item-to-add-price').val(item.sell_price);
-      $('#total-item-price').html((item.sell_price * $('#item-to-add-quantity').val()));
+      if(item) {
+        $('#item-to-add-quantity').val(1);
+        $('#item-to-add-price').val(item.sell_price);
+        $('#item-to-add-price').val();
+        $('#total-item-price').html((item.sell_price * $('#item-to-add-quantity').val()));
+      }  
     },
     priceChange : function(e) {
       $('#total-item-price').html((e.currentTarget.value * $('#item-to-add-quantity').val()));

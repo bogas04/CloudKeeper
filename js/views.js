@@ -55,6 +55,13 @@ var views = {
     views.shops();
     views.invoices();
   },
+  clearMessage : function($msg) {
+    $msg = ($msg || $('.message'));
+    setTimeout(function() {
+      $msg.html('');
+      $msg.hide('slow',function() { $msg.css('display', 'none'); });
+    }, 1000);
+  },
   clearInvoiceItems : function() {
     $('#added-items').html('');
   },

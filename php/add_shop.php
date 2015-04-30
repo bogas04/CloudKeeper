@@ -16,6 +16,9 @@ foreach($_POST as $key => $p) {
   }
 }
 
+if(!validState($_POST['state'])) {
+  respond(true, 'Enter a valid state');
+}
 // TODO: Validations
 $query = 'INSERT INTO `shops` (`owner_id`,`name`,`address`,`state`,`pin_code`) VALUES ('.
   "'".$mysqli->real_escape_string($_SESSION['user']['owner_id'])."',".

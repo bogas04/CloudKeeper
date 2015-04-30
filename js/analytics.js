@@ -7,8 +7,8 @@ function getAnalytics($targets) {
       if(!r.error) {
         var data = r.data;
         $targets.counts.html(views.renderTable([
-              {analytic: 'Net Revenue', value: '₹ ' + data.ownerData.netRevenue},
-              {analytic: 'Net Profit', value: '₹ ' + data.ownerData.netProfit},
+              {analytic: 'Net Revenue', value: '₹ ' + (data.ownerData.netRevenue || 0)},
+              {analytic: 'Net Profit', value: '₹ ' + (data.ownerData.netProfit || 0)},
               {analytic: 'Total Shops', value: data.counts.shopCount},
               {analytic: 'Total Items', value: data.counts.itemCount},
               {analytic: 'Total Invoices', value: data.counts.invoiceCount}

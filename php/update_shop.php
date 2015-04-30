@@ -3,9 +3,18 @@ require_once('db.php');
 require_once('funcs.php');
 
 startSession();
-
-if(!isLoggedIn()) { logout(); respond(true, 'login first'); }
-
+if(!isLoggedIn()) { 
+  logout(); 
+  respond(true, 'Logout please');
+}
+foreach($_POST as $key => $p) {
+  if(!isset($_POST[$key]) || strlen($p) === 0) {
+    respond(true, 'Please fill all the details');
+  }
+}
+if(!validState($_POST['state'])) {
+  respond(true, 'Enter a valid state');
+}
 $mysqli = dbConnect();
 
 $owner_id = $_SESSION['user']['owner_id'];

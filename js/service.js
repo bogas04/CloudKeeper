@@ -48,6 +48,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
+        views.clearMessage($msg);
         views.clearModal();
         views.hideLoader();
       }
@@ -67,6 +68,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.allItems();
+        views.clearMessage($msg);
         views.clearModal();
         views.hideLoader();
       }
@@ -87,6 +89,7 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
         views.invoices();
+        views.clearMessage($msg);
         views.clearModal();
         views.hideLoader();
       }
@@ -133,6 +136,7 @@ var service = {
         service._invoiceItems = [];
         views.invoices();
         views.clearInvoiceItems();
+        views.clearMessage($msg);
         views.clearModal();
         views.hideLoader();
       }
@@ -267,7 +271,8 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.invoices();
-        views.clearModal();
+        views.clearMessage($msg);
+        views.closeModal();
         views.hideLoader();
       }
     }); 
@@ -287,7 +292,8 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
-        views.clearModal();
+        views.clearMessage($msg);
+        views.closeModal();
         views.hideLoader();
       }
     }); 
@@ -306,7 +312,8 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
-        views.clearModal();
+        views.clearMessage($msg);
+        views.closeModal();
         views.hideLoader();
       }
     }); 
@@ -325,6 +332,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.shops();
+        views.clearMessage($msg);
         views.closeModal();
         views.hideLoader();
       }
@@ -344,6 +352,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.items();
+        views.clearMessage($msg);
         views.closeModal();
         views.hideLoader();
       }
