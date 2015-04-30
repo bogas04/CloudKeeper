@@ -38,7 +38,7 @@ $(function() {
   $('a[href^=#]').on('click', function(e) {  
     $target = $(e.currentTarget.getAttribute('href'));
     $('html, body').animate({
-      scrollTop : $target.offset().top + 150
+      scrollTop : $target.offset().top - 50
     }, 250);
     e.isDefaultPrevented = true;
     return false;

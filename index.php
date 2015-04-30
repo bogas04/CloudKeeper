@@ -15,9 +15,9 @@ die();
   <body>
     <div class="jumbotron" style="height:100vh">
       <div class="container">
-        <h1><span style="font-size:500%" class="glyphicon glyphicon-cloud"></span> Welcome to CloudKeeper</h1>
+        <h1><span style="font-size:300%" class="glyphicon glyphicon-cloud"></span> Welcome to CloudKeeper</h1>
         <hr>
-        <p>A mobile friendly cloud based service to give powerful shopkeeping management tool and analytics, to low ender vendors. For free!</p>
+        <p>A mobile friendly cloud based service to give powerful shopkeeping management tools and useful analytics, to low ender vendors, for free!</p>
         <a href="#login-form" class="btn btn-lg btn-primary">Login Now</a> 
         <a href="#signup-form" class="btn btn-lg btn-info">or Sign Up For Free</a>
       </div>
