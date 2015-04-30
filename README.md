@@ -19,6 +19,7 @@ We, here are maintaining a database for a shopkeeper and providing it as a web s
 
 Todo  
 ===
+* Bug with analytics : Shows stuff even when no invoices are there
 * Validations at PHP and JS sides
 * Search shops/items/invoices
 * Phone numbers
