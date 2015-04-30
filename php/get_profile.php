@@ -24,6 +24,6 @@ if($result->num_rows == 0) {
   $profile = $result->fetch_assoc();
   $query = 'SELECT phone_number FROM `phonenumbers` WHERE `owner_id` = "'.$owner_id.'"';
   $result = $mysqli->query($query);
-  $profile['phoneNumbers'] = $result->fetch_all(MYSQLI_ARRAY);
+  $profile['phoneNumbers'] = $result->fetch_all();
   respond(false, 'Profile Data', $profile);
 }

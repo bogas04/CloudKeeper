@@ -30,33 +30,33 @@ $queries = [];
 // TODO : Figure out why NATURAL JOIN `shops` doesn't work but , `shops` does
 $queries[] = [
   "SELECT 
-  item_id ,items.name as `item name` ,shops.shop_id ,shops.name as `shop name` ,count(item_id) as frequency FROM 
-  ((`invoice_items` NATURAL JOIN `items`) NATURAL JOIN `invoices`), `shops`
-  WHERE owner_id = '$owner_id' AND invoices.shop_id = shops.shop_id
+  item_id ,getName(item_id) as `item name` ,shops.shop_id ,shops.name as `shop name` ,count(item_id) as frequency FROM 
+  (`invoice_items` NATURAL JOIN `invoices`) NATURAL JOIN `shops`
+  WHERE owner_id = '$owner_id'
   GROUP BY `item_id`
   ORDER BY frequency desc limit 5", 'mostSold'];
 
 $queries[] = [
   "SELECT 
-  item_id ,items.name as `item name` ,shops.shop_id ,shops.name as `shop name` ,count(item_id) as frequency FROM 
-  ((`invoice_items` NATURAL JOIN `items`) NATURAL JOIN `invoices`), shops
-  WHERE owner_id = '$owner_id' AND invoices.shop_id = shops.shop_id
+  item_id ,getName(item_id) as `item name` ,shops.shop_id ,shops.name as `shop name` ,count(item_id) as frequency FROM 
+  (`invoice_items` NATURAL JOIN `invoices`) NATURAL JOIN shops
+  WHERE owner_id = '$owner_id'
   GROUP BY `item_id`
   ORDER BY frequency limit 5", 'leastSold'];
 
 $queries[] = [
   "SELECT 
-  invoice_items.item_id, items.name as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
-  ((`invoice_items` NATURAL JOIN `items`) NATURAL JOIN `invoices`), owner_items
-  WHERE owner_id = '$owner_id' AND owner_items.item_id = invoice_items.item_id
+  invoice_items.item_id, getName(item_id) as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
+  (`invoice_items` NATURAL JOIN `invoices`) NATURAL JOIN owner_items
+  WHERE owner_id = '$owner_id'
   GROUP BY item_id
   ORDER BY profit desc limit 5", 'mostProfitable'];
 
 $queries[] = [
   "SELECT 
-  invoice_items.item_id, items.name as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
-  ((`invoice_items` NATURAL JOIN `items`) NATURAL JOIN `invoices`), owner_items
-  WHERE owner_id = '$owner_id' AND owner_items.item_id = invoice_items.item_id
+  invoice_items.item_id, getName(item_id) as `item name`, count(invoice_items.item_id) as frequency, AVG(price) as 'average price', SUM(price - cost_price)*invoice_items.quantity as profit, SUM(price) as revenue FROM
+  (`invoice_items` NATURAL JOIN `invoices`) NATURAL JOIN owner_items
+  WHERE owner_id = '$owner_id'
   GROUP BY item_id
   ORDER BY profit limit 5", 'leastProfitable'];
 
@@ -72,24 +72,23 @@ $queries[] = [
   SUM((invoice_items.price - owner_items.cost_price)*invoice_items.quantity) as netProfit
   ,SUM(price*invoice_items.quantity) as netRevenue
   FROM
-  `invoice_items`, `owner_items` 
-  WHERE invoice_items.item_id = owner_items.item_id AND `owner_id`='$owner_id'", 'ownerData', true];
+  `invoice_items` NATURAL JOIN `owner_items` 
+  WHERE `owner_id`='$owner_id'", 'ownerData', true];
 
 $queries[] = [
-  "SELECT invoice_items.item_id, items.name as `item name`, quantity as quantity, (UNIX_TIMESTAMP(invoice_time)*1000) as invoice_time_utc FROM
-  `invoice_items`, `invoices`, `items` 
-  WHERE invoices.invoice_id = invoice_items.invoice_id AND items.item_id = invoice_items.item_id AND shop_id IN 
+  "SELECT invoice_items.item_id, getName(item_id) as `item name`, quantity as quantity, (UNIX_TIMESTAMP(invoice_time)*1000) as invoice_time_utc FROM
+  `invoice_items` NATURAL JOIN `invoices` 
+  WHERE shop_id IN 
   (SELECT shop_id FROM
   `shops` NATURAL JOIN `owner` 
   WHERE owner_id = '$owner_id') ORDER BY invoice_time", 'invoiceTimeline'];
 
 $queries[] = [
-  "SELECT shops.name, SUM((price-cost_price)*invoice_items.quantity) as profit, SUM(price*invoice_items.quantity) as revenue FROM
-  `invoice_items`, `invoices`, `owner_items`, `shops`
+  "SELECT shops.name, SUM((price-getCostPrice(invoice_items.item_id,'$owner_id'))*invoice_items.quantity) as profit, SUM(price*invoice_items.quantity) as revenue FROM
+  `invoice_items`, `invoices`, `shops`
   WHERE 
   invoices.invoice_id = invoice_items.invoice_id
   AND invoices.shop_id = shops.shop_id
-  AND invoice_items.item_id = owner_items.item_id
   AND shops.owner_id = '$owner_id'
   GROUP BY shops.shop_id", 'shopData'];
 
