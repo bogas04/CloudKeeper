@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 -- Database: `cloudkeeper`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Getownerid`(IN `invoice_id` INT)
+    NO SQL
+BEGIN
+SELECT owner_id 
+FROM `shops`,`invoices`
+WHERE shops.shop_id = invoices.shop_id and invoices.invoice_id = invoice_id;
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
