@@ -19,12 +19,20 @@ We, here are maintaining a database for a shopkeeper and providing it as a web s
 
 Todo  
 ===
+* ***Future*** : Compare Prices of products from different vendors
+* ***Future*** : Auto-fill enteries based on past/filled details
+* ***Future*** : Predictions, this is bought with this, wallmart-ish!
+* Tips to maximize profit
 * Search shops/items/invoices
+* Search Engine for products 
 * Phone numbers
+* Edit profile
+* Edit invoice
+* Show more of invoice in overview
 * Create MySQL Queries for great analytics such as 
+  - Area graph for revenue / profit for give range (weeks, months, years)
   - Peak/Crest Points for each Product vs Revenue
   - Peak/Crest Points for each Product vs Profit
-  - Futuristic : Predictions, this is bought with this, wallmart-ish!
   - [x] Least/Most Sold Product
   - [x] Least/Most Profitable Product
   - [x] Peak/Crest Points for each Product vs Quantity
@@ -47,9 +55,6 @@ Todo
 * [x] Use knob.js / highcharts etc to show above data
 * [x] Working Shops, Invoice and Item addition/display
 * [x] Functioning login system
-* Future : Search Engine for products 
-* Future : Compare Prices of products from different vendors
-* Futute : Auto-fill enteries based on past/filled details
 
 Potential Issues 
 ==
