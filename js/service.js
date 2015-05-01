@@ -279,6 +279,7 @@ var service = {
         $msg.removeClass(r.error?'alert-success':'alert-danger');
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.invoices();
+        views.items();
         views.clearMessage($msg);
         views.closeModal();
         views.hideLoader();
