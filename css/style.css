@@ -16,11 +16,25 @@ thead {
   z-index: 1031;
   visibility: hidden;
 }
+.delete-border,.edit-border {
+  transition: all .25s;
+  background-color: grey;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  font-size: 150%;
+  display: table;
+  width: 100%;
+  z-index: 1550;
+}
+.delete-border .btn,.edit-border .btn{
+  display: none;
+}
 .delete-border {
-  border: 3px dashed red;
+  background: #C9302C;
 }
 .edit-border {
-  border: 3px dashed cyan;
+  background: #31B0D5;
 }
 .tile .panel-heading{
   padding: 5px 10px;
@@ -35,22 +49,14 @@ thead {
   vertical-align: middle;
   padding: 8px 16px 8px 0px;
 }
+.scrollable {
+  max-height: 400px;
+  overflow: auto;
+}
 /* Bootstrap Fixes */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   background-color: #31B0D5;
 }
-.table-fixed thead {
-  width: 97%;
-}
-.table-fixed tbody {
-  height: 230px;
-  overflow-y: auto;
-  width: 100%;
-}
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-}
-.table-fixed tbody td, .table-fixed thead > tr> th {
-  float: left;
-  border-bottom-width: 0;
+.modal {
+  top: 35px;
 }
