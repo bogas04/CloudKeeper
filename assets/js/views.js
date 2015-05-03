@@ -77,19 +77,13 @@ var views = {
       $modal.modal('hide');
     }, 1000);
   },
-  renderShopEdit : function(data, $targets) {
+  renderByTargets : function(data, $targets) {
     for(var i in $targets) {
-      $targets[i].val(data[i]);
-    }
-  },
-  renderItemEdit : function(data, $targets) {
-    for(var i in $targets) {
-      $targets[i].val(data[i]);
-    }
-  },
-  renderProfile : function(data, $targets) {
-    for(var i in $targets) {
-      $targets[i].html(data[i]);
+      if($targets[i].is('textarea,input,select')) {
+        $targets[i].val(data[i]); 
+      } else {
+        $targets[i].html(data[i]); 
+      } 
     }
   },
   renderInvoiceDetails : function($target) {

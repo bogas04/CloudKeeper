@@ -22,7 +22,7 @@ $_POST['username'] = trim(strtolower($_POST['username']));
 $mysqli = dbConnect();
 
 // query to find user
-$query = 'SELECT * FROM `owner` WHERE `username` = "' . strtolower($mysqli->real_escape_string($_POST['username'])) .'"';
+$query = 'SELECT first_name as firstName, last_name as lastName, username, owner_id, password FROM `owner` WHERE `username` = "' . strtolower($mysqli->real_escape_string($_POST['username'])) .'"';
 $result = $mysqli->query($query);
 
 // db error
@@ -39,6 +39,12 @@ $userDetails = $result->fetch_assoc();
 
 // verify password
 if(password_verify($_POST['password'], $userDetails['password'])) {
+  $query = 'SELECT phone_number FROM phonenumbers WHERE owner_id = "'.$userDetails['owner_id'].'"';
+  $mysqli->query($query);
+  if($result && $result->num_rows > 0) {
+   $userDetails['phoneNumbers'] = $result->fetch_all(); 
+  }
+  $userDetails['phoneNumbers'] = [];
   // update session
   $_SESSION['user'] = $userDetails; 
   $_SESSION['user']['loggedIn'] = true;

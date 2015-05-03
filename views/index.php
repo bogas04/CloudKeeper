@@ -1,6 +1,6 @@
 <?php
 function modal($arr = ['shop', 'item', 'invoice']) {
-  $done = ['invoice' => false, 'shop' => false, 'item' => false, 'add_from_items' => false];
+  $done = ['invoice' => false, 'shop' => false, 'item' => false, 'add_from_items' => false, 'profile' => false];
   $arr = is_array($arr) ? $arr : [$arr];
   foreach($arr as $name) {
     if(array_key_exists($name, $done) && !$done[$name]) {
@@ -12,7 +12,7 @@ function modal($arr = ['shop', 'item', 'invoice']) {
 function navbar($selected) {
   echo '
   <!-- NAVBAR -->
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

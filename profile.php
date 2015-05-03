@@ -29,12 +29,13 @@ if(!isLoggedIn()) {
         </div>
         <!-- VIEW -->
         <div class="col-md-10">
-          <h2> Profile </h2>
-          <div id="profile-info">
-            <dl class="dl-horizontal">
+          <h2> <span class="glyphicon glyphicon-user"></span> Profile <a href="#edit-profile" data-target="#edit-profile" data-toggle="modal" class="btn btn-warning pull-right"> <span class="glyphicon glyphicon-cog"></span> Edit Profile </a> </h2>
+          <div id="profile-info" class="jumbotron">
+            <dl class="dl-horizontal profile">
               <dt>First Name</dt> <dd class="first-name"></dd>
               <dt>Last Name</dt> <dd class="last-name"></dd>
-              <dt>Username</dt> <dd class="username"></dd>
+              <dt>Username</dt> <dd class="username" style="text-transform:none;"></dd>
+              <dt>Mobile Phones</dt> <dd class="phones">N/A</dd>
             </dl>
           </div>
         </div>
@@ -43,9 +44,13 @@ if(!isLoggedIn()) {
     </div>
     <!-- MAIN CONTAINER ENDS -->
 
+    <!-- MODALS -->
+    <?php modal('profile'); ?>
+
     <!-- SCRIPTS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/handlers.js"></script>
     <script src="assets/js/views.js"></script>
     <script src="assets/js/service.js"></script>
     <script src="assets/js/profile.js"></script>

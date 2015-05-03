@@ -6,6 +6,12 @@ thead {
   background-color: #EC971F;
 }
 /* Custom Elements */
+.profile {
+  font-size: 130%;
+}
+.profile dd {
+  text-transform: capitalize;
+}
 .loading-bar {
   background-image: url('../img/WindowsPhoneProgressbar.gif');
   height: 15px;
@@ -17,12 +23,12 @@ thead {
   visibility: hidden;
 }
 .delete-border,.edit-border {
-  transition: all .25s;
-  background-color: grey;
-  top: 0px;
+  transition: transform .25s;
+  top: -50px;
+  transform: translateY(50px);
   left: 0px;
   position: fixed;
-  font-size: 150%;
+  font-size: 133%;
   display: table;
   width: 100%;
   z-index: 1550;
@@ -35,6 +41,10 @@ thead {
 }
 .edit-border {
   background: #31B0D5;
+}
+.remove-border {
+  transition: transform .25s;
+  transform: translateY(-50px);
 }
 .tile .panel-heading{
   padding: 5px 10px;

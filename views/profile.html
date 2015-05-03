@@ -1,0 +1,40 @@
+<!-- EDIT PROFILE MODAL -->
+<div class="modal fade edit-modal" data-type="profile" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="addProfile" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Enter New Profile Details</h2>
+      </div>
+      <form id="edit-profile-form" action="php/update_profile.php" method="post">
+        <div class="modal-body">
+          <input type="text" name="owner_id" value="-1" hidden/>
+          <div class="form-group form-inline">
+            <label>First Name</label>
+            <input name="first-name" type="text" class="form-control" placeholder="First Name"/> 
+            <label>Last Name</label>
+            <input name="last-name" type="text" class="form-control" placeholder="Last Name"/> 
+            <label>Username</label>
+            <input name="username" type="text" class="form-control" placeholder="Username"/> 
+          </div>
+          <div class="form-group">
+            <label>Phone numbers (comma separated)</label>
+            <input name="phoneNumbers" type="text" class="form-control" placeholder="Phone Numbers (comma separated)"/> 
+          <div class="form-group">
+            <label>Old password (fill this if you want to change your password)</label>
+            <input name="old-password" type="password" class="form-control" placeholder="Old Password"/> 
+            <label>New password</label>
+            <input name="new-password" type="password" class="form-control" placeholder="New Password"/> 
+          </div>
+          </div>
+          <div class="message alert"></div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          <button class="btn btn-info"> Update Profile </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
