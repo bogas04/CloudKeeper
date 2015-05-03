@@ -13,8 +13,8 @@ if(!isLoggedIn()) {
   <head>
     <title> Dashboard </title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
   </head>
   <body>
     <div class="loading-bar"></div>
@@ -51,9 +51,9 @@ if(!isLoggedIn()) {
     <!-- SCRIPTS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/views.js"></script>
-    <script src="js/service.js"></script>
-    <script src="js/handlers.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="assets/js/views.js"></script>
+    <script src="assets/js/service.js"></script>
+    <script src="assets/js/handlers.js"></script>
+    <script src="assets/js/dashboard.js"></script>
   </body>
 </html>

@@ -10,7 +10,7 @@ die();
   <head>
     <meta charset="utf-8" />
     <title>CloudKeeper</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
   </head>
   <body>
     <div class="jumbotron" style="height:100vh">
@@ -64,6 +64,6 @@ die();
     </div>
     <h3 class="text-center"><a href="https://github.com/bogas04/CloudKeeper">Github</a></h3>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="js/register.js"></script>
+    <script src="assets/js/register.js"></script>
   </body>
 </html>
