@@ -22,13 +22,10 @@ Todo
 * ***Future*** : Compare Prices of products from different vendors
 * ***Future*** : Auto-fill enteries based on past/filled details
 * ***Future*** : Predictions, this is bought with this, wallmart-ish!
-* Tips to maximize profit
+* ***Future*** : Tips to maximize profit
 * Search shops/items/invoices
 * Search Engine for products 
-* Phone numbers
-* Edit profile
 * Edit invoice
-* Show more of invoice in overview
 * Create MySQL Queries for great analytics such as 
   - Area graph for revenue / profit for give range (weeks, months, years)
   - Peak/Crest Points for each Product vs Revenue
@@ -42,6 +39,9 @@ Todo
 * [x] Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
+* [x] Phone numbers
+* [x] Edit profile
+* [x] Show more of invoice in overview
 * [x] Bug with analytics : Shows stuff even when no invoices are there
 * [x] Validations at PHP and JS sides
 * [x] SQL procedure getOwnerId(invoiceId)
