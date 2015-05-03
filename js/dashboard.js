@@ -16,6 +16,7 @@ $(function() {
   $('.delete-modal').on('hide.bs.modal', handlers.modals.deleteHide);
   $('.edit-modal').on('show.bs.modal', handlers.modals.editShow);
   $('.edit-modal').on('hide.bs.modal', handlers.modals.editHide);
+  $('#detailed-invoice').on('show.bs.modal', handlers.modals.detailedInvoiceShow);
 
   // Retrieves all data and updates the views 
   views.updateAll();

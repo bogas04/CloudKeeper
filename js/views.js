@@ -53,7 +53,8 @@ var views = {
   updateAll : function() {
     views.items();
     views.shops();
-    views.invoices();
+    views.detailedInvoices();
+    //views.invoices();
   },
   clearMessage : function($msg) {
     $msg = ($msg || $('.message'));

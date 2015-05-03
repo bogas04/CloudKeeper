@@ -95,6 +95,26 @@ die();
 
 
     <!-- MODALS -->
+    <!-- DETAILED INVOICE -->
+    <div class="modal fade" id="detailed-invoice" tabindex="-1" role="dialog" aria-labelledby="addInvoice" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title">Invoice Details</h2>
+          </div>
+          <div class="modal-body">
+            Invoice Details :
+            <div class="detailed-invoice"></div>
+            Invoice Items :
+            <div class="detailed-items"></div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ADD MODALS -->
     <!-- SHOP MODAL -->
     <div class="modal fade add-modal" id="add-shop" tabindex="-1" role="dialog" aria-labelledby="addShop" aria-hidden="true">
