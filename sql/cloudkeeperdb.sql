@@ -187,19 +187,38 @@ DELIMITER ;
 DELIMITER //
 CREATE TRIGGER `quantity_amount` AFTER INSERT ON `invoice_items`
  FOR EACH ROW BEGIN
+
+SET @oi = getOwnerId(NEW.invoice_id);
+
 UPDATE `invoices`
     SET `invoice_amount` = `invoice_amount` + NEW.quantity * NEW.price
-    WHERE NEW.invoice_id = `invoice_id`;
+    WHERE NEW.invoice_id = invoices.invoice_id;
     
 UPDATE `owner_items`
     SET quantity = quantity - NEW.quantity
-    WHERE item_id = NEW.item_id;
+    WHERE item_id = NEW.item_id and owner_id = @oi;
 END
 //
 DELIMITER ;
 --
 -- Indexes for dumped tables
 --
+
+
+INSERT INTO `items` (`item_id`, `name`, `description`, `mrp`, `image`) VALUES
+(1, 'Lays American', 'Fritolay chips', 30, NULL),
+(2, 'Lays Indian', 'Fritolay Chips', 30, NULL),
+(3, 'Mother Dairy Chaach', 'Motherdairy salted buttermilk', 10, NULL),
+(4, 'Mother Dairy Lassi', 'Motherdairy sweetened buttermilk', 10, NULL),
+(5, 'O Yes!', 'Puff corns', 10, NULL),
+(6, 'Aloo Pyaaz Paratha', 'Aloo Pyaaz Paratha', 20, NULL),
+(7, 'Mountain Dew', 'Cold drink', 35, NULL),
+(8, 'Coca Cola', 'Carbonated cold drink', 35, NULL),
+(9, 'Pepsi', 'Carbonated cold drink', 35, NULL),
+(10, 'Tiger Biscuit', 'Glucose biscuit', 10, NULL),
+(11, 'Kurkure', 'Lehar Kurkure', 20, NULL),
+(12, 'Uncle Chips', 'Salted chips', 20, NULL),
+(13, 'Real Juice Mixed Fruit', '100% Natural juice', 15, NULL);
 
 --
 -- Indexes for table `invoices`
