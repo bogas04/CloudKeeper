@@ -23,8 +23,6 @@ Todo
 * ***Future*** : Auto-fill enteries based on past/filled details
 * ***Future*** : Predictions, this is bought with this, wallmart-ish!
 * ***Future*** : Tips to maximize profit
-* Search shops/items/invoices
-* Search Engine for products 
 * Edit invoice
 * Create MySQL Queries for great analytics such as 
   - Area graph for revenue / profit for give range (weeks, months, years)
@@ -39,6 +37,8 @@ Todo
 * [x] Add MySQL Triggers for invoice and item updates
   - [x] After insert on invoice_details, update owner_items.quantity for each cart item
   - [x] After insert on invoice_details, update invoices.invoice_amount
+* [x] Search shops/items/invoices
+* [x] Search Engine for products 
 * [x] Phone numbers
 * [x] Edit profile
 * [x] Show more of invoice in overview

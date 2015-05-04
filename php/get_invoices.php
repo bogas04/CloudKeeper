@@ -19,7 +19,7 @@ $query = "SELECT
   WHERE 
     invoices.invoice_id = invoice_items.invoice_id 
     and invoices.shop_id = shops.shop_id 
-    and shops.owner_id = '". $_SESSION['user']['owner_id']."'
+    and shops.owner_id = '". $owner_id ."'
   ORDER BY invoice_time desc";
 
 $result = $mysqli->query($query);

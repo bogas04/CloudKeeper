@@ -33,6 +33,11 @@ if(!isLoggedIn()) {
           <h2> Our Items </h2>
           <div class="help-block"> Showing items that you don't own </div>
           <div class="row">
+            <div class="form-group form-inline">
+              <input type="text" class="form-control keyword" placeholder="Enter search keyword"/>
+              <button class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search"></span> Search</button>
+              <button class="btn btn-primary pull-right" id="refresh-button"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+            </div>
             <div id="all-items"></div>
           </div>
         </div>

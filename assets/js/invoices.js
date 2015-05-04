@@ -19,8 +19,14 @@ $(function() {
   views.detailedInvoices();
   // Add Forms 
   $('#add-invoice-form').on('submit', handlers.forms.addInvoice);
-
   // Delete Forms
   $('#del-invoice-form').on('submit', handlers.forms.deleteInvoice);
+  
+  // Search Button
+  $('#search-button').on('click', views.detailedInvoices);
+  $('#refresh-button').on('click', function() {
+    $('.keyword').val('');
+    views.detailedInvoices();
+  });
 });
 

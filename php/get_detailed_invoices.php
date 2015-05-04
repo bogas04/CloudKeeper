@@ -23,6 +23,26 @@ $query = "SELECT
     `invoices` NATURAL JOIN `invoice_items` NATURAL JOIN `shops`, `items` 
   WHERE invoice_items.item_id = items.item_id AND owner_id = '$owner_id' 
   ORDER BY invoice_time desc;";
+if(isset($_GET['keyword']) && strlen($_GET['keyword']) !== 0) {
+$query = "SELECT 
+  shops.name as `shop_name`, 
+  invoices.invoice_time,
+  invoices.invoice_id, 
+  invoices.invoice_amount, 
+  invoice_items.item_id, 
+  items.name as `item_name`, 
+  invoice_items.quantity, 
+  invoice_items.price 
+  FROM 
+    `invoices` NATURAL JOIN `invoice_items` NATURAL JOIN `shops`, `items` 
+  WHERE invoice_items.item_id = items.item_id AND owner_id = '$owner_id' 
+  AND (
+    invoices.invoice_time LIKE '%".$_GET['keyword']."%' 
+    OR shops.name LIKE '%".$_GET['keyword']."%' 
+    OR items.name LIKE '%".$_GET['keyword']."%'
+  ) 
+  ORDER BY invoice_time desc;";
+}
 $result = $mysqli->query($query);
 
 if(!$result) {

@@ -36,6 +36,11 @@ if(!isLoggedIn()) {
                 <span class="glyphicon glyphicon-shopping-cart"></span> Shops 
                 <a href="#add-shop" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-shop"> Add a Shop </a>
               </h2>
+              <div class="form-group form-inline">
+                <input type="text" class="form-control keyword" placeholder="Enter search keyword"/>
+                <button class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search"></span> Search</button>
+                <button class="btn btn-primary pull-right" id="refresh-button"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+              </div>
               <div id="shops"></div>
             </div>
           </div>
@@ -54,6 +59,6 @@ if(!isLoggedIn()) {
     <script src="assets/js/views.js"></script>
     <script src="assets/js/service.js"></script>
     <script src="assets/js/handlers.js"></script>
-    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/shops.js"></script>
   </body>
 </html>

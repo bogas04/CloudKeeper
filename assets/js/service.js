@@ -6,11 +6,12 @@ var service = {
   _invoiceItems : [],
   _detailedInvoices : {},
   _profile : {},
-  getAllItems : function($targets) {
+  getAllItems : function($targets, keyword) {
     views.showLoader();
     $.ajax({
       url : 'php/get_all_items.php',
       dataType : 'json',
+      data : { keyword : keyword },
       success : function(r) {
         views.hideLoader();
         if(!r.error) {
@@ -208,11 +209,12 @@ var service = {
   getProfileDetails : function() {
     return service._profile;
   },
-  getShops : function($targets, ignore) {
+  getShops : function($targets, ignore, keyword) {
     views.showLoader();
     $.ajax({
       url : 'php/get_shops.php',
       dataType : 'json',
+      data: {keyword : keyword},
       success : function(r) {
         if(r.error) {
           $targets.html(r.msg);
@@ -230,10 +232,11 @@ var service = {
       }
     });
   },
-  getItems : function($targets, ignore) {
+  getItems : function($targets, ignore, keyword) {
     views.showLoader();
     $.ajax({
       url : 'php/get_items.php',
+      data: {keyword : keyword},
       dataType : 'json',
       success : function(r) {
         if(r.error) {
@@ -254,11 +257,12 @@ var service = {
     });
 
   },
-  getInvoices : function($targets, ignore) {
+  getInvoices : function($targets, ignore, keyword) {
     views.showLoader();
     $.ajax({
       url : 'php/get_invoices.php',
       dataType : 'json',
+      data : {keyword : keyword},
       success : function(r) {
         if(r.error) {
           $targets.table.html(r.msg);
@@ -272,11 +276,12 @@ var service = {
       }
     });
   },
-  getDetailedInvoices : function($targets, ignore) {
+  getDetailedInvoices : function($targets, ignore, keyword) {
     views.showLoader();
     $.ajax({
       url : 'php/get_detailed_invoices.php',
       dataType : 'json',
+      data : { keyword : keyword },
       success : function(r) {
         if(!r.error) {
           service._detailedInvoices = r.data;

@@ -19,7 +19,7 @@ var views = {
     service.getAllItems({
       table : $('#all-items'),
       add : $('#add-from-items')
-    });
+    }, $('.keyword').val());
   },
   items : function() {
     service.getItems({
@@ -27,7 +27,7 @@ var views = {
       update : $('#edit-item'),
       del : $('#del-item'),
       option : $('#item-to-add-id')
-    },['owner_id', 'item_id', 'image']);
+    },['owner_id', 'item_id', 'image'], $('.keyword').val());
   },
   shops : function() {
     service.getShops({
@@ -35,20 +35,20 @@ var views = {
       update : $('#edit-shop'),
       del : $('#del-shop'),
       option : $('#add-invoice-form [name=shop-id]')
-    }, ['owner_id', 'shop_id']);
+    }, ['owner_id', 'shop_id'], $('.keyword').val());
   },
   invoices : function() {
     service.getInvoices({
       table : $('#invoices'),
       del : $('#del-invoice')
-    }, ['invoice_id']);
+    }, ['invoice_id'], $('.keyword').val());
   },
   detailedInvoices : function() {
     service.getDetailedInvoices({
       table : $('#invoices'),
       del : $('#del-invoice'),
       more : $('#detailed-invoice')
-    }, ['invoice_id', 'items']);
+    }, ['invoice_id', 'items'], $('.keyword').val());
   },
   updateAll : function() {
     views.items();

@@ -12,6 +12,13 @@ $owner_id = $_SESSION['user']['owner_id'];
 
 $query = 'SELECT * FROM `shops` WHERE `owner_id` = "'. $owner_id.'"';
 
+if(isset($_GET['keyword']) && strlen($_GET['keyword']) > 0) {
+  $query = 'SELECT * FROM `shops` WHERE `owner_id` = "'. $owner_id.'" AND (
+    name LIKE "%'.$mysqli->real_escape_string($_GET['keyword']).'%"
+    OR address LIKE "%'.$mysqli->real_escape_string($_GET['keyword']).'%"
+  )';
+}
+
 $result = $mysqli->query($query);
 
 if(!$result) {
