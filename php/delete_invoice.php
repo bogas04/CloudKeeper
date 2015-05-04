@@ -43,4 +43,4 @@ $result = $mysqli->query($query);
 if(!$result) {
   respond(true, $mysqli->error, [$query]);
 }
-respond(false, 'Successfully deleted'. $result->num_rows.' invoice with '.$count.' items', [$query]);
+respond(false, 'Successfully deleted '. $mysqli->affected_rows.' invoice(s) with '.$count.' items', [$query]);
