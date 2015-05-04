@@ -25,4 +25,4 @@ $result = $mysqli->query($query);
 if(!$result) {
   respond(true, $mysqli->error);
 }
-respond(false, 'Successfully deleted '. $result->affected_rows.' item(s)');
+respond(false, 'Successfully deleted '. $mysqli->affected_rows.' item(s)');
