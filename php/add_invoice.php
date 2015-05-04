@@ -8,7 +8,7 @@ if(!isLoggedIn()) {
   respond(true, 'Logout please');
 }
 foreach($_POST as $key => $p) {
-  if(!isset($_POST[$key]) || count($p) === 0 || strlen($p) === 0) {
+  if(!isset($_POST[$key]) || count($p) === 0 || (!is_array($p) && strlen($p) === 0)) {
     respond(true, 'Please fill all the details');
   }
 }
