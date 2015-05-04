@@ -26,6 +26,25 @@ function generate($query) {
 
 $response = [];
 $queries = [];
+$queries[] = [
+  "SELECT
+  shop_id, year(invoices.invoice_time),month(invoices.invoice_time), sum(invoice_amount),sum(profit) FROM 
+  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit from `invoice_items`, `owner_items`
+  WHERE invoice_items.item_id = owner_items.item_id) as table2 where table2.invoice_id = invoices.invoice_id 
+  group by shop_id,year(invoice_time), month(invoice_time)  having shop_id in(SELECT shop_id from `shops` where owner_id = '$owner_id')", 'shop wise monthly revenue and profit'];
+  
+
+$queries[] = [
+  "SELECT shop_id, year(invoices.invoice_time),sum(invoice_amount),sum(profit) FROM
+  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit FROM `invoice_items`, `owner_items` where invoice_items.item_id = owner_items.item_id) as table2 
+  where table2.invoice_id = invoices.invoice_id 
+  group by shop_id,year(invoice_time),  
+  having shop_id in(SELECT shop_id from `shops` where owner_id = `$owner_id`)", 'shop wise yearly revenue and profit'];
+
+$queries[] = [
+  "SELECT item_id,getName(item_id),sum(profit),sum(revenue) 
+  from `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit, invoice_items.price*invoice_items.quantity as revenue from `invoice_items`, `owner_items` where invoice_items.item_id = owner_items.item_id and owner_id = '$owner_id`) as table2 
+  where table2.invoice_id = invoices.invoice_id group by item_id", 'product revenue and profit'];
 
 $queries[] = [
   "SELECT 
