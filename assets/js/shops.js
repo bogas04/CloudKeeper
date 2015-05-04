@@ -22,7 +22,7 @@ $(function() {
   $('#edit-shop-form').on('submit', handlers.forms.editShop);
   
   // Search Button
-  $('#search-button').on('click', views.shops);
+  $('#search-form').on('submit', function(e) { e.isDefaultPrevented = true; views.shops(); return false; })
   $('#refresh-button').on('click', function() {
     $('.keyword').val('');
     views.shops();

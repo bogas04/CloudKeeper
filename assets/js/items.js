@@ -24,7 +24,7 @@ $(function() {
   $('#edit-item-form').on('submit', handlers.forms.editItem);
 
   // Search Button
-  $('#search-button').on('click', views.items);
+  $('#search-form').on('submit', function(e) { e.isDefaultPrevented = true; views.items(); return false; })
   $('#refresh-button').on('click', function() {
     $('.keyword').val('');
     views.items();

@@ -37,11 +37,13 @@ if(!isLoggedIn()) {
               You may choose items from <a href="all_items.php" target="_blank">our database</a>, 
               or you can <a href="#add-item" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#add-item">add item</a> yourself.
               </p>
-              <div class="form-group form-inline">
-                <input type="text" class="form-control keyword" placeholder="Enter search keyword"/>
-                <button class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search"></span> Search</button>
-                <button class="btn btn-primary pull-right" id="refresh-button"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
-              </div>
+              <form action="php/get_items.php" id="search-form"> 
+                <div class="form-group form-inline">
+                  <input name="keyword" type="text" class="form-control keyword" placeholder="Enter search keyword"/>
+                  <button class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search"></span> Search</button>
+                  <a class="btn btn-primary pull-right" id="refresh-button"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+                </div>
+              </form>
               <div id="items"></div>
             </div>
           </div>

@@ -5,7 +5,7 @@ $(function() {
   $('#add-from-items').on('show.bs.modal', handlers.modals.addFromItems);
 
   // Search Button
-  $('#search-button').on('click', views.allItems);
+  $('#search-form').on('submit', function(e) { e.isDefaultPrevented = true; views.allItems(); return false; })
   $('#refresh-button').on('click', function() {
     $('.keyword').val('');
     views.allItems();

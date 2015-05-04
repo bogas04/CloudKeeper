@@ -23,7 +23,7 @@ $(function() {
   $('#del-invoice-form').on('submit', handlers.forms.deleteInvoice);
   
   // Search Button
-  $('#search-button').on('click', views.detailedInvoices);
+  $('#search-form').on('submit', function(e) { e.isDefaultPrevented = true; views.detailedInvoices(); return false; })
   $('#refresh-button').on('click', function() {
     $('.keyword').val('');
     views.detailedInvoices();

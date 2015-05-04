@@ -24,7 +24,7 @@ if(!isLoggedIn()) {
       <div class="container-fluid">
         <div class="col-md-2">
           <div class="row">
-            <?php sidebar(); ?>
+            <?php sidebar(''); ?>
           </div>
         </div>
         <!-- VIEW -->
