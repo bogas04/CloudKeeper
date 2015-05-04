@@ -44,9 +44,73 @@ function getAnalytics($targets) {
           }
         }
         loadGraph(dataForChart);
+        var dataForChart = [{ 
+          name : 'Profit' , 
+          data : [], 
+          type : 'area', 
+          color : '#5CB85C',
+          fillOpacity : 1
+        }, {
+          name : 'Revenue', 
+          data : [],
+          type : 'area', 
+          color : '#5BC0DE',
+          fillOpacity : 0.3
+        }];
+
+        for(var i = 0; i < data.monthlyRevenueProfit.length; i++) {
+          var currentItem = data.monthlyRevenueProfit[i];
+          dataForChart[0].data.push([Date.UTC(currentItem.year, currentItem.month, 1),parseFloat(currentItem.profit)]);
+          dataForChart[1].data.push([Date.UTC(currentItem.year, currentItem.month, 1),parseFloat(currentItem.revenue)]);
+        }
+
+        loadAreaGraph(dataForChart);
         views.hideLoader();
       }
     } 
+  });
+}
+function loadAreaGraph(data) {
+  $('#areaChart').highcharts({
+    chart: {
+      type: 'area',
+    },
+    title: {
+      text: 'Revenue/Profit (Monthly)'
+    },
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%e. %b',
+        week: '%e. %b',
+        month: '%b', //month formatted as month only
+        year: '%Y'
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Indian Rupees ₹' 
+      }
+    },
+    plotOptions: {
+      area: {
+        pointStart: 1,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    series: data
   });
 }
 function loadGraph(dataForChart) {

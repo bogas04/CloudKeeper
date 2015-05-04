@@ -69,11 +69,14 @@ thead {
 }
 .tile .panel-heading{
   padding: 5px 10px;
-  height: 455px;
+  height: 255px;
   overflow: auto;
 }
 .tile h3 {
   margin-top: 4px;
+}
+.panel-warning.tile td,.panel-info.tile td{
+  color: black !important;
 }
 .form-control-like {
   height: 39px;

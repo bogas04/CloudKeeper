@@ -23,11 +23,11 @@ Todo
 * ***Future*** : Auto-fill enteries based on past/filled details
 * ***Future*** : Predictions, this is bought with this, wallmart-ish!
 * ***Future*** : Tips to maximize profit
-* Edit invoice
-* Create MySQL Queries for great analytics such as 
-  - Area graph for revenue / profit for give range (weeks, months, years)
-  - Peak/Crest Points for each Product vs Revenue
-  - Peak/Crest Points for each Product vs Profit
+* ***Future*** : Edit invoice
+* [x] Create MySQL Queries for great analytics such as 
+  - [x] Area graph for revenue / profit for give range (weeks, months, years)
+  - [x] Peak/Crest Points for each Product vs Revenue
+  - [x] Peak/Crest Points for each Product vs Profit
   - [x] Least/Most Sold Product
   - [x] Least/Most Profitable Product
   - [x] Peak/Crest Points for each Product vs Quantity

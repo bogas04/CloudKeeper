@@ -33,39 +33,66 @@ if(!isLoggedIn()) {
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-4">
-                <div class="panel panel-success tile">
-                  <div class="panel-heading">
-                    <h3>Most Sold Items</h3>
-                    <div class="most-sold-items"></div>
-                    <h3>Least Sold Items</h3>
-                    <div class="least-sold-items"></div>
-                  </div> 
+                <div class="row">
+                  <div class="panel panel-success tile">
+                    <div class="panel-heading">
+                      <h3>Most Sold Items</h3>
+                      <div class="most-sold-items"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="panel panel-default tile">
+                    <div class="panel-heading">
+                      <h3>Least Sold Items</h3>
+                      <div class="least-sold-items"></div>
+                    </div> 
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="panel panel-danger tile">
-                  <div class="panel-heading">
-                    <h3>Overview</h3>
-                    <div class="counts"></div>
-                    <h3>Profit/Revenue by Shop</h3>
-                    <div class="revenue-by-shop"></div>
-                  </div>  
+                <div class="row">
+                  <div class="panel panel-danger tile">
+                    <div class="panel-heading">
+                      <h3>Overview</h3>
+                      <div class="counts"></div>
+                    </div>  
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="panel panel-info tile">
+                    <div class="panel-heading">
+                      <h3>Profit/Revenue by Shop</h3>
+                      <div class="revenue-by-shop"></div>
+                    </div>  
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="panel panel-active tile">
-                  <div class="panel-heading">
-                    <h3>Most Profitable Items</h3>
-                    <div class="most-profitable-items"></div>
-                    <h3>Least Profitable Items</h3>
-                    <div class="least-profitable-items"></div>
-                  </div> 
+                <div class="row">
+                  <div class="panel panel-active tile">
+                    <div class="panel-heading">
+                      <h3>Most Profitable Items</h3>
+                      <div class="most-profitable-items"></div>
+                    </div> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="panel panel-warning tile">
+                    <div class="panel-heading">
+                      <h3>Least Profitable Items</h3>
+                      <div class="least-profitable-items"></div>
+                    </div> 
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12>">
-              <div id="chart" style="margin: 20px;"></div>
+              <div class="col-md-6">
+                <div id="chart"></div>
+              </div>
+              <div class="col-md-6">
+                <div id="areaChart"></div>
               </div>
             </div>
           </div>
