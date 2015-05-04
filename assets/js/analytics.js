@@ -60,8 +60,8 @@ function getAnalytics($targets) {
 
         for(var i = 0; i < data.monthlyRevenueProfit.length; i++) {
           var currentItem = data.monthlyRevenueProfit[i];
-          dataForChart[0].data.push([Date.UTC(currentItem.year, currentItem.month, 1),parseFloat(currentItem.profit)]);
-          dataForChart[1].data.push([Date.UTC(currentItem.year, currentItem.month, 1),parseFloat(currentItem.revenue)]);
+          dataForChart[0].data.push([Date.UTC(currentItem.year, currentItem.month - 1 , 1),parseFloat(currentItem.profit)]);
+          dataForChart[1].data.push([Date.UTC(currentItem.year, currentItem.month - 1, 1),parseFloat(currentItem.revenue)]);
         }
 
         loadAreaGraph(dataForChart);
