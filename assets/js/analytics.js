@@ -23,9 +23,9 @@ function getAnalytics($targets) {
 
         var dataForChart = [];
 
-        for(var i = 0; i < data.invoiceTimeline.length; i++) {
+        for(var i = 0; i < data.productWiseQuantity.length; i++) {
           var found = false;
-          var currentItem = data.invoiceTimeline[i];
+          var currentItem = data.productWiseQuantity[i];
           var date = new Date(parseInt(currentItem.invoice_time_utc));
           var dataToAdd = [Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()), parseFloat(currentItem.quantity)];
 

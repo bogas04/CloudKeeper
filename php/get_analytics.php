@@ -26,25 +26,41 @@ function generate($query) {
 
 $response = [];
 $queries = [];
+
 $queries[] = [
   "SELECT
   shop_id, year(invoices.invoice_time),month(invoices.invoice_time), sum(invoice_amount),sum(profit) FROM 
-  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit from `invoice_items`, `owner_items`
-  WHERE invoice_items.item_id = owner_items.item_id) as table2 where table2.invoice_id = invoices.invoice_id 
-  group by shop_id,year(invoice_time), month(invoice_time)  having shop_id in(SELECT shop_id from `shops` where owner_id = '$owner_id')", 'shop wise monthly revenue and profit'];
-  
+  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit FROM `invoice_items`, `owner_items`
+  WHERE invoice_items.item_id = owner_items.item_id) as table2 WHERE table2.invoice_id = invoices.invoice_id 
+  GROUP BY shop_id,year(invoice_time), month(invoice_time) HAVING shop_id in (SELECT shop_id FROM `shops` WHERE owner_id = '$owner_id')", 
+  'shopWiseMonthlyRevenueProfit'];
 
 $queries[] = [
   "SELECT shop_id, year(invoices.invoice_time),sum(invoice_amount),sum(profit) FROM
-  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit FROM `invoice_items`, `owner_items` where invoice_items.item_id = owner_items.item_id) as table2 
-  where table2.invoice_id = invoices.invoice_id 
-  group by shop_id,year(invoice_time),  
-  having shop_id in(SELECT shop_id from `shops` where owner_id = `$owner_id`)", 'shop wise yearly revenue and profit'];
+  `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit FROM `invoice_items`, `owner_items` WHERE invoice_items.item_id = owner_items.item_id) as table2 
+  WHERE table2.invoice_id = invoices.invoice_id 
+  GROUP BY shop_id,year(invoice_time)
+  HAVING shop_id in(SELECT shop_id FROM `shops` WHERE owner_id = '$owner_id')", 'shopWiseYearlyRevenueProfit'];
 
 $queries[] = [
-  "SELECT item_id,getName(item_id),sum(profit),sum(revenue) 
-  from `invoices`, (SELECT invoice_id,invoice_items.item_id,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit, invoice_items.price*invoice_items.quantity as revenue from `invoice_items`, `owner_items` where invoice_items.item_id = owner_items.item_id and owner_id = '$owner_id`) as table2 
-  where table2.invoice_id = invoices.invoice_id group by item_id", 'product revenue and profit'];
+  "SELECT item_id
+  ,getName(item_id)
+  ,sum(profit)
+  ,sum(revenue) 
+  FROM `invoices`, (SELECT invoice_id 
+      ,invoice_items.item_id 
+      ,(invoice_items.price-owner_items.cost_price)*invoice_items.quantity as profit
+      ,invoice_items.price*invoice_items.quantity as revenue FROM `invoice_items`
+      ,`owner_items` WHERE invoice_items.item_id = owner_items.item_id and owner_id = '$owner_id') as table2
+  WHERE table2.invoice_id = invoices.invoice_id GROUP BY item_id", 'productWiseRevenueProfit'];
+
+$queries[] = [
+  "SELECT invoice_items.item_id, getName(item_id) as `item name`, quantity as quantity, (UNIX_TIMESTAMP(invoice_time)*1000) as invoice_time_utc FROM
+  `invoice_items` NATURAL JOIN `invoices` 
+  WHERE shop_id IN 
+  (SELECT shop_id FROM
+  `shops` NATURAL JOIN `owner` 
+  WHERE owner_id = '$owner_id') ORDER BY invoice_time", 'productWiseQuantity'];
 
 $queries[] = [
   "SELECT 
@@ -94,14 +110,6 @@ $queries[] = [
   `invoice_items`, `owner_items`
   WHERE invoice_items.item_id = owner_items.item_id AND `owner_id`='$owner_id' AND getOwnerId(invoice_items.invoice_id) = '$owner_id'
   ", 'ownerData', true];
-
-$queries[] = [
-  "SELECT invoice_items.item_id, getName(item_id) as `item name`, quantity as quantity, (UNIX_TIMESTAMP(invoice_time)*1000) as invoice_time_utc FROM
-  `invoice_items` NATURAL JOIN `invoices` 
-  WHERE shop_id IN 
-  (SELECT shop_id FROM
-  `shops` NATURAL JOIN `owner` 
-  WHERE owner_id = '$owner_id') ORDER BY invoice_time", 'invoiceTimeline'];
 
 $queries[] = [
   "SELECT shops.name, SUM((price-getCostPrice(invoice_items.item_id,'$owner_id'))*invoice_items.quantity) as profit, SUM(price*invoice_items.quantity) as revenue FROM

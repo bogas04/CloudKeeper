@@ -93,7 +93,7 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         views.allItems();
         views.clearMessage($msg);
-        views.clearModal();
+        views.closeModal();
         views.hideLoader();
       }
     });
@@ -167,6 +167,7 @@ var service = {
         $msg.addClass(r.error?'alert-danger':'alert-success');
         service._invoiceItems = [];
         views.invoices();
+        views.items();
         views.clearInvoiceItems();
         views.clearMessage($msg);
         views.clearModal();
@@ -244,6 +245,7 @@ var service = {
         } else {
           service._items = r.data;
           $targets.table.html(views.renderTable(r.data, ignore, {update: $targets.update, del : $targets.del}));
+          $targets.option.html('');
           for(var i = 0; i < r.data.length; i++) {
             $targets.option.append('<option value="' + r.data[i].item_id + '">' + r.data[i].name + '</option>');
           }
