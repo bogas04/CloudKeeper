@@ -1,3 +1,21 @@
+@media only screen and (max-width: 992px) {
+  .sidebar > li { float: left !important; }
+  .sidebar { font-size: 150% !important; }
+  .sidebar li { width : 19.5% !important; }
+  .sidebar { text-align: center; }
+  .sidebar .sidebar-text { display: block; }
+}
+@media only screen and (max-width: 570px) {
+  .sidebar .sidebar-text { display: none; }
+  .sidebar a:hover .sidebar-text { display: block; }
+  .sidebar .glyphicon { font-size: 200% !important; }
+}
+@media only screen and (max-width: 430px) {
+  .sidebar > li { float: none !important; }
+  .sidebar .sidebar-text { display: inline !important; }
+  .sidebar li { width : 100% !important; }
+  .sidebar { text-align: left; }
+}
 /* Globals */
 body { 
   padding-top: 40px; 
@@ -6,6 +24,9 @@ thead {
   background-color: #EC971F;
 }
 /* Custom Elements */
+.sidebar > li {
+  float: none;
+}
 .profile {
   font-size: 130%;
 }

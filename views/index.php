@@ -39,12 +39,37 @@ function sidebar($selected) {
   echo ' 
     <!-- SIDEBAR -->
     <h2> <span class="glyphicon glyphicon-dashboard"></span> Dashboard </h2>
-    <ul class="nav nav-pills nav-stacked">
-    <li'.($selected === 'overview'? ' class="active"':'').'><a href="dashboard.php"><span class="glyphicon glyphicon-cloud"></span> Overview</a> </li>
-    <li'.($selected === 'shops'? ' class="active"':'').'><a href="shops.php"><span class="glyphicon glyphicon-shopping-cart"></span> Shops</a> </li>
-    <li'.($selected === 'items'? ' class="active"':'').'><a href="items.php"><span class="glyphicon glyphicon-list-alt"></span> Items</a> </li>
-    <li'.($selected === 'invoices'? ' class="active"':'').'><a href="invoices.php"><span class="glyphicon glyphicon-transfer"></span> Invoices</a> </li>
-    <li'.($selected === 'analytics'? ' class="active"':'').'><a href="analytics.php"><span class="glyphicon glyphicon-calendar"></span> Analytics</a> </li>
-    </ul>
+    <ul class="sidebar nav nav-pills">
+    <li'.($selected === 'overview'? ' class="active"':'').'>
+      <a href="dashboard.php">
+        <span class="glyphicon glyphicon-cloud"></span> 
+        <span class="sidebar-text">Overview</span>
+      </a>
+    </li>
+    <li'.($selected === 'shops'? ' class="active"':'').'>
+      <a href="shops.php">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+        <span class="sidebar-text">Shops</span>
+      </a>
+    </li>
+    <li'.($selected === 'items'? ' class="active"':'').'>
+      <a href="items.php">
+        <span class="glyphicon glyphicon-list-alt"></span> 
+        <span class="sidebar-text">Items</span>
+      </a>
+    </li>
+    <li'.($selected === 'invoices'? ' class="active"':'').'>
+      <a href="invoices.php">
+        <span class="glyphicon glyphicon-transfer"></span> 
+        <span class="sidebar-text">Invoices</span>
+      </a> 
+    </li>
+    <li'.($selected === 'analytics'? ' class="active"':'').'>
+      <a href="analytics.php">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="sidebar-text">Analytics</span>
+      </a>
+    </li>
+  </ul>
 ';
 }
