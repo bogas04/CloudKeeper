@@ -24,6 +24,11 @@ Todo
 * ***Future*** : Predictions, this is bought with this, wallmart-ish!
 * ***Future*** : Tips to maximize profit
 * ***Future*** : Edit invoice
+* Filter by period
+* Add tabs for invoices by shops 
+* Better filters on analytics, flexible durations
+* Better explanation of the tool on front page
+* Find more FDs, state them rightly
 * [x] Create MySQL Queries for great analytics such as 
   - [x] Area graph for revenue / profit for give range (weeks, months, years)
   - [x] Peak/Crest Points for each Product vs Revenue
