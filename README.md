@@ -20,9 +20,9 @@ We, here are maintaining a database for a shopkeeper and providing it as a web s
 Screenshots
 ===========
 * Dashboard 
-![Product Image 2](/screenshots/1.png)
+![Product Image 2](/screenshots/2.png)
 * Mobile View
-![Product Image 3](/screenshots/1.png)
+![Product Image 3](/screenshots/3.png)
 
 Todo  
 ===
