@@ -1,7 +1,7 @@
 CloudKeeper
 ===
 We aim to bring the power of cloud computing and analytics to a local shop vendor so as to improve his/her business right through mobile.
-![Product Image](/screenshots/1.png)
+![Product Image 1](/screenshots/1.png)
 Problem Statement
 ===
 Data is backbone of any successful business, no matter how big or small it is. While big corporate companies rely on mainframe computers for all their data entries and analyze it using complex systems, a shopkeeper on other hand maintains his register with all daily logs in it.
@@ -16,6 +16,13 @@ We, here are maintaining a database for a shopkeeper and providing it as a web s
 - The shopkeeper can easily maintain his records of items available in his shops, items he sold and the profit or loss earned.
 - He can easily analyze the market growth of the products and on the basis of demand and sales from his shops, he can calculate the money to be invested in his shop and many more benefits can be achieved.
 - Eventually his business grows and even then the web service can scale up, thanks to presence of efficient database systems.
+
+Screenshots
+===========
+* Dashboard 
+![Product Image 2](/screenshots/1.png)
+* Mobile View
+![Product Image 3](/screenshots/1.png)
 
 Todo  
 ===
