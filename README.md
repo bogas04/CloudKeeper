@@ -1,7 +1,7 @@
 CloudKeeper
 ===
 We aim to bring the power of cloud computing and analytics to a local shop vendor so as to improve his/her business right through mobile.
-
+![Product Image](/screenshots/1.png)
 Problem Statement
 ===
 Data is backbone of any successful business, no matter how big or small it is. While big corporate companies rely on mainframe computers for all their data entries and analyze it using complex systems, a shopkeeper on other hand maintains his register with all daily logs in it.

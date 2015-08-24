@@ -5,6 +5,7 @@ var service = {
   _shops : [],
   _invoiceItems : [],
   _detailedInvoices : {},
+  _shopWiseInvoices : {},
   _profile : {},
   getAllItems : function($targets, keyword) {
     views.showLoader();
@@ -287,6 +288,7 @@ var service = {
       success : function(r) {
         if(!r.error) {
           service._detailedInvoices = r.data;
+          service._shopWiseInvoices = r.data.data;
           $targets.table.html(views.renderTable(r.data, ignore, $targets));
         } else {
           $targets.table.html(r.msg);

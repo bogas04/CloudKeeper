@@ -53,6 +53,7 @@ if($result->num_rows == 0) {
   respond(false, 'You have no invoices', []);
 } else {
   $invoices = [];
+  $shopWise = [];
   while($invoice = $result->fetch_assoc()) {
     $key = -1; 
     foreach($invoices as $index => $i) {
@@ -64,7 +65,6 @@ if($result->num_rows == 0) {
     if($key === -1) {
       $key = count($invoices);  
     }
-    
     $invoices[$key]['shop_name'] = $invoice['shop_name'];
     $invoices[$key]['invoice_id'] = $invoice['invoice_id'];
     $invoices[$key]['invoice_time'] = $invoice['invoice_time'];
@@ -78,6 +78,22 @@ if($result->num_rows == 0) {
       'price' => $invoice['price'],
       'quantity' => $invoice['quantity']
       ];
+
+
+    if(!isset($shopWise[$invoice['shop_name']][$key]['items'])) {
+      $shopWise[$invoice['shop_name']][$key]['items'] = [];
+    }
+    $shopWise[$invoice['shop_name']][$key]['shop_name'] = $invoice['shop_name'];
+    $shopWise[$invoice['shop_name']][$key]['invoice_id'] = $invoice['invoice_id'];
+    $shopWise[$invoice['shop_name']][$key]['invoice_time'] = $invoice['invoice_time'];
+    $shopWise[$invoice['shop_name']][$key]['amount'] = $invoice['invoice_amount'];
+    $shopWise[$invoice['shop_name']][$key]['items'][] = [
+      'item_id' => $invoice['item_id'],
+      'item_name' => $invoice['item_name'],
+      'price' => $invoice['price'],
+      'quantity' => $invoice['quantity']
+      ];
   }
+  $invoices['data'] = $shopWise;
   respond(false, 'You have '. count($invoices) . ' invoice(s)', $invoices);
 }
